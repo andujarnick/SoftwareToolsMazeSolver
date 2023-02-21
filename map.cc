@@ -16,6 +16,7 @@ struct Node{
     Node * left;
     Node * right;
     Node * straight;
+    Node * previous;
 };
 
 void add(Node *& root, Node *& previousNode, string chosenDirection);
