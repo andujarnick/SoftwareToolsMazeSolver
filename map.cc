@@ -26,9 +26,9 @@ void add(Node *& root, Node *& previousNode, string chosenDirection);
 int size(Node * root);
 
 int main(int argc, char *argv[]){
-
-    int space1loc = -1;
-    int space2loc = -1;
+//  Variables to be used in future, not working function
+//    int space1loc = -1;
+//    int space2loc = -1;
     string direction;
 
     Node* graph; //declare variable for root node for map
