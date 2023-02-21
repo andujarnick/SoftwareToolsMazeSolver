@@ -19,9 +19,21 @@ struct Node{
 };
 
 int main(int argc, char *argv[]){
+
+    Node* graph; //declare variable for root node for map
+    graph = NULL; //set equal to null
+    Node* placeholder; //declare variable
+    placeholder = NULL; //set equal to null
     
-    
-    
+    ifstream instream; //create stream variable
+    instream.open("input.txt"); //open input file
+
+    string line; //create variable for line of input
+    getline(instream, line); //get that line for prcessing
+
+    //do the work
+
+    instream.close(); //close the file
     
     return 0;
 }
