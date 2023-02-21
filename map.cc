@@ -18,6 +18,8 @@ struct Node{
     Node * straight;
 };
 
+void add(Node *& root, Node *& previousNode, string chosenDirection);
+
 int main(int argc, char *argv[]){
 
     Node* graph; //declare variable for root node for map
@@ -36,4 +38,20 @@ int main(int argc, char *argv[]){
     instream.close(); //close the file
     
     return 0;
+}
+
+
+void add(Node *& root, Node *& previousNode, string chosenDirection){
+    if(root == NULL){
+        root=new Node;
+        root->previous = previousNode;
+        root->data = chosenDirection;
+        root->left=root->right=root->straight=root->previous=NULL;
+    }
+    else if (chosenDirection == "LEFT")
+        add(root->left, root, chosenDirection);
+    else if (chosenDirection == "STRAIGHT")
+        add(root->straight, root, chosenDirection);
+    else
+        add(root->right, root, chosenDirection);
 }
