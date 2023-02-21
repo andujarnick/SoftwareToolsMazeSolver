@@ -19,7 +19,11 @@ struct Node{
     Node * previous;
 };
 
+//Adds a node to the graph
 void add(Node *& root, Node *& previousNode, string chosenDirection);
+
+//Calcs the size of the graph
+int size(Node * root);
 
 int main(int argc, char *argv[]){
 
@@ -62,4 +66,11 @@ void add(Node *& root, Node *& previousNode, string chosenDirection){
         add(root->straight, root, chosenDirection);
     else
         add(root->right, root, chosenDirection);
+}
+
+
+int size(Node * root){
+    if(root == NULL) return 0;
+    else
+    return size(root->left) + size(root->right) + size(root->straight) + 1;
 }
