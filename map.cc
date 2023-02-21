@@ -48,7 +48,7 @@ int main(int argc, char *argv[]){
         add(graph, placeholder, "Chosen Direction");
     }while(!instream.eof());
     
-    cout << endl << endl << "size: " << size(graph) << endl;
+    cout << endl << endl << "size: " << size(graph) + 1 << endl;
     
 
     instream.close(); //close the file
