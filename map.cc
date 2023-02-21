@@ -19,6 +19,9 @@ struct Node{
     Node * previous;
 };
 
+//function to output everything mapped so far
+void inorder(Node* root);
+
 //Adds a node to the graph
 void add(Node *& root, Node *& previousNode, string chosenDirection);
 
@@ -49,7 +52,8 @@ int main(int argc, char *argv[]){
         //Will eventually actually use the "ChooseDirection Variable, when we have that function and that string available"
         add(graph, placeholder, "Chosen Direction");
     }while(!instream.eof());
-    
+    cout << endl;
+    inorder(graph);
     //Prints the size of the tree in total (plus one is since function is recursive)
     cout << endl << endl << "size: " << size(graph) + 1 << endl;
     
@@ -81,4 +85,13 @@ int size(Node * root){
     if(root == NULL) return 0;
     else
     return size(root->left) + size(root->right) + size(root->straight) + 1;
+}
+
+void inorder(Node* root){
+    if(root != NULL){
+        inorder(root->left);
+        cout<<root->data<<endl;
+        inorder(root->right);
+        inorder(root->straight);
+    }
 }
