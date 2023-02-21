@@ -40,23 +40,27 @@ int main(int argc, char *argv[]){
     instream.open("input.txt"); //open input file
 
     string line; //create variable for line of input
-    getline(instream, line); //get that line for prcessing
+    getline(instream, line); //get that line for processing
 
+    //Takes the input from the input file
     do //do the work
     {
         getline(instream, line);
+        //Will eventually actually use the "ChooseDirection Variable, when we have that function and that string available"
         add(graph, placeholder, "Chosen Direction");
     }while(!instream.eof());
     
+    //Prints the size of the tree in total (plus one is since function is recursive)
     cout << endl << endl << "size: " << size(graph) + 1 << endl;
     
-
     instream.close(); //close the file
     
     return 0;
 }
 
-
+//root: the tree's initial node
+//previousNode: previous node in the tree, which this is linked from
+//ChosenDirection: String containing info and what direction should be selected (will be part of a future function).
 void add(Node *& root, Node *& previousNode, string chosenDirection){
     if(root == NULL){
         root=new Node;
@@ -72,7 +76,7 @@ void add(Node *& root, Node *& previousNode, string chosenDirection){
         add(root->right, root, chosenDirection);
 }
 
-
+//root: the root of the tree, initial node
 int size(Node * root){
     if(root == NULL) return 0;
     else
