@@ -27,6 +27,10 @@ int size(Node * root);
 
 int main(int argc, char *argv[]){
 
+    int space1loc = -1;
+    int space2loc = -1;
+    string direction;
+
     Node* graph; //declare variable for root node for map
     graph = NULL; //set equal to null
     Node* placeholder; //declare variable
