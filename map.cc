@@ -34,7 +34,14 @@ int main(int argc, char *argv[]){
     string line; //create variable for line of input
     getline(instream, line); //get that line for prcessing
 
-    //do the work
+    do //do the work
+    {
+        getline(instream, line);
+        add(graph, placeholder, chooseDirection(line, space1loc));
+    }while(!instream.eof());
+    
+    cout << endl << endl << "size: " << size(graph) << endl;
+    
 
     instream.close(); //close the file
     
