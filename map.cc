@@ -45,7 +45,7 @@ int main(int argc, char *argv[]){
     do //do the work
     {
         getline(instream, line);
-        add(graph, placeholder, chooseDirection(line, space1loc));
+        add(graph, placeholder, "Chosen Direction");
     }while(!instream.eof());
     
     cout << endl << endl << "size: " << size(graph) << endl;
