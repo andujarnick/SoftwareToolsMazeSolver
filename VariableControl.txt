@@ -1,0 +1,13 @@
+Variable        Type        Use
+graph           Node*       Root Node for the tree
+placeholder     Node*       placeholder node
+instream        ifstream    stream to take in inputs from txt file
+line            string      input string taken from file
+
+
+Structure Node
+data            string      holder for information in string from
+left            Node*       link to child node to left
+right           Node*       link to child node to right
+straight        Node*       link to child node in forward direction
+previous        Node*       link to parent node
