@@ -101,11 +101,26 @@ void inorder(Node* root){
     }
 }
 
-
-string chooseDriection(Node * current){
+//Function to choose the direction the node will travel
+string chooseDirection(Node * current){
     if(current != NULL){
-
-
-
+        if(current->left != NULL){
+            return "LEFT";
+        }
+        else if(current->straight != NULL){
+            return "STRAIGHT";
+        }
+        else if(current->right != NULL){
+            return "RIGHT";
+        }
+        else if(current->previous != NULL){
+            return "BACK";
+        }
+        else{
+            return "NULL";
+        }
+    }
+    else{
+        return "NULL";
     }
 }
