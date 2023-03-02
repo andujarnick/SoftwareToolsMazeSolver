@@ -28,6 +28,9 @@ int size(Node * root);
 //function to output everything mapped so far
 void inorder(Node* root);
 
+//function to choose the direction the node should travel
+string chooseDirection(Node * current);
+
 int main(int argc, char *argv[]){
 //  Variables to be used in future, not working function
 //    int space1loc = -1;
@@ -67,19 +70,19 @@ int main(int argc, char *argv[]){
 //root: the tree's initial node
 //previousNode: previous node in the tree, which this is linked from
 //ChosenDirection: String containing info and what direction should be selected (will be part of a future function).
-void add(Node *& root, Node *& previousNode, string chosenDirection){
+void add(Node *& root, Node *& previousNode, string direction){
     if(root == NULL){
         root=new Node;
         root->previous = previousNode;
-        root->data = chosenDirection;
+        root->data = direction;
         root->left=root->right=root->straight=root->previous=NULL;
     }
-    else if (chosenDirection == "LEFT")
-        add(root->left, root, chosenDirection);
-    else if (chosenDirection == "STRAIGHT")
-        add(root->straight, root, chosenDirection);
+    else if (direction == "LEFT")
+        add(root->left, root, direction);
+    else if (direction == "STRAIGHT")
+        add(root->straight, root, direction);
     else
-        add(root->right, root, chosenDirection);
+        add(root->right, root, direction);
 }
 
 //root: the root of the tree, initial node
@@ -95,5 +98,14 @@ void inorder(Node* root){
         cout<<root->data<<endl;
         inorder(root->right);
         inorder(root->straight);
+    }
+}
+
+
+string chooseDriection(Node * current){
+    if(current != NULL){
+
+
+
     }
 }
