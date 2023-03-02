@@ -28,6 +28,9 @@ int size(Node * root);
 //function to output everything mapped so far
 void inorder(Node* root);
 
+//Function to count number of directions
+int countDirections(Node * current);
+
 //function to choose the direction the node should travel
 string chooseDirection(Node * current);
 
@@ -123,4 +126,21 @@ string chooseDirection(Node * current){
     else{
         return "NULL";
     }
+}
+
+//Function to count number of directions at intersection
+int countDirections(Node * current){
+    int numDirections = 0;
+    if(current != NULL){
+        if(current->left != NULL){
+            numDirections++;
+        }
+        if(current->straight != NULL){
+            numDirections++;
+        }
+        if(current->right != NULL){
+            numDirections++;
+        }
+    }
+    return numDirections;
 }
