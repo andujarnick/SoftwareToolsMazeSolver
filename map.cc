@@ -144,3 +144,31 @@ int countDirections(Node * current){
     }
     return numDirections;
 }
+
+void printIntersections(Node* graph, stack<Node> intersections){
+//    cout << "graph -> left:" << graph->left << ":" << endl;
+//    cout << "graph -> straight:" << graph->straight << ":" << endl;
+//    cout << "graph -> right:" << graph->right << ":" << endl;
+    cout << endl;
+//    cout << "outside the loop" << endl;
+    while (!intersections.empty()) {
+//        cout << "inside the loop" << endl;
+        cout << "intersection -> left:" << intersections.top()->left << ":" << endl;
+        cout << "intersection -> straight:" << intersections.top()->straight << ":" << endl;
+        cout << "intersection -> right:" << intersections.top()->right << ":" << endl;
+        intersections.pop();
+       }
+}
+
+void copyNode(Node graph, Node* &intersection){
+    intersection->instruction = graph->instruction;
+    intersection->data = graph->data;
+    intersection->directionCount = graph->directionCount;
+    intersection->directionsLeft = graph->directionsLeft;
+    intersection->isIntersection = graph->isIntersection;
+    intersection->distanceFromIntersection = graph->distanceFromIntersection;
+    intersection->left = graph->left;
+    intersection->right = graph->right;
+    intersection->straight = graph->straight;
+    intersection->previous = graph->previous;
+}
