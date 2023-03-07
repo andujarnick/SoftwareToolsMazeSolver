@@ -19,7 +19,7 @@ maze_solver: map.cc
 archive: archive.tar.gz
 
 #builds the archive
-archive.tar.gz: map.cc input.txt
+archive.tar.gz: map.cc
 	tar czf archive.tar.gz $^
 
 #cleans the executable
