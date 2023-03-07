@@ -10,62 +10,92 @@
 using namespace std;
 
 
-//Nodes that let you go left, right or straight. Also can traverse the tree backwards  
+//Nodes that let you go left, right or straight. Also can traverse the tree backwards
 struct Node{
-    string data;
+    string instruction;
+    string data;//stored direction
+    int directionCount;
+    int distanceFromIntersection;
+    bool directionsLeft;
+    bool isIntersection;
+    
     Node * left;
     Node * right;
     Node * straight;
     Node * previous;
 };
 
-//Adds a node to the graph
-void add(Node *& root, Node *& previousNode, string chosenDirection);
+//function to output everything mapped so far
+void inorder(Node * root);
 
-//Calcs the size of the graph
+//Calculates the size of the graph
 int size(Node * root);
 
-//function to output everything mapped so far
-void inorder(Node* root);
+//adds a node to the graph
+Node* add(Node *& root, Node *& previousNode, string chosenDirection, string line, stack<string> directions);
 
-//Function to count number of directions
-int countDirections(Node * current);
+//adds to the directions stack
+void addToDirections(stack<string> &directions, string chosenDirection)
 
-//function to choose the direction the node should travel
-string chooseDirection(Node * current);
+//Prints all the directions stored
+void printDirections(stack<string> directions);
+
+//looks to see if the node is an intersection
+bool isIntersection(Node * root);
+
+//chooses the correct default direction
+string chooseDirection(string line, int space1loc, int numDirections, Node* intersection);
+
+//counts the number of directions given to the computer
+int numDirectionsCount(string line, int &space1loc, int &space2loc);
+
+//adds to backtracking
+void addToBacktracking(stack<string> &backtracking, string direction);
+
+//outputs backtracking list
+void printBacktracking(stack<string> backtracking);
+
+//backtracks up the list
+void backtrack(Node* root, Node* cursor, stack<string> &backtracking, stack<string> &directions, int distanceFromIntersection);
+
+//Moves through the maze with a cursor over the nodes
+void moveThroughMaze(Node* &graph, Node* placeholder, stack<string> &backtracking, stack<Node*> &intersections, stack<string> &directions);
+
+//Prints out all the intersections stored
+void printIntersections(Node* graph, stack<Node*> intersections);
+
+//Copies the node to the node stack
+void copyNode(Node* graph, Node* &intersection);
 
 int main(int argc, char *argv[]){
-//  Variables to be used in future, not working function
-//    int space1loc = -1;
-//    int space2loc = -1;
-    string direction;
-
-    Node* graph; //declare variable for root node for map
-    graph = NULL; //set equal to null
-    Node* placeholder; //declare variable
-    placeholder = NULL; //set equal to null
     
-    ifstream instream; //create stream variable
-    instream.open("input.txt"); //open input file
-
-    string line; //create variable for line of input
-    getline(instream, line); //get that line for processing
-
-    //Takes the input from the input file
-    do //do the work
-    {
-        getline(instream, line);
-        //Will eventually actually use the "ChooseDirection Variable, when we have that function and that string available"
-        add(graph, placeholder, "Chosen Direction");
-    }while(!instream.eof());
+    //Node system for the graph to be stored in
+    Node* graph;
+    graph = NULL;
+    Node* placeholder;
+    placeholder = NULL;
+    
+    //Node system for add function
+    stack<string> directions;
+    //Node system for backtracking function
+    stack<string> backtracking;
+    //Node system for remembering intersections
+    stack<Node*> intersections;
+    
+    
+    ifstream instream;
+    instream.open("input.txt");
+    
+    //Moves through the maze
+    moveThroughMaze(graph, placeholder, backtracking, intersections, directions);
     
     cout << endl;
     inorder(graph);
+    //output the backtracking list
+    printBacktracking(backtracking);
+    printIntersections(graph, intersections);
+//    cout << endl << "size " << size(graph) << endl;
     
-    //Prints the size of the tree in total (plus one is since function is recursive)
-    cout << endl << endl << "size: " << size(graph) + 1 << endl;
-    
-    instream.close(); //close the file
     
     return 0;
 }
