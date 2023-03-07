@@ -266,3 +266,23 @@ void backtrack(Node* root, Node* cursor, stack<string> &backtracking, stack<stri
     cout << "Here is the backtracking list after:" << endl;
     printBacktracking(backtracking);
 }
+
+bool isIntersection(Node * root){
+    int directionCount = 0;
+    if(root->left != NULL){
+        directionCount++;
+    }
+    if(root->straight != NULL){
+        directionCount++;
+    }
+    if(root->right != NULL){
+        directionCount++;
+    }
+
+    if(directionCount > 1){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
