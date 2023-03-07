@@ -231,3 +231,15 @@ int numDirectionsCount(string line, int &space1loc, int &space2loc){
     else
         return 2;
 }
+
+void addToBacktracking(stack<string> &backtracking, string chosenDirection){
+    if(chosenDirection == "LEFT"){
+        backtracking.push("RIGHT");
+    }
+    else if(chosenDirection == "STRAIGHT"){
+        backtracking.push("STRAIGHT");
+    }
+    else{
+        backtracking.push("LEFT");
+    }
+}
