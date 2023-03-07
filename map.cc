@@ -36,7 +36,7 @@ int size(Node * root);
 Node* add(Node *& root, Node *& previousNode, string chosenDirection, string line, stack<string> directions);
 
 //adds to the directions stack
-void addToDirections(stack<string> &directions, string chosenDirection)
+void addToDirections(stack<string> &directions, string chosenDirection);
 
 //Prints all the directions stored
 void printDirections(stack<string> directions);
@@ -184,22 +184,22 @@ void printIntersections(Node* graph, stack<Node> intersections){
 //    cout << "outside the loop" << endl;
     while (!intersections.empty()) {
 //        cout << "inside the loop" << endl;
-        cout << "intersection -> left:" << intersections.top()->left << ":" << endl;
-        cout << "intersection -> straight:" << intersections.top()->straight << ":" << endl;
-        cout << "intersection -> right:" << intersections.top()->right << ":" << endl;
+        cout << "intersection -> left:" << intersections.top().left << ":" << endl;
+        cout << "intersection -> straight:" << intersections.top().straight << ":" << endl;
+        cout << "intersection -> right:" << intersections.top().right << ":" << endl;
         intersections.pop();
        }
 }
 
 void copyNode(Node graph, Node* &intersection){
-    intersection->instruction = graph->instruction;
-    intersection->data = graph->data;
-    intersection->directionCount = graph->directionCount;
-    intersection->directionsLeft = graph->directionsLeft;
-    intersection->isIntersection = graph->isIntersection;
-    intersection->distanceFromIntersection = graph->distanceFromIntersection;
-    intersection->left = graph->left;
-    intersection->right = graph->right;
-    intersection->straight = graph->straight;
-    intersection->previous = graph->previous;
+    intersection->instruction = graph.instruction;
+    intersection->data = graph.data;
+    intersection->directionCount = graph.directionCount;
+    intersection->directionsLeft = graph.directionsLeft;
+    intersection->isIntersection = graph.isIntersection;
+    intersection->distanceFromIntersection = graph.distanceFromIntersection;
+    intersection->left = graph.left;
+    intersection->right = graph.right;
+    intersection->straight = graph.straight;
+    intersection->previous = graph.previous;
 }
