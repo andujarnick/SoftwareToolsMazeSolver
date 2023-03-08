@@ -1,4 +1,0 @@
-TODO:
-
-1. Ensure backtracking works
-2. Implement ouput funtion
