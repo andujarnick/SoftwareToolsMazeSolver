@@ -243,3 +243,11 @@ void addToBacktracking(stack<string> &backtracking, string chosenDirection){
         backtracking.push("LEFT");
     }
 }
+
+void printBacktracking(stack<string> backtracking){
+    cout << endl;
+    while (!backtracking.empty()) {
+        cout << backtracking.top() <<" ";
+        backtracking.pop();
+       }
+}
