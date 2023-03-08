@@ -208,3 +208,19 @@ void copyNode(Node graph, Node* &intersection){
     intersection->straight = graph.straight;
     intersection->previous = graph.previous;
 }
+
+void addToDirections(stack<string> &directions, string chosenDirection){
+    directions.push(chosenDirection);
+}
+
+void addToDirections(stack<string> &directions, string chosenDirection){
+    directions.push(chosenDirection);
+}
+
+void printDirections(stack<string> directions){
+    cout << endl;
+    while (!directions.empty()) {
+        cout << directions.top() <<" ";
+        directions.pop();
+       }
+}
