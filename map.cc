@@ -220,3 +220,14 @@ void printDirections(stack<string> directions){
         directions.pop();
        }
 }
+
+int numDirectionsCount(string line, int &space1loc, int &space2loc){
+    space1loc = line.find(' ');
+    space2loc = line.find(' ', space1loc+1);
+    if(space1loc == -1)
+        return 1;
+    else if(space2loc != -1)
+        return 3;
+    else
+        return 2;
+}
