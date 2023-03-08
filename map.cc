@@ -141,26 +141,38 @@ void inorder(Node* root){
 }
 
 //Function to choose the direction the node will travel
-string chooseDirection(Node * current){
-    if(current != NULL){
-        if(current->left != NULL){
+string chooseDirection(string line, int space1loc, int numDirections, Node* intersection){
+    if(intersection == NULL){//none of the paths in front of the bot have ever been visited before. NULL is deliberately sent
+        if (line.substr(0, space1loc) == "L"){
             return "LEFT";
         }
-        else if(current->straight != NULL){
+        if (line.substr(0, space1loc) == "S"){
             return "STRAIGHT";
         }
-        else if(current->right != NULL){
-            return "RIGHT";
+        if(line.substr(0, space1loc) == "D"){
+            return "DEADEND";
         }
-        else if(current->previous != NULL){
-            return "BACK";
+        else
+            return "RIGHT";
+    }
+    else{//one or more paths have already been visited before, came from backtracking
+        if(numDirections > 1){
+            //left doesn't need to be tried again, check for straight and then maybe right
+            int Slocation = line.find("S");
+            int Rlocation = line.find("R");
+            if((intersection->straight != NULL) && (Slocation != -1)){//if straight is an option in the string AND it has not been visited before
+                return "STRAIGHT";
+            }
+            else if((intersection->right != NULL) && (Rlocation != -1)){
+                return "RIGHT";
+            }
+            else{
+                return "AGAIN";//all the pathways at the intersection have been visited, backtracking needs to be applied again
+            }
         }
         else{
-            return "NULL";
+            return "AGAIN";//signal to loop the backtracking again
         }
-    }
-    else{
-        return "NULL";
     }
 }
 
