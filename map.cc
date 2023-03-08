@@ -13,7 +13,7 @@ using namespace std;
 
 //Nodes that let you go left, right or straight. Also can traverse the tree backwards
 struct Node{
-    string instruction;
+    string instruction;//stored direction list
     string data;//stored direction
     int directionCount;
     int distanceFromIntersection;
@@ -104,19 +104,31 @@ int main(int argc, char *argv[]){
 //root: the tree's initial node
 //previousNode: previous node in the tree, which this is linked from
 //ChosenDirection: String containing info and what direction should be selected (will be part of a future function).
-void add(Node *& root, Node *& previousNode, string direction){
+Node* add(Node *& root, Node *& previousNode, string chosenDirection, string line, queue<string> directions){
     if(root == NULL){
         root=new Node;
         root->previous = previousNode;
-        root->data = direction;
+        root->instruction = line;
+        root->data = chosenDirection;
         root->left=root->right=root->straight=root->previous=NULL;
+        root->directionCount = 0;
+        root->directionsLeft = 0;
+        root->distanceFromIntersection = 0;
+        
+        return previousNode;
     }
-    else if (direction == "LEFT")
-        add(root->left, root, direction);
-    else if (direction == "STRAIGHT")
-        add(root->straight, root, direction);
-    else
-        add(root->right, root, direction);
+    else if (directions.top() == "LEFT"){
+        directions.pop_front();
+        return add(root->left, root, chosenDirection, line, directions);
+    }
+    else if (directions.top() == "STRAIGHT"){
+        directions.pop_front();
+        return add(root->straight, root, chosenDirection, line, directions);
+    }
+    else{
+        directions.pop_front();
+        return add(root->right, root, chosenDirection, line, directions);
+    }
 }
 
 //root: the root of the tree, initial node
