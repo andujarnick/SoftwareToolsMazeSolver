@@ -1,3 +1,4 @@
 TODO:
 
-1. Develope ChoseDirection function
+1. Ensure backtracking works
+2. Implement ouput funtion

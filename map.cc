@@ -61,7 +61,7 @@ void printBacktracking(stack<string> backtracking);
 void backtrack(Node* root, Node* cursor, stack<string> &backtracking, vector<string> &directions, int distanceFromIntersection);
 
 //Moves through the maze with a cursor over the nodes
-void moveThroughMaze(Node* &graph, Node* placeholder, stack<string> &backtracking, stack<Node*> &intersections, stack<string> &directions);
+void moveThroughMaze(Node* &graph, Node* placeholder, stack<string> &backtracking, stack<Node*> &intersections, vector<string> &directions);
 
 //Prints out all the intersections stored
 void printIntersections(Node* graph, stack<Node*> intersections);
@@ -118,16 +118,16 @@ Node* add(Node *& root, Node *& previousNode, string chosenDirection, string lin
         
         return previousNode;
     }
-    else if (directions.top() == "LEFT"){
-        directions.pop_front();
+    else if (directions.front() == "LEFT"){
+        directions.erase(directions.begin());
         return add(root->left, root, chosenDirection, line, directions);
     }
-    else if (directions.top() == "STRAIGHT"){
-        directions.pop_front();
+    else if (directions.front() == "STRAIGHT"){
+        directions.erase(directions.begin());
         return add(root->straight, root, chosenDirection, line, directions);
     }
     else{
-        directions.pop_front();
+        directions.erase(directions.begin());
         return add(root->right, root, chosenDirection, line, directions);
     }
 }
@@ -216,10 +216,10 @@ void copyNode(Node graph, Node* &intersection){
     intersection->directionsLeft = graph.directionsLeft;
     intersection->isIntersection = graph.isIntersection;
     intersection->distanceFromIntersection = graph.distanceFromIntersection;
-    intersection->left = graph->left;
-    intersection->right = graph->right;
-    intersection->straight = graph->straight;
-    intersection->previous = graph->previous;
+    intersection->left = graph.left;
+    intersection->right = graph.right;
+    intersection->straight = graph.straight;
+    intersection->previous = graph.previous;
 }
 
 void addToDirections(vector<string> &directions, string chosenDirection){
@@ -323,16 +323,15 @@ void moveThroughMaze(Node* &graph, Node* placeholder, stack<string> &backtrackin
         cout << "The chosen direction is: " << chosenDirection << endl;
         
         if(chosenDirection == "DEADEND"){
-            backtrack(graph, cursor, backtracking, intersections.top()->distanceFromIntersection);
-            chosenDirection = chooseDirection(intersections.top()->instruction, space1loc, numDirections);
-            //            addToDirections(chosenDirection); still moving somewhere else
-            while(chosenDirection == "AGAIN"){
-                intersections.pop();//pops the last intersection from the list
-                backtrack(graph, cursor, backtracking, intersections.top()->distanceFromIntersection);
-                chosenDirection = chooseDirection(intersections.top()->instruction, space1loc, numDirections);//checks again to see if any directions are available
-                //                addToDirections(chosenDirection);still moving somewhere else
-            }
-            numDirections = numDirectionsCount(intersections->top()->instruction, space1loc, space2loc);
+//            backtrack(graph, cursor, backtracking, directions, intersections.top()->distanceFromIntersection);
+//            chosenDirection = chooseDirection(intersections.top()->instruction, space1loc, numDirections, intersections->top());
+//            //            addToDirections(chosenDirection); still moving somewhere else
+//            while(chosenDirection == "AGAIN"){
+//                intersections.pop();//pops the last intersection from the list
+//                backtrack(graph, cursor, backtracking, directions, intersections.top()->distanceFromIntersection);
+//                chosenDirection = chooseDirection(intersections.top()->instruction, space1loc, numDirections);//checks again to see if any directions are available
+//                //                addToDirections(chosenDirection);still moving somewhere else
+            numDirections = numDirectionsCount(intersections.top()->instruction, space1loc, space2loc);
             //before doing anything else, I need to:
             //- copy the node at the top of the stack
             //- pop it from the stack
@@ -341,7 +340,7 @@ void moveThroughMaze(Node* &graph, Node* placeholder, stack<string> &backtrackin
             //- copyNode(add()) at that spot, but in the new direction.
             //- push that intersection to the stack now with its old links and the new ones
             //the lists are now up to date
-            Node* topOfTheStack;
+            Node* topOfTheStack = NULL;
             copyNode(topOfTheStack, intersections.top());
             intersections.pop();
             Node* newIntersection;
