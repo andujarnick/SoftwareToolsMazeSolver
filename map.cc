@@ -359,3 +359,13 @@ void moveThroughMaze(Node* &graph, Node* placeholder, stack<string> &backtrackin
         
     }
 }
+
+void printIntersections(Node* graph, stack<Node*> intersections){
+    cout << endl;
+    while (!intersections.empty()) {
+        cout << "intersection -> left:" << intersections.top()->left << ":" << endl;
+        cout << "intersection -> straight:" << intersections.top()->straight << ":" << endl;
+        cout << "intersection -> right:" << intersections.top()->right << ":" << endl;
+        intersections.pop();
+       }
+}
