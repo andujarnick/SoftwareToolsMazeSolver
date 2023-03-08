@@ -13,7 +13,7 @@ using namespace std;
 
 //Nodes that let you go left, right or straight. Also can traverse the tree backwards
 struct Node{
-    string instruction;//stored direction list
+    string instruction;
     string data;//stored direction
     int directionCount;
     int distanceFromIntersection;
@@ -36,7 +36,7 @@ int size(Node * root);
 Node* add(Node *& root, Node *& previousNode, string chosenDirection, string line, stack<string> directions);
 
 //adds to the directions stack
-void addToDirections(stack<string> &directions, string chosenDirection)
+void addToDirections(stack<string> &directions, string chosenDirection);
 
 //Prints all the directions stored
 void printDirections(stack<string> directions);
@@ -104,31 +104,19 @@ int main(int argc, char *argv[]){
 //root: the tree's initial node
 //previousNode: previous node in the tree, which this is linked from
 //ChosenDirection: String containing info and what direction should be selected (will be part of a future function).
-Node* add(Node *& root, Node *& previousNode, string chosenDirection, string line, queue<string> directions){
+void add(Node *& root, Node *& previousNode, string direction){
     if(root == NULL){
         root=new Node;
         root->previous = previousNode;
-        root->instruction = line;
-        root->data = chosenDirection;
+        root->data = direction;
         root->left=root->right=root->straight=root->previous=NULL;
-        root->directionCount = 0;
-        root->directionsLeft = 0;
-        root->distanceFromIntersection = 0;
-        
-        return previousNode;
     }
-    else if (directions.top() == "LEFT"){
-        directions.pop_front();
-        return add(root->left, root, chosenDirection, line, directions);
-    }
-    else if (directions.top() == "STRAIGHT"){
-        directions.pop_front();
-        return add(root->straight, root, chosenDirection, line, directions);
-    }
-    else{
-        directions.pop_front();
-        return add(root->right, root, chosenDirection, line, directions);
-    }
+    else if (direction == "LEFT")
+        add(root->left, root, direction);
+    else if (direction == "STRAIGHT")
+        add(root->straight, root, direction);
+    else
+        add(root->right, root, direction);
 }
 
 //root: the root of the tree, initial node
@@ -196,22 +184,22 @@ void printIntersections(Node* graph, stack<Node> intersections){
 //    cout << "outside the loop" << endl;
     while (!intersections.empty()) {
 //        cout << "inside the loop" << endl;
-        cout << "intersection -> left:" << intersections.top()->left << ":" << endl;
-        cout << "intersection -> straight:" << intersections.top()->straight << ":" << endl;
-        cout << "intersection -> right:" << intersections.top()->right << ":" << endl;
+        cout << "intersection -> left:" << intersections.top().left << ":" << endl;
+        cout << "intersection -> straight:" << intersections.top().straight << ":" << endl;
+        cout << "intersection -> right:" << intersections.top().right << ":" << endl;
         intersections.pop();
        }
 }
 
 void copyNode(Node graph, Node* &intersection){
-    intersection->instruction = graph->instruction;
-    intersection->data = graph->data;
-    intersection->directionCount = graph->directionCount;
-    intersection->directionsLeft = graph->directionsLeft;
-    intersection->isIntersection = graph->isIntersection;
-    intersection->distanceFromIntersection = graph->distanceFromIntersection;
-    intersection->left = graph->left;
-    intersection->right = graph->right;
-    intersection->straight = graph->straight;
-    intersection->previous = graph->previous;
+    intersection->instruction = graph.instruction;
+    intersection->data = graph.data;
+    intersection->directionCount = graph.directionCount;
+    intersection->directionsLeft = graph.directionsLeft;
+    intersection->isIntersection = graph.isIntersection;
+    intersection->distanceFromIntersection = graph.distanceFromIntersection;
+    intersection->left = graph.left;
+    intersection->right = graph.right;
+    intersection->straight = graph.straight;
+    intersection->previous = graph.previous;
 }
