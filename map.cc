@@ -243,3 +243,119 @@ void addToBacktracking(stack<string> &backtracking, string chosenDirection){
         backtracking.push("LEFT");
     }
 }
+
+void printBacktracking(stack<string> backtracking){
+    cout << endl;
+    while (!backtracking.empty()) {
+        cout << backtracking.top() <<" ";
+        backtracking.pop();
+       }
+}
+
+void backtrack(Node* root, Node* cursor, stack<string> &backtracking, stack<string> &directions, int distanceFromIntersection){
+
+    //debugging code
+    cout << "Here is the backtracking list right now:";
+    printBacktracking(backtracking);
+
+    for(int i=0; i < distanceFromIntersection; i++){
+        cout << "I'm moving: " << backtracking.top() << endl;;
+        backtracking.pop();
+        directions.pop();
+    }
+    cout << "Here is the backtracking list after:" << endl;
+    printBacktracking(backtracking);
+}
+
+bool isIntersection(Node * root){
+    int directionCount = 0;
+    if(root->left != NULL){
+        directionCount++;
+    }
+    if(root->straight != NULL){
+        directionCount++;
+    }
+    if(root->right != NULL){
+        directionCount++;
+    }
+
+    if(directionCount > 1){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+
+void moveThroughMaze(Node* &graph, Node* placeholder, stack<string> &backtracking, stack<Node*> &intersections, stack<string> &directions){
+    int space1loc = -1;
+    int space2loc = -1;
+    int numDirections = 0;
+    string chosenDirection;
+    string line;
+    
+    Node* cursor;
+    cursor = graph;
+    intersections.push(cursor);//starts the intersection list at the root
+    
+    while(line != "Q"){
+        cout << endl << "What's in front of me?" << endl;
+        getline(cin, line);
+        
+        if(line == "Q") {
+            break;
+        }
+        numDirections = numDirectionsCount(line, space1loc, space2loc);
+        chosenDirection = chooseDirection(line, space1loc, numDirections, NULL);
+        //        addToDirections(chosenDirection); moving somewhere else, I think this is wrong
+        cout << "The chosen direction is: " << chosenDirection << endl;
+        
+        if(chosenDirection == "DEADEND"){
+            backtrack(graph, cursor, backtracking, intersections.top()->distanceFromIntersection);
+            chosenDirection = chooseDirection(intersections.top()->instruction, space1loc, numDirections);
+            //            addToDirections(chosenDirection); still moving somewhere else
+            while(chosenDirection == "AGAIN"){
+                intersections.pop();//pops the last intersection from the list
+                backtrack(graph, cursor, backtracking, intersections.top()->distanceFromIntersection);
+                chosenDirection = chooseDirection(intersections.top()->instruction, space1loc, numDirections);//checks again to see if any directions are available
+                //                addToDirections(chosenDirection);still moving somewhere else
+            }
+            numDirections = numDirectionsCount(intersections->top()->instruction, space1loc, space2loc);
+            //before doing anything else, I need to:
+            //- copy the node at the top of the stack
+            //- pop it from the stack
+            //- take that copy's link to the next node, and THAT NODE's previous
+            //- new intersection node
+            //- copyNode(add()) at that spot, but in the new direction.
+            //- push that intersection to the stack now with its old links and the new ones
+            //the lists are now up to date
+            Node* topOfTheStack;
+            copyNode(topOfTheStack, intersections.top());
+            intersections.pop();
+            Node* newIntersection;
+            
+            //right now I'm right here. I need to make sure it copies and adds at the new spot, but it's going to go to the bottom of the list in the completely wrong way until I fix the add function with a new stack of directions.
+            copyNode(add(graph, placeholder, chosenDirection, line, directions), newIntersection);//copies the new node with the info from the intersection
+            intersections.push(newIntersection);//pushes that new intersection onto the stack
+            intersections.top()->distanceFromIntersection++;//increments the distance from the intersection by 1
+            
+            
+            
+            addToBacktracking(backtracking, chosenDirection);//adds to the backtracking list
+            intersections.top()->distanceFromIntersection++;
+        }
+        
+        else{
+            if (numDirections > 1){
+                Node* newIntersection;
+                copyNode(add(graph, placeholder, chosenDirection, line, directions), newIntersection);//copies the new node with the info from the intersection
+                intersections.push(newIntersection);//pushes that new intersection onto the stack
+                intersections.top()->distanceFromIntersection++;//increments the distance from the intersection by 1
+            }
+            addToBacktracking(backtracking, chosenDirection);//adds to the backtracking list
+            intersections.top()->distanceFromIntersection++;
+            //--------------------------------------------------------------------I need an add() function here at some point
+        }
+        
+    }
+}
