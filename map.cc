@@ -208,3 +208,8 @@ void copyNode(Node graph, Node* &intersection){
     intersection->straight = graph.straight;
     intersection->previous = graph.previous;
 }
+
+void addToDirections(stack<string> &directions, string chosenDirection){
+    directions.push(chosenDirection);
+}
+
