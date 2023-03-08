@@ -251,3 +251,18 @@ void printBacktracking(stack<string> backtracking){
         backtracking.pop();
        }
 }
+
+void backtrack(Node* root, Node* cursor, stack<string> &backtracking, stack<string> &directions, int distanceFromIntersection){
+
+    //debugging code
+    cout << "Here is the backtracking list right now:";
+    printBacktracking(backtracking);
+
+    for(int i=0; i < distanceFromIntersection; i++){
+        cout << "I'm moving: " << backtracking.top() << endl;;
+        backtracking.pop();
+        directions.pop();
+    }
+    cout << "Here is the backtracking list after:" << endl;
+    printBacktracking(backtracking);
+}
