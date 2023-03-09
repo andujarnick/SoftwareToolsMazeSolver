@@ -69,6 +69,8 @@ void printIntersections(Node* graph, stack<Node*> intersections);
 //Copies the node to the node stack
 void copyNode(Node* graph, Node* &intersection);
 
+void printMaze(Node * root, vector<string> &directions, vector< vector <string> > &maze, int i, int j);
+
 int main(int argc, char *argv[]){
     
     //Node system for the graph to be stored in
@@ -98,7 +100,29 @@ int main(int argc, char *argv[]){
     printIntersections(graph, intersections);
 //    cout << endl << "size " << size(graph) << endl;
     
+    //section to print out a maze
+    vector <vector <string> > maze;
     
+    for(int i=0; i<20; i++)
+    {
+        vector <string> column;
+        for(int j=0; j<20; j++)
+        {
+             column.push_back(" --- ");
+        }
+        maze.push_back(column);
+    }
+    
+    printMaze(graph, directions, maze, maze.size()/2, maze.size()/2);
+    
+    for (int i = 0; i < maze.size(); i++)
+    {
+        for (int j = 0; j < maze[i].size(); j++)
+        {
+            cout << maze[i][j];
+        }
+        cout << endl;
+    }
     return 0;
 }
 
@@ -410,4 +434,18 @@ void printIntersections(Node* graph, stack<Node*> intersections){
         cout << "intersection -> right:" << intersections.top()->right << ":" << endl << endl;
         intersections.pop();
        }
+}
+
+void printMaze(Node * root, vector<string> &directions, vector <vector <string> > &maze, int i, int j){
+    maze[i][j] = "  X  ";
+    
+    if(root->left != NULL){
+        printMaze(root->left, directions, maze, i, j-1);
+    }
+    if (root->straight != NULL){
+        printMaze(root->straight, directions, maze, i+1, j);
+    }
+    if (root->right != NULL){
+        printMaze(root->right, directions, maze, i, j+1);
+    }
 }
