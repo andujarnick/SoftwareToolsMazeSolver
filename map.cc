@@ -430,6 +430,7 @@ void moveThroughMaze(Node* &graph, Node* placeholder, stack<string> &backtrackin
                 addToDirections(directions, chosenDirection);
                 add(graph, placeholder, chosenDirection, line, directions);
             }
+//            cout << "Here4" << endl;
             addToBacktracking(backtracking, chosenDirection);//adds to the backtracking list
 
 //            cout << "intersections.top->distancefromintersection:" << intersections.top()->distanceFromIntersection++ << ":" << endl;
