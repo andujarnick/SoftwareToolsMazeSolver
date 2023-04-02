@@ -134,12 +134,16 @@ Node* add(Node *& root, Node *& previousNode, string chosenDirection, string lin
         root=new Node;
         root->previous = previousNode;
         root->instruction = line;
+        
         root->data = chosenDirection;
         root->left=root->right=root->straight=root->previous=NULL;
         root->directionCount = 0;
         root->directionsLeft = 0;
         root->distanceFromIntersection = 0;
-        
+        if (root->previous == NULL){
+            cout << "returning root" << endl;
+            return root;
+        }
         return previousNode;
     }
     else if (directions.front() == "LEFT"){
