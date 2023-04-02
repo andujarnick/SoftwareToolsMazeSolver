@@ -235,7 +235,7 @@ void printIntersections(Node* graph, stack<Node> intersections){
 
 void copyNode(Node* graph, Node* &intersection){
     intersection = new Node;//THIS IS THE ONE LINE THAT FIXES EVERYTHING
-
+//    cout << "a" << endl;
     if(graph->previous == NULL){
         intersection->instruction = graph->instruction;
     }
