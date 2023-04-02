@@ -235,9 +235,28 @@ void printIntersections(Node* graph, stack<Node> intersections){
 
 void copyNode(Node* graph, Node* &intersection){
     intersection = new Node;//THIS IS THE ONE LINE THAT FIXES EVERYTHING
-//    cout << "a" << endl;
-//    cout << "graph->instruction:" << graph->instruction << ":" << endl;
-    intersection->instruction = graph->instruction;
+
+    if(graph->previous == NULL){
+        intersection->instruction = graph->instruction;
+    }
+    else{
+        if(graph->left != NULL){
+            ///cout << "There's something to the left" << endl;
+            intersection->instruction = graph->left->instruction;
+        }
+        else if(graph->straight != NULL){
+            ///cout << "There's something straight" << endl;
+            intersection->instruction = graph->straight->instruction;
+        }
+        else if(graph->right != NULL){
+            ///cout << "There's something to the right" << endl;
+            intersection->instruction = graph->right->instruction;
+        }
+        else{
+            cout << "Warning, no instruction was copied to the intersections list" << endl;
+        }
+    }
+
 //    cout << "b" << endl;
     intersection->data = graph->data;
 //    cout << "c" << endl;
