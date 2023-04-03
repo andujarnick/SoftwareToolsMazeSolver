@@ -12,12 +12,25 @@
 #include <string>
 #include <stack>
 #include <vector>
+#include <iomanip>
 #include "map.h"
 using namespace std;
 
 int main(int argc, char *argv[]){
     cout << B_BLACK << "   ";
-    cout << B_BLUE << WHITE << setw(33) << left << "  Test of the colors   " << endl;
+    cout << B_BLUE << WHITE << setw(33) << left << "  Test of the colors   " << endl;   //test of white text on blue background
+    cout << B_BLACK << "   ";
+    cout << B_BLUE << RED << setw(33) << left << "  Test of the colors   " << endl;     //test of red text on blue background
+    cout << B_BLACK << "   ";
+    cout << B_BLUE << YELLOW << setw(33) << left << "  Test of the colors   " << endl;   //test of yellow text on blue background
+    cout << B_BLACK << "   ";
+    cout << B_BLUE << MAGENTA << setw(33) << left << "  Test of the colors   " << endl;   //test of magenta text on blue background    
+    cout << B_BLACK << "   ";
+    cout << B_MAGENTA << WHITE << setw(33) << left << "  Test of the colors   " << endl;   //test of white text on magenta background
+    cout << B_BLACK << "   ";
+    cout << B_RED << WHITE << setw(33) << left << "  Test of the colors   " << endl;   //test of white text on red background
+    cout << B_BLACK << "   ";
+    cout << B_BLACK << BLUE << setw(33) << left << "  Test of the colors   " << endl;   //test of blue text on black background
     cout << B_BLACK << "   ";
     
     //Node system for the graph to be stored in

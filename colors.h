@@ -1,3 +1,21 @@
+
+/**
+ * @file colors.h
+ * @brief     Escape Code for Colors in Strings 
+// @details   I created this file to house some names string
+//            constants with escape codes for colors in them
+//            this makes it much easier for me to do colors.
+//         	  I can still use the codes if I want, but this
+//            works too.  try the statement:
+//            cout<<BLUE<<"I like cookies"<<endl;You may use this whereever you want, but if you
+//		      make any large improvements or whatever, I am
+//		      curious, so email 'em my way, please.
+* @name map.h
+* @authors Matthew Beldyk 
+* @link mb245002@ohiou.edu
+* @class CS 3560
+**/
+
 //***********************************************************
 //
 //  File:     colors.h
