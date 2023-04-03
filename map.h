@@ -72,3 +72,6 @@ void printMaze(Node * root, vector<string> &directions, vector< vector <string> 
 
 //Start Menu
 void startMenu();
+
+//Copys from file and briefly updates list from a save file of directions
+void copyFromFile(Node * root, vector<string> directions)
