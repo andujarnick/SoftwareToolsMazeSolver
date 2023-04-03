@@ -41,8 +41,8 @@ int main(int argc, char *argv[]){
     addToBacktracking(backtracking, "S");
     
     //only used with text file
-//    ifstream instream;
-//    instream.open("input.txt");
+    //ifstream instream;
+    //instream.open("input.txt");
     
     //Moves through the maze
     moveThroughMaze(graph, placeholder, backtracking, intersections, directions);
@@ -52,7 +52,7 @@ int main(int argc, char *argv[]){
     printBacktracking(backtracking);
     printDirections(directions);
     printIntersections(graph, intersections);
-//    cout << endl << "size " << size(graph) << endl;
+    //cout << endl << "size " << size(graph) << endl;
     //section to print out a maze
     vector <vector <string> > maze;
     
@@ -178,13 +178,13 @@ int countDirections(Node * current){
 }
 
 void printIntersections(Node* graph, stack<Node> intersections){
-//    cout << "graph -> left:" << graph->left << ":" << endl;
-//    cout << "graph -> straight:" << graph->straight << ":" << endl;
-//    cout << "graph -> right:" << graph->right << ":" << endl;
+    //cout << "graph -> left:" << graph->left << ":" << endl;
+    //cout << "graph -> straight:" << graph->straight << ":" << endl;
+    //cout << "graph -> right:" << graph->right << ":" << endl;
     cout << endl;
-//    cout << "outside the loop" << endl;
+    //cout << "outside the loop" << endl;
     while (!intersections.empty()) {
-//        cout << "inside the loop" << endl;
+        //cout << "inside the loop" << endl;
         cout << "intersection -> left:" << intersections.top().left << ":" << endl;
         cout << "intersection -> straight:" << intersections.top().straight << ":" << endl;
         cout << "intersection -> right:" << intersections.top().right << ":" << endl;
@@ -195,7 +195,7 @@ void printIntersections(Node* graph, stack<Node> intersections){
 void copyNode(Node* graph, Node* &intersection){
     intersection = new Node;//THIS IS THE ONE LINE THAT FIXES EVERYTHING
     cout << "a" << endl;
-//    cout << "graph->instruction:" << graph->instruction << ":" << endl;
+    //cout << "graph->instruction:" << graph->instruction << ":" << endl;
     if(graph->previous == NULL){
         intersection->instruction = graph->instruction;
     }
@@ -339,14 +339,14 @@ void moveThroughMaze(Node* &graph, Node* placeholder, stack<string> &backtrackin
         cout << "The chosen direction is: " << chosenDirection << endl;
         
         if(chosenDirection == "DEADEND"){
-//            backtrack(graph, cursor, backtracking, directions, intersections.top()->distanceFromIntersection);
-//            chosenDirection = chooseDirection(intersections.top()->instruction, space1loc, numDirections, intersections->top());
-//            //            addToDirections(chosenDirection); still moving somewhere else
-//            while(chosenDirection == "AGAIN"){
-//                intersections.pop();//pops the last intersection from the list
-//                backtrack(graph, cursor, backtracking, directions, intersections.top()->distanceFromIntersection);
-//                chosenDirection = chooseDirection(intersections.top()->instruction, space1loc, numDirections);//checks again to see if any directions are available
-//                //                addToDirections(chosenDirection);still moving somewhere else
+            //backtrack(graph, cursor, backtracking, directions, intersections.top()->distanceFromIntersection);
+            //chosenDirection = chooseDirection(intersections.top()->instruction, space1loc, numDirections, intersections->top());
+            //addToDirections(chosenDirection); still moving somewhere else
+            //while(chosenDirection == "AGAIN"){
+            //intersections.pop();//pops the last intersection from the list
+            //backtrack(graph, cursor, backtracking, directions, intersections.top()->distanceFromIntersection);
+            //chosenDirection = chooseDirection(intersections.top()->instruction, space1loc, numDirections);//checks again to see if any directions are available
+            //addToDirections(chosenDirection);still moving somewhere else
             numDirections = numDirectionsCount(intersections.top()->instruction, space1loc, space2loc);
             //before doing anything else, I need to:
             //- copy the node at the top of the stack
@@ -373,14 +373,14 @@ void moveThroughMaze(Node* &graph, Node* placeholder, stack<string> &backtrackin
         }
         else{
             if (numDirections > 1){
-//                cout << "here1" << endl;
+                //cout << "here1" << endl;
                 Node* newIntersection = NULL;
                 addToDirections(directions, chosenDirection);
-//                cout << "here2" << endl;
+                //cout << "here2" << endl;
                 copyNode(add(graph, placeholder, chosenDirection, line, directions), newIntersection);//copies the new node with the info from the intersection
-//                cout << "here3" << endl;
+                //cout << "here3" << endl;
                 intersections.push(newIntersection);//pushes that new intersection onto the stack
-//                cout << "here4" << endl;
+                //cout << "here4" << endl;
                 //this function still has issues incrementing the distance
                 intersections.top()->distanceFromIntersection++;//increments the distance from the intersection by 1
             }
@@ -391,9 +391,9 @@ void moveThroughMaze(Node* &graph, Node* placeholder, stack<string> &backtrackin
             cout << "Here4" << endl;
             addToBacktracking(backtracking, chosenDirection);//adds to the backtracking list
 
-//            cout << "intersections.top->distancefromintersection:" << intersections.top()->distanceFromIntersection++ << ":" << endl;
+            //cout << "intersections.top->distancefromintersection:" << intersections.top()->distanceFromIntersection++ << ":" << endl;
             
-//            Not working right now. Doesn't know what to do when there's no intersection
+            //Not working right now. Doesn't know what to do when there's no intersection
             if(intersections.top() != NULL){
                 intersections.top()->distanceFromIntersection++;
             }
