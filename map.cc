@@ -647,3 +647,23 @@ void startMenu(Node * root){
     return;
 }
 }
+
+/
+* @name copyFromFile
+* @brief updates the list from a save file of directions
+* @param root Type: node pointer, the root of the tree
+* @param directions Type: vector<string>, directions, the list of directions from the file
+* @return void.
+/
+void copyFromFile(Node * root, vector<string> directions){
+    //need main to copy directions list before this function starts
+
+    Node* empty = NULL;//empty node to point to
+    vector <string> directionsNew;//new directions list being built from the old one
+
+    for(int i=0; i < directions.size(); i++){
+        directionsNew.push_back(directions[i]);//copies over one item from the directions list to build a new one
+        string direction = directions[0];
+        add(root, empty, direction, direction, directionsNew);//adds a node to the tree
+    }
+}
