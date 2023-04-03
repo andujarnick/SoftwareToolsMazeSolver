@@ -53,7 +53,6 @@ int main(int argc, char *argv[]){
     printDirections(directions);
     printIntersections(graph, intersections);
 //    cout << endl << "size " << size(graph) << endl;
-    
     //section to print out a maze
     vector <vector <string> > maze;
     
@@ -96,10 +95,10 @@ Node* add(Node *& root, Node *& previousNode, string chosenDirection, string lin
         root->directionsLeft = 0;
         root->distanceFromIntersection = 0;
         //trying to prime the list with a node to fix the problem instead of messing with returning itself
-//        if (previousNode == NULL){
-//            cout << "returning root" << endl;
-//            return root;
-//        }
+        //if (previousNode == NULL){
+        //cout << "returning root" << endl;
+        //return root;
+        //}
         return previousNode;
     }
     else if (directions.front() == "LEFT"){
