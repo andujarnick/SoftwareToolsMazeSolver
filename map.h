@@ -16,7 +16,7 @@ struct Node{
 };
 
 //function to output everything mapped so far
-void inorder(Node * root);
+void inOrder(Node * root);
 
 //Calculates the size of the graph
 int size(Node * root);
