@@ -70,3 +70,5 @@ void copyNode(Node* graph, Node* &intersection);
 
 void printMaze(Node * root, vector<string> &directions, vector< vector <string> > &maze, int i, int j);
 
+//Start Menu
+void startMenu();
