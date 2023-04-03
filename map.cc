@@ -627,7 +627,10 @@ void startMenu(Node * root){
                     if(instream.fail()){
                         cout << "Could not find maze named " << mazeName << "." << endl;
                     }
-                    cout << "Maze named " << mazeName << " opened!" << endl;
+                    else{
+                        cout << "Maze named " << mazeName << " opened!" << endl;
+                    }
+                    ///Insert code for reading input here, possibly a function?
                 break;
 
                 case 'N':
