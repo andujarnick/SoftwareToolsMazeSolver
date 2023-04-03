@@ -1,3 +1,11 @@
+/**
+* @name map.cc
+* @brief Maps a maze and finds the most direct route from start to finish
+* @authors Nick Andujar, Chase Deweese, Tyler Hixon, Norman Lee, Max Shumaker
+* @link https://github.com/andujarnick/SoftwareToolsMazeSolver
+* @class CS 3560
+**/
+
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -35,7 +43,7 @@ int main(int argc, char *argv[]){
     //Moves through the maze
     moveThroughMaze(graph, placeholder, backtracking, intersections, directions);
     
-    inorder(graph);
+    inOrder(graph);
     //output the backtracking list
     printBacktracking(backtracking);
     printDirections(directions);
@@ -68,9 +76,16 @@ int main(int argc, char *argv[]){
     return 0;
 }
 
-//root: the tree's initial node
-//previousNode: previous node in the tree, which this is linked from
-//ChosenDirection: String containing info and what direction should be selected (will be part of a future function).
+/**
+* @name add
+* @brief Adds a node to the tree.
+* @param root Type: Node, The root node of the maze tree.
+* @param previousNode Type: Node, The previous tree node that this new node is linked from.
+* @param chosenDirection Type: string, The selected direction to be input.
+* @param line Type: string, direction from the root node.
+* @param directions Type: vector<string>, vector containing the directs taken so far, in order to reach this node.
+* @return returns the node that this new node is linked to.
+**/
 Node* add(Node *& root, Node *& previousNode, string chosenDirection, string line, vector<string> directions){
 //    if(directions.size() != 0){
 //        cout << "direction: " << directions[0];
@@ -115,16 +130,30 @@ Node* add(Node *& root, Node *& previousNode, string chosenDirection, string lin
     }
 }
 
-void inorder(Node* root){
+/**
+* @name inOrder
+* @brief Prints the node tree in order.
+* @param root Type: Node, The root node of the maze tree.
+* @return void.
+**/
+void inOrder(Node* root){
     if(root != NULL){
-        inorder(root->left);
+        inOrder(root->left);
         cout<<root->data<<endl;
-        inorder(root->right);
-        inorder(root->straight);
+        inOrder(root->right);
+        inOrder(root->straight);
     }
 }
 
-//Function to choose the direction the node will travel
+/**
+* @name chooseDirection
+* @brief Selects the direction an input node will travel.
+* @param line Type: string, the input of directions that can be selected.
+* @param space1loc Tpye: int, location of the first space in the line substring.
+* @param numDirections Tpye: int, the number of directions in the intersection.
+* @param intersection Type: Node, the input intersection which will have a direction selected.
+* @return Type: string, the selected direction of travel.
+**/
 string chooseDirection(string line, int space1loc, int numDirections, Node* intersection){
     if(intersection == NULL){//none of the paths in front of the bot have ever been visited before. NULL is deliberately sent
         if (line.substr(0, space1loc) == "L"){
@@ -160,7 +189,12 @@ string chooseDirection(string line, int space1loc, int numDirections, Node* inte
     }
 }
 
-//Function to count number of directions at intersection
+/**
+* @name countDirections
+* @brief Counts the number of directions that can be visited from a current node.
+* @param current Type: Node, the root to have it's possible directions counted.
+* @return Type: int, number of possible directions of travel.
+**/
 int countDirections(Node * current){
     int numDirections = 0;
     if(current != NULL){
@@ -177,6 +211,13 @@ int countDirections(Node * current){
     return numDirections;
 }
 
+/**
+* @name printIntersections
+* @brief Prints the intersections present in the node tree.
+* @param graph Type: Node, the root node of the main maze graph.
+* @param intersections Type: stack<Node> stack of nodes that contains all of the interesctions in the graph.
+* @return void.
+**/
 void printIntersections(Node* graph, stack<Node> intersections){
 //    cout << "graph -> left:" << graph->left << ":" << endl;
 //    cout << "graph -> straight:" << graph->straight << ":" << endl;
@@ -192,6 +233,13 @@ void printIntersections(Node* graph, stack<Node> intersections){
        }
 }
 
+/**
+* @name copyNode
+* @brief Copies an input Node
+* @param graph Type: Node, the root node of the main maze graph.
+* @param intersection Type: Node, the intersection that needs a node copied to it.
+* @return void.
+**/
 void copyNode(Node* graph, Node* &intersection){
     intersection = new Node;//THIS IS THE ONE LINE THAT FIXES EVERYTHING
 //    cout << "graph->instruction:" << graph->instruction << ":" << endl;
@@ -231,10 +279,23 @@ void copyNode(Node* graph, Node* &intersection){
     cout << "intersection -> right:" << intersection->right << ":" << endl << endl;
 }
 
+/**
+* @name addToDirections
+* @brief Adds a chosen direction to the vector of directions
+* @param directions Type: vector<string>, vector that holds the directions traveled so far.
+8 @param intersections Type: string, the chosen next direction of travel.
+* @return void.
+**/
 void addToDirections(vector<string> &directions, string chosenDirection){
     directions.push_back(chosenDirection);
 }
 
+/**
+* @name printDirections
+* @brief Prints the directions traveled so far
+* @param directions Type: vector<string>, vector that holds the directions traveled so far.
+* @return void.
+**/
 void printDirections(vector<string> directions){
     cout << endl;
     cout << "Directions List:" << endl;
@@ -243,6 +304,14 @@ void printDirections(vector<string> directions){
     }
 }
 
+/**
+* @name numDirectionsCount
+* @brief Counts the number of directions present in the input line.
+* @param line Type: string, input string of possible directions.
+* @param space1loc Type: int location of the first space, default input is -1
+* @param space2loc Type: int location of the second space, default input is -1
+* @return int, the number of directions of travel possible.
+**/
 int numDirectionsCount(string line, int &space1loc, int &space2loc){
     space1loc = line.find(' ');
     space2loc = line.find(' ', space1loc+1);
@@ -254,6 +323,13 @@ int numDirectionsCount(string line, int &space1loc, int &space2loc){
         return 2;
 }
 
+/**
+* @name addToBacktracking
+* @brief Adds the direction traveled to backtracking (the opposite is entered).
+* @param backtracking Type: stack<string>, stack of directions traveled for backtracking purposes.
+* @param chosenDirection Type: string, the direction of travel chosen.
+* @return void.
+**/
 void addToBacktracking(stack<string> &backtracking, string chosenDirection){
     if(chosenDirection == "LEFT"){
         backtracking.push("RIGHT");
@@ -266,6 +342,12 @@ void addToBacktracking(stack<string> &backtracking, string chosenDirection){
     }
 }
 
+/**
+* @name printBacktracking
+* @brief Prints the list of directions to return to start from the current node.
+* @param backtracking Type: stack<string>, stack of directions traveled for backtracking purposes.
+* @return void.
+**/
 void printBacktracking(stack<string> backtracking){
     cout << endl;
     cout << "Backtracking List:" << endl;
@@ -275,6 +357,16 @@ void printBacktracking(stack<string> backtracking){
        }
 }
 
+/**
+* @name backtrack
+* @brief Backtracks the program to a previous intersection.
+* @param root Type: Node, the root node of the node tree.
+* @param cursor Type: Node, the current location of the backtracking function.
+* @param backtracking Type: stack<string>, stack of directions traveled for backtracking purposes.
+* @param directions Type: vector<string> the directions possible.
+* @param distanceFromIntersection Type: int, the number of nodes away from the previous intersection.
+* @return void.
+**/
 void backtrack(Node* root, Node* cursor, stack<string> &backtracking, vector<string> &directions, int distanceFromIntersection){
 
     //debugging code
@@ -290,6 +382,12 @@ void backtrack(Node* root, Node* cursor, stack<string> &backtracking, vector<str
     printBacktracking(backtracking);
 }
 
+/**
+* @name isIntersection
+* @brief Determines if a node is an intersection
+* @param root Type: Node, the node to be examined.
+* @return Type: bool, True if the node has more than one direction of travel possible, false if one or fewer.
+**/
 bool isIntersection(Node * root){
     int directionCount = 0;
     if(root->left != NULL){
@@ -310,6 +408,16 @@ bool isIntersection(Node * root){
     }
 }
 
+/**
+* @name moveThroughMaze
+* @brief Moves through the maze, utilizing other functions to backtrack and find paths.
+* @param graph Type: Node, the root of the main graph of the maze.
+* @param placeholder Type: Node, holds the place of the program currently
+* @param backtracking Type: stack<string>, stack of directions traveled for backtracking purposes.
+* @param intersections Type: stack<Node> stack of nodes that contains all of the intersections in the graph.
+* @param directions Type: vector<string> vector that holds directions gone so far.
+* @return void.
+**/
 void moveThroughMaze(Node* &graph, Node* placeholder, stack<string> &backtracking, stack<Node*> &intersections, vector<string> &directions){
     int space1loc = -1;
     int space2loc = -1;
@@ -398,6 +506,13 @@ void moveThroughMaze(Node* &graph, Node* placeholder, stack<string> &backtrackin
     }
 }
 
+/**
+* @name printIntersections
+* @brief Prints the list of intersections in the maze that have been encountered.
+* @param graph Type: Node, the root of the main graph of the maze.
+* @param intersections Type: stack<Node> stack of nodes that contains all of the intersections in the graph.
+* @return void.
+**/
 void printIntersections(Node* graph, stack<Node*> intersections){
     cout << endl;
     cout << "Intersections List:" << endl;
@@ -410,6 +525,14 @@ void printIntersections(Node* graph, stack<Node*> intersections){
        }
 }
 
+/**
+* @name printMaze
+* @brief Prints the the maze graphically, as it has been seen so far.
+* @param root Type: Node, the root of the main node tree.
+* @param directions Type: vector<string> the directions encountered so far.
+* @param maze Type vector<vector<sting>> 2d vector that makes up a representation of the maze, in a coordinate system of sorts.
+* @return void.
+**/
 void printMaze(Node * root, vector<string> &directions, vector <vector <string> > &maze, int i, int j){
     maze[i][j] = "  X  ";
     
