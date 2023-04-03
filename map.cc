@@ -1,4 +1,5 @@
 /**
+ * @file
 * @name map.cc
 * @brief Maps a maze and finds the most direct route from start to finish
 * @authors Nick Andujar, Chase Deweese, Tyler Hixon, Norman Lee, Max Shumaker
