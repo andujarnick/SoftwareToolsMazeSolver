@@ -59,5 +59,8 @@ void printIntersections(Node* graph, stack<Node*> intersections);
 //Copies the node to the node stack
 void copyNode(Node* graph, Node* &intersection);
 
+//Prints the Maze So far
 void printMaze(Node * root, vector<string> &directions, vector< vector <string> > &maze, int i, int j);
 
+//Start Menu
+void printStartMenu();
