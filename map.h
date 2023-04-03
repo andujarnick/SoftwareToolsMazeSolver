@@ -1,3 +1,12 @@
+/**
+ * @file
+ * @brief Header file of the maze solver
+* @name map.h
+* @authors Nick Andujar, Chase Deweese, Tyler Hixon, Norman Lee, Max Shumaker
+* @link https://github.com/andujarnick/SoftwareToolsMazeSolver
+* @class CS 3560
+**/
+
 #include "colors.h"
 
 using namespace std;
