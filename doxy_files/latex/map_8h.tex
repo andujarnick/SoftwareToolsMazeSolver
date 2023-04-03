@@ -1,0 +1,71 @@
+\hypertarget{map_8h}{}\doxysection{C\+:/\+Users/\+HYPER/\+Downloads/\+Software\+Tools\+Maze\+Solver-\/main (3)/\+Software\+Tools\+Maze\+Solver-\/main/map.h File Reference}
+\label{map_8h}\index{C:/Users/HYPER/Downloads/SoftwareToolsMazeSolver-\/main (3)/SoftwareToolsMazeSolver-\/main/map.h@{C:/Users/HYPER/Downloads/SoftwareToolsMazeSolver-\/main (3)/SoftwareToolsMazeSolver-\/main/map.h}}
+
+
+Header file of the maze solver.  
+
+
+{\ttfamily \#include \char`\"{}colors.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_node}{Node}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{Indent}\textbf{ map.\+h}\par
+{\em \begin{DoxyAuthor}{Authors}
+Nick Andujar, Chase Deweese, Tyler Hixon, Norman Lee, Max Shumaker \mbox{\hyperlink{}{https\+://github.\+com/andujarnick/\+Software\+Tools\+Maze\+Solver}}
+\end{DoxyAuthor}
+}\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{map_8h_a9e38fd5165cf85903827998585ada60a}\label{map_8h_a9e38fd5165cf85903827998585ada60a}} 
+void {\bfseries in\+Order} (\mbox{\hyperlink{struct_node}{Node}} $\ast$root)
+\item 
+\mbox{\Hypertarget{map_8h_a8605f4f83ce357a2ab711b0a256a9e0a}\label{map_8h_a8605f4f83ce357a2ab711b0a256a9e0a}} 
+int {\bfseries size} (\mbox{\hyperlink{struct_node}{Node}} $\ast$root)
+\item 
+\mbox{\Hypertarget{map_8h_a92a65b982d1c95665a12766455f64d4a}\label{map_8h_a92a65b982d1c95665a12766455f64d4a}} 
+\mbox{\hyperlink{struct_node}{Node}} $\ast$ {\bfseries add} (\mbox{\hyperlink{struct_node}{Node}} $\ast$\&root, \mbox{\hyperlink{struct_node}{Node}} $\ast$\&previous\+Node, string chosen\+Direction, string line, vector$<$ string $>$ directions)
+\item 
+\mbox{\Hypertarget{map_8h_a4afd86cc00c91572a7bb515971130630}\label{map_8h_a4afd86cc00c91572a7bb515971130630}} 
+void {\bfseries add\+To\+Directions} (vector$<$ string $>$ \&directions, string chosen\+Direction)
+\item 
+\mbox{\Hypertarget{map_8h_a792515f8a62d5bc691f16c70bbf2bdcf}\label{map_8h_a792515f8a62d5bc691f16c70bbf2bdcf}} 
+void {\bfseries print\+Directions} (vector$<$ string $>$ directions)
+\item 
+\mbox{\Hypertarget{map_8h_a2ea2a027e589884fa4ca5b4b1e282111}\label{map_8h_a2ea2a027e589884fa4ca5b4b1e282111}} 
+bool {\bfseries is\+Intersection} (\mbox{\hyperlink{struct_node}{Node}} $\ast$root)
+\item 
+\mbox{\Hypertarget{map_8h_abf831df6c39a8cd64676e1bf92bb0afd}\label{map_8h_abf831df6c39a8cd64676e1bf92bb0afd}} 
+string {\bfseries choose\+Direction} (string line, int space1loc, int num\+Directions, \mbox{\hyperlink{struct_node}{Node}} $\ast$intersection)
+\item 
+\mbox{\Hypertarget{map_8h_a942250199c3bd167c64b44517d3f403e}\label{map_8h_a942250199c3bd167c64b44517d3f403e}} 
+int {\bfseries num\+Directions\+Count} (string line, int \&space1loc, int \&space2loc)
+\item 
+\mbox{\Hypertarget{map_8h_acb921a86fcaf24a5d7f8cb516952a556}\label{map_8h_acb921a86fcaf24a5d7f8cb516952a556}} 
+void {\bfseries add\+To\+Backtracking} (stack$<$ string $>$ \&backtracking, string direction)
+\item 
+\mbox{\Hypertarget{map_8h_addd5713d202e2814d85f2763db44d547}\label{map_8h_addd5713d202e2814d85f2763db44d547}} 
+void {\bfseries print\+Backtracking} (stack$<$ string $>$ backtracking)
+\item 
+\mbox{\Hypertarget{map_8h_adf90d0fcee2e40af55c2a660466292fe}\label{map_8h_adf90d0fcee2e40af55c2a660466292fe}} 
+void {\bfseries backtrack} (\mbox{\hyperlink{struct_node}{Node}} $\ast$root, \mbox{\hyperlink{struct_node}{Node}} $\ast$cursor, stack$<$ string $>$ \&backtracking, vector$<$ string $>$ \&directions, int distance\+From\+Intersection)
+\item 
+\mbox{\Hypertarget{map_8h_a2097d303f31cd6a6d744acd1375c8659}\label{map_8h_a2097d303f31cd6a6d744acd1375c8659}} 
+void {\bfseries move\+Through\+Maze} (\mbox{\hyperlink{struct_node}{Node}} $\ast$\&graph, \mbox{\hyperlink{struct_node}{Node}} $\ast$placeholder, stack$<$ string $>$ \&backtracking, stack$<$ \mbox{\hyperlink{struct_node}{Node}} $\ast$ $>$ \&intersections, vector$<$ string $>$ \&directions)
+\item 
+\mbox{\Hypertarget{map_8h_ac7bc317bf6b6980e0bb7ef426d07e129}\label{map_8h_ac7bc317bf6b6980e0bb7ef426d07e129}} 
+void {\bfseries print\+Intersections} (\mbox{\hyperlink{struct_node}{Node}} $\ast$graph, stack$<$ \mbox{\hyperlink{struct_node}{Node}} $\ast$ $>$ intersections)
+\item 
+\mbox{\Hypertarget{map_8h_a51f4cf94016b7295a511fe30c07f06c7}\label{map_8h_a51f4cf94016b7295a511fe30c07f06c7}} 
+void {\bfseries copy\+Node} (\mbox{\hyperlink{struct_node}{Node}} $\ast$graph, \mbox{\hyperlink{struct_node}{Node}} $\ast$\&intersection)
+\item 
+\mbox{\Hypertarget{map_8h_a2438997b5a903afb68f008191cbbd309}\label{map_8h_a2438997b5a903afb68f008191cbbd309}} 
+void {\bfseries print\+Maze} (\mbox{\hyperlink{struct_node}{Node}} $\ast$root, vector$<$ string $>$ \&directions, vector$<$ vector$<$ string $>$ $>$ \&maze, int i, int j)
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\doxysubsection{Detailed Description}
+Header file of the maze solver. 
+

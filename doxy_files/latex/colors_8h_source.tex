@@ -1,0 +1,69 @@
+\hypertarget{colors_8h_source}{}\doxysection{C\+:/\+Users/\+HYPER/\+Downloads/\+Software\+Tools\+Maze\+Solver-\/main (3)/\+Software\+Tools\+Maze\+Solver-\/main/colors.h}
+\mbox{\hyperlink{colors_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{//***********************************************************}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ \ File:\ \ \ \ \ colors.h}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ \ Author:\ \ \ Matthew\ Beldyk}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ \ Email:\ \ \ \ mb245002@ohiou.edu}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ \ Usage:\ \ \ \ I\ created\ this\ file\ to\ house\ some\ names\ string}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ constants\ with\ escape\ codes\ for\ colors\ in\ them}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ this\ makes\ it\ much\ easier\ for\ me\ to\ do\ colors.}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ I\ can\ still\ use\ the\ codes\ if\ I\ want,\ but\ this}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ works\ too.\ \ try\ the\ statement:}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ cout<<BLUE<<"{}I\ like\ cookies"{}<<endl;}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ \ \ \ \ \ \ \ You\ may\ use\ this\ whereever\ you\ want,\ but\ if\ you}}
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ \ \ \ \ \ \ \ make\ any\ large\ improvements\ or\ whatever,\ I\ am}}
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ \ \ \ \ \ \ \ curious,\ so\ email\ 'em\ my\ way,\ please.}}
+\DoxyCodeLine{00036\ \textcolor{comment}{//}}
+\DoxyCodeLine{00037\ \textcolor{comment}{//***********************************************************}}
+\DoxyCodeLine{00038\ \textcolor{comment}{//}}
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ \ all\ credit\ given\ to\ Matthew\ Beldyk\ for\ writing\ this\ file}}
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ \ he\ gave\ me\ permission\ to\ try\ out\ in\ my\ programs}}
+\DoxyCodeLine{00041\ \textcolor{comment}{//\ \ just\ wanted\ to\ use\ to\ make\ everything\ look\ nice}}
+\DoxyCodeLine{00042\ \textcolor{comment}{//}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//***********************************************************}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#ifndef\ COLORS\_H}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ COLORS\_H}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00049\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ BLINK\ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)e[5m"{}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//don't\ use\ this\ your}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//professor\ will\ probibly}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//beat\ you\ to\ death\ if}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//you\ do\ feel\ the\ need\ to}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//use\ blink!!!}}
+\DoxyCodeLine{00056\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ BOLD\ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)e[1m"{}};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ RESET\ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)e[0m"{}};}
+\DoxyCodeLine{00059\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ ERROR\ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)e[1;41;37m\(\backslash\)a"{}};}
+\DoxyCodeLine{00060\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ MENU\ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)e[44;37m"{}};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ BLACK\ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)e[30m"{}};}
+\DoxyCodeLine{00063\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ RED\ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)e[31m"{}};}
+\DoxyCodeLine{00064\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ GREEN\ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)e[32m"{}};}
+\DoxyCodeLine{00065\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ YELLOW\ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)e[33m"{}};}
+\DoxyCodeLine{00066\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ BLUE\ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)e[34m"{}};}
+\DoxyCodeLine{00067\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ MAGENTA\ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)e[35m"{}};}
+\DoxyCodeLine{00068\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ CYAN\ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)e[36m"{}};}
+\DoxyCodeLine{00069\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ WHITE\ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)e[37m"{}};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ B\_BLACK\ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)e[40m"{}};}
+\DoxyCodeLine{00072\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ B\_RED\ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)e[41m"{}};}
+\DoxyCodeLine{00073\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ B\_GREEN\ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)e[42m"{}};}
+\DoxyCodeLine{00074\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ B\_YELLOW\ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)e[43m"{}};}
+\DoxyCodeLine{00075\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ B\_BLUE\ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)e[44m"{}};}
+\DoxyCodeLine{00076\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ B\_MAGENTA\ =\ \textcolor{stringliteral}{"{}\(\backslash\)e[45m"{}};}
+\DoxyCodeLine{00077\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ B\_CYAN\ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)e[46m"{}};}
+\DoxyCodeLine{00078\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ B\_WHITE\ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)e[47m"{}};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//COLORS\_H}}
+\DoxyCodeLine{00081\ }
+
+\end{DoxyCode}

@@ -1,0 +1,69 @@
+\hypertarget{map_8h_source}{}\doxysection{C\+:/\+Users/\+HYPER/\+Downloads/\+Software\+Tools\+Maze\+Solver-\/main (3)/\+Software\+Tools\+Maze\+Solver-\/main/map.h}
+\mbox{\hyperlink{map_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{colors_8h}{colors.h}}"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//Nodes\ that\ let\ you\ go\ left,\ right\ or\ straight.\ Also\ can\ traverse\ the\ tree\ backwards}}
+\DoxyCodeLine{00015\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_node}{Node}}\{}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{string}\ instruction;}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{string}\ data;\textcolor{comment}{//stored\ direction}}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{int}\ directionCount;}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{int}\ distanceFromIntersection;}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{bool}\ directionsLeft;}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{bool}\ isIntersection;}
+\DoxyCodeLine{00022\ \ \ \ \ }
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{struct_node}{Node}}\ *\ left;}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{struct_node}{Node}}\ *\ right;}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{struct_node}{Node}}\ *\ straight;}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{struct_node}{Node}}\ *\ previous;}
+\DoxyCodeLine{00027\ \};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{//function\ to\ output\ everything\ mapped\ so\ far}}
+\DoxyCodeLine{00030\ \textcolor{keywordtype}{void}\ inOrder(\mbox{\hyperlink{struct_node}{Node}}\ *\ root);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{comment}{//Calculates\ the\ size\ of\ the\ graph}}
+\DoxyCodeLine{00033\ \textcolor{keywordtype}{int}\ size(\mbox{\hyperlink{struct_node}{Node}}\ *\ root);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{comment}{//adds\ a\ node\ to\ the\ graph}}
+\DoxyCodeLine{00036\ \mbox{\hyperlink{struct_node}{Node}}*\ add(\mbox{\hyperlink{struct_node}{Node}}\ *\&\ root,\ \mbox{\hyperlink{struct_node}{Node}}\ *\&\ previousNode,\ \textcolor{keywordtype}{string}\ chosenDirection,\ \textcolor{keywordtype}{string}\ line,\ vector<string>\ directions);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{comment}{//adds\ to\ the\ directions\ stack}}
+\DoxyCodeLine{00039\ \textcolor{keywordtype}{void}\ addToDirections(vector<string>\ \&directions,\ \textcolor{keywordtype}{string}\ chosenDirection);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{comment}{//Prints\ all\ the\ directions\ stored}}
+\DoxyCodeLine{00042\ \textcolor{keywordtype}{void}\ printDirections(vector<string>\ directions);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{comment}{//looks\ to\ see\ if\ the\ node\ is\ an\ intersection}}
+\DoxyCodeLine{00045\ \textcolor{keywordtype}{bool}\ isIntersection(\mbox{\hyperlink{struct_node}{Node}}\ *\ root);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{comment}{//chooses\ the\ correct\ default\ direction}}
+\DoxyCodeLine{00048\ \textcolor{keywordtype}{string}\ chooseDirection(\textcolor{keywordtype}{string}\ line,\ \textcolor{keywordtype}{int}\ space1loc,\ \textcolor{keywordtype}{int}\ numDirections,\ \mbox{\hyperlink{struct_node}{Node}}*\ intersection);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{comment}{//counts\ the\ number\ of\ directions\ given\ to\ the\ computer}}
+\DoxyCodeLine{00051\ \textcolor{keywordtype}{int}\ numDirectionsCount(\textcolor{keywordtype}{string}\ line,\ \textcolor{keywordtype}{int}\ \&space1loc,\ \textcolor{keywordtype}{int}\ \&space2loc);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{comment}{//adds\ to\ backtracking}}
+\DoxyCodeLine{00054\ \textcolor{keywordtype}{void}\ addToBacktracking(stack<string>\ \&backtracking,\ \textcolor{keywordtype}{string}\ direction);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{comment}{//outputs\ backtracking\ list}}
+\DoxyCodeLine{00057\ \textcolor{keywordtype}{void}\ printBacktracking(stack<string>\ backtracking);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{comment}{//backtracks\ up\ the\ list}}
+\DoxyCodeLine{00060\ \textcolor{keywordtype}{void}\ backtrack(\mbox{\hyperlink{struct_node}{Node}}*\ root,\ \mbox{\hyperlink{struct_node}{Node}}*\ cursor,\ stack<string>\ \&backtracking,\ vector<string>\ \&directions,\ \textcolor{keywordtype}{int}\ distanceFromIntersection);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{comment}{//Moves\ through\ the\ maze\ with\ a\ cursor\ over\ the\ nodes}}
+\DoxyCodeLine{00063\ \textcolor{keywordtype}{void}\ moveThroughMaze(\mbox{\hyperlink{struct_node}{Node}}*\ \&graph,\ \mbox{\hyperlink{struct_node}{Node}}*\ placeholder,\ stack<string>\ \&backtracking,\ stack<Node*>\ \&intersections,\ vector<string>\ \&directions);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{comment}{//Prints\ out\ all\ the\ intersections\ stored}}
+\DoxyCodeLine{00066\ \textcolor{keywordtype}{void}\ printIntersections(\mbox{\hyperlink{struct_node}{Node}}*\ graph,\ stack<Node*>\ intersections);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{comment}{//Copies\ the\ node\ to\ the\ node\ stack}}
+\DoxyCodeLine{00069\ \textcolor{keywordtype}{void}\ copyNode(\mbox{\hyperlink{struct_node}{Node}}*\ graph,\ \mbox{\hyperlink{struct_node}{Node}}*\ \&intersection);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{keywordtype}{void}\ printMaze(\mbox{\hyperlink{struct_node}{Node}}\ *\ root,\ vector<string>\ \&directions,\ vector<\ vector\ <string>\ >\ \&maze,\ \textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j);}
+\DoxyCodeLine{00072\ }
+
+\end{DoxyCode}

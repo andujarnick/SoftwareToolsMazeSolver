@@ -1,6 +1,6 @@
 /**
-* @file map.h
-* @brief Header file of the maze solver
+ * @file
+ * @brief Header file of the maze solver
 * @name map.h
 * @authors Nick Andujar, Chase Deweese, Tyler Hixon, Norman Lee, Max Shumaker
 * @link https://github.com/andujarnick/SoftwareToolsMazeSolver
@@ -68,8 +68,5 @@ void printIntersections(Node* graph, stack<Node*> intersections);
 //Copies the node to the node stack
 void copyNode(Node* graph, Node* &intersection);
 
-//Prints the Maze So far
 void printMaze(Node * root, vector<string> &directions, vector< vector <string> > &maze, int i, int j);
 
-//Start Menu
-void startMenu();
