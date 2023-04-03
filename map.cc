@@ -20,29 +20,17 @@ int main(int argc, char *argv[]){
     stack<string> backtracking;
     //Node system for remembering intersections
     stack<Node*> intersections;
-    
     //prime the list with a node, prime directions and backtracking with straight
     //allows for intersection immediately
-    Node* root;
-    root = NULL;
-    graph=new Node;
-    graph->previous = NULL;
-    graph->instruction = "S";
-    
-    graph->data = "S";
-    graph->left=root->right=root->straight=root->previous=NULL;
-    graph->straight = root;
-    graph->directionCount = 0;
-    graph->directionsLeft = 0;
-    graph->distanceFromIntersection = 0;
-    
+    add(graph, placeholder, "S", "S", directions);
+        
     //add it to the directions and backtracking so it can find it off the bat
-    addToDirections(directions, "S");
-    addToBacktracking(backtracking, "S");
+//    addToDirections(directions, "STRAIGHT");
+//    addToBacktracking(backtracking, "STRAIGHT");
     
     //only used with text file
-    //ifstream instream;
-    //instream.open("input.txt");
+//    ifstream instream;
+//    instream.open("input.txt");
     
     //Moves through the maze
     moveThroughMaze(graph, placeholder, backtracking, intersections, directions);
@@ -52,7 +40,8 @@ int main(int argc, char *argv[]){
     printBacktracking(backtracking);
     printDirections(directions);
     printIntersections(graph, intersections);
-    //cout << endl << "size " << size(graph) << endl;
+//    cout << endl << "size " << size(graph) << endl;
+    
     //section to print out a maze
     vector <vector <string> > maze;
     
@@ -83,7 +72,15 @@ int main(int argc, char *argv[]){
 //previousNode: previous node in the tree, which this is linked from
 //ChosenDirection: String containing info and what direction should be selected (will be part of a future function).
 Node* add(Node *& root, Node *& previousNode, string chosenDirection, string line, vector<string> directions){
-    cout << endl << "directions.begin: " << directions[0] << endl << endl;
+//    if(directions.size() != 0){
+//        cout << "direction: " << directions[0];
+//    }
+    
+//    cout << "directions.front(): " << directions[0] << ":" << endl;
+    if(directions.size() > 0){
+        cout << "directions:" << directions[0] << endl;
+    }
+    
     if(root == NULL){
         root=new Node;
         root->previous = previousNode;
@@ -95,21 +92,24 @@ Node* add(Node *& root, Node *& previousNode, string chosenDirection, string lin
         root->directionsLeft = 0;
         root->distanceFromIntersection = 0;
         //trying to prime the list with a node to fix the problem instead of messing with returning itself
-        //if (previousNode == NULL){
-        //cout << "returning root" << endl;
-        //return root;
-        //}
+//        if (previousNode == NULL){
+//            cout << "returning root" << endl;
+//            return root;
+//        }
         return previousNode;
     }
-    else if (directions.front() == "LEFT"){
+    else if (directions[0] == "LEFT"){
+        cout << "going left" << endl;
         directions.erase(directions.begin());
         return add(root->left, root, chosenDirection, line, directions);
     }
-    else if (directions.front() == "STRAIGHT"){
+    else if (directions[0] == "STRAIGHT"){
+        cout << "going straight" << endl;
         directions.erase(directions.begin());
         return add(root->straight, root, chosenDirection, line, directions);
     }
     else{
+        cout << "going right" << endl;
         directions.erase(directions.begin());
         return add(root->right, root, chosenDirection, line, directions);
     }
@@ -178,13 +178,13 @@ int countDirections(Node * current){
 }
 
 void printIntersections(Node* graph, stack<Node> intersections){
-    //cout << "graph -> left:" << graph->left << ":" << endl;
-    //cout << "graph -> straight:" << graph->straight << ":" << endl;
-    //cout << "graph -> right:" << graph->right << ":" << endl;
+//    cout << "graph -> left:" << graph->left << ":" << endl;
+//    cout << "graph -> straight:" << graph->straight << ":" << endl;
+//    cout << "graph -> right:" << graph->right << ":" << endl;
     cout << endl;
-    //cout << "outside the loop" << endl;
+//    cout << "outside the loop" << endl;
     while (!intersections.empty()) {
-        //cout << "inside the loop" << endl;
+//        cout << "inside the loop" << endl;
         cout << "intersection -> left:" << intersections.top().left << ":" << endl;
         cout << "intersection -> straight:" << intersections.top().straight << ":" << endl;
         cout << "intersection -> right:" << intersections.top().right << ":" << endl;
@@ -194,46 +194,41 @@ void printIntersections(Node* graph, stack<Node> intersections){
 
 void copyNode(Node* graph, Node* &intersection){
     intersection = new Node;//THIS IS THE ONE LINE THAT FIXES EVERYTHING
-    cout << "a" << endl;
-    //cout << "graph->instruction:" << graph->instruction << ":" << endl;
+//    cout << "graph->instruction:" << graph->instruction << ":" << endl;
     if(graph->previous == NULL){
         intersection->instruction = graph->instruction;
     }
     else{
         if(graph->left != NULL){
-            cout << "there's something to the left" << endl;
             intersection->instruction = graph->left->instruction;
         }
         else if(graph->straight != NULL){
-            cout << "there's something straight" << endl;
             intersection->instruction = graph->straight->instruction;
         }
         else if(graph->right != NULL){
-            cout << "there's something to the right" << endl;
             intersection->instruction = graph->right->instruction;
         }
         else
             cout << "Warning, no instruction was copied to the intersections list" << endl;
     }
-    cout << "b" << endl;
+    
+    cout << "graph -> left:" << graph->left << ":" << endl;
+    cout << "graph -> straight:" << graph->straight << ":" << endl;
+    cout << "graph -> right:" << graph->right << ":" << endl << endl;
+    
     intersection->data = graph->data;
-    cout << "c" << endl;
     intersection->directionCount = graph->directionCount;
-    cout << "d" << endl;
     intersection->directionsLeft = graph->directionsLeft;
-    cout << "e" << endl;
     intersection->isIntersection = graph->isIntersection;
-    cout << "f" << endl;
     intersection->distanceFromIntersection = graph->distanceFromIntersection;
-    cout << "g" << endl;
     intersection->left = graph->left;
-    cout << "h" << endl;
     intersection->right = graph->right;
-    cout << "i" << endl;
     intersection->straight = graph->straight;
-    cout << "j" << endl;
     intersection->previous = graph->previous;
-    cout << "k" << endl;
+    
+    cout << "intersection -> left:" << intersection->left << ":" << endl;
+    cout << "intersection -> straight:" << intersection->straight << ":" << endl;
+    cout << "intersection -> right:" << intersection->right << ":" << endl << endl;
 }
 
 void addToDirections(vector<string> &directions, string chosenDirection){
@@ -339,14 +334,14 @@ void moveThroughMaze(Node* &graph, Node* placeholder, stack<string> &backtrackin
         cout << "The chosen direction is: " << chosenDirection << endl;
         
         if(chosenDirection == "DEADEND"){
-            //backtrack(graph, cursor, backtracking, directions, intersections.top()->distanceFromIntersection);
-            //chosenDirection = chooseDirection(intersections.top()->instruction, space1loc, numDirections, intersections->top());
-            //addToDirections(chosenDirection); still moving somewhere else
-            //while(chosenDirection == "AGAIN"){
-            //intersections.pop();//pops the last intersection from the list
-            //backtrack(graph, cursor, backtracking, directions, intersections.top()->distanceFromIntersection);
-            //chosenDirection = chooseDirection(intersections.top()->instruction, space1loc, numDirections);//checks again to see if any directions are available
-            //addToDirections(chosenDirection);still moving somewhere else
+//            backtrack(graph, cursor, backtracking, directions, intersections.top()->distanceFromIntersection);
+//            chosenDirection = chooseDirection(intersections.top()->instruction, space1loc, numDirections, intersections->top());
+//            //            addToDirections(chosenDirection); still moving somewhere else
+//            while(chosenDirection == "AGAIN"){
+//                intersections.pop();//pops the last intersection from the list
+//                backtrack(graph, cursor, backtracking, directions, intersections.top()->distanceFromIntersection);
+//                chosenDirection = chooseDirection(intersections.top()->instruction, space1loc, numDirections);//checks again to see if any directions are available
+//                //                addToDirections(chosenDirection);still moving somewhere else
             numDirections = numDirectionsCount(intersections.top()->instruction, space1loc, space2loc);
             //before doing anything else, I need to:
             //- copy the node at the top of the stack
@@ -356,6 +351,8 @@ void moveThroughMaze(Node* &graph, Node* placeholder, stack<string> &backtrackin
             //- copyNode(add()) at that spot, but in the new direction.
             //- push that intersection to the stack now with its old links and the new ones
             //the lists are now up to date
+            
+            //what is this for??? does it do anything other than put a node in and pop it?
             Node* topOfTheStack = NULL;
             copyNode(topOfTheStack, intersections.top());
             intersections.pop();
@@ -373,14 +370,14 @@ void moveThroughMaze(Node* &graph, Node* placeholder, stack<string> &backtrackin
         }
         else{
             if (numDirections > 1){
-                //cout << "here1" << endl;
+//                cout << "here1" << endl;
                 Node* newIntersection = NULL;
                 addToDirections(directions, chosenDirection);
-                //cout << "here2" << endl;
+//                cout << "here2" << endl;
                 copyNode(add(graph, placeholder, chosenDirection, line, directions), newIntersection);//copies the new node with the info from the intersection
-                //cout << "here3" << endl;
+//                cout << "here3" << endl;
                 intersections.push(newIntersection);//pushes that new intersection onto the stack
-                //cout << "here4" << endl;
+//                cout << "here4" << endl;
                 //this function still has issues incrementing the distance
                 intersections.top()->distanceFromIntersection++;//increments the distance from the intersection by 1
             }
@@ -388,12 +385,11 @@ void moveThroughMaze(Node* &graph, Node* placeholder, stack<string> &backtrackin
                 addToDirections(directions, chosenDirection);
                 add(graph, placeholder, chosenDirection, line, directions);
             }
-            cout << "Here4" << endl;
             addToBacktracking(backtracking, chosenDirection);//adds to the backtracking list
 
-            //cout << "intersections.top->distancefromintersection:" << intersections.top()->distanceFromIntersection++ << ":" << endl;
+//            cout << "intersections.top->distancefromintersection:" << intersections.top()->distanceFromIntersection++ << ":" << endl;
             
-            //Not working right now. Doesn't know what to do when there's no intersection
+//            Not working right now. Doesn't know what to do when there's no intersection
             if(intersections.top() != NULL){
                 intersections.top()->distanceFromIntersection++;
             }
