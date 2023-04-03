@@ -1,3 +1,5 @@
+#include "colors.h"
+
 using namespace std;
 
 //Nodes that let you go left, right or straight. Also can traverse the tree backwards

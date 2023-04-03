@@ -15,6 +15,9 @@
 using namespace std;
 
 int main(int argc, char *argv[]){
+    cout << B_BLACK << "   ";
+    cout << B_BLUE << WHITE << setw(33) << left << "  Test of the colors   " << endl;
+    cout << B_BLACK << "   ";
     
     //Node system for the graph to be stored in
     Node* graph;
