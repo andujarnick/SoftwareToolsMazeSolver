@@ -564,3 +564,86 @@ void printMaze(Node * root, vector<string> &directions, vector <vector <string> 
         printMaze(root->right, directions, maze, i, j+1);
     }
 }
+
+/**
+* @name startMenu
+* @brief Prints the the start menu and sets up the initial operation.
+* @param root Type: Node, the root node of the tree
+* @return void.
+**/
+void startMenu(Node * root){
+    char userIn;
+    string mazeName;
+    string mazeFileName;
+    ifstream instream;
+    ofstream oustream;
+
+    cout << "Maze Mapper / Solver" << endl << "Enter Number to Select";
+    cout << "N: New Maze" << endl << "C: Continue Maze" << "Q: Quit" << endl;
+
+    cin >> userIn;
+    userIn = toupper(userIn);
+
+    switch (userIn){
+        ///Case for new maze
+        case 'N':
+            cout << endl << "New Maze Selected" << endl;
+            cout << "Enter Maze Name: ";
+            getline(cin, mazeName);
+
+            cout << "Start a new maze named  " << mazeName << " ?" << endl;
+            cout << "Yes = Y, No = N";
+            cin >> userIn;
+            userIn = toupper(userIn);
+            
+            switch (userIn){
+                case 'Y':
+                    cout << "Creating new maze named: "  << mazeName << "." << endl;
+                    ///Insert making a save file here, just name it like <mazeName>.txt or something
+                    ///Make sure to do error handling too.
+                    root = NULL;
+                    cout << "New maze named " << mazeName << " created!" << endl;
+                break;
+
+                case 'N':
+                    cout << "Canceling..." << endl;
+                break;
+            }
+        break;
+
+        ///Case for loading from previous file
+        case 'C':
+        cout << "Continuing from previous save, enter maze name: ";
+        getline(cin, mazeName);
+        cout << "Continue from maze named  " << mazeName << " ?" << endl;
+            cout << "Yes = Y, No = N";
+            cin >> userIn;
+            userIn = toupper(userIn);
+            
+            switch (userIn){
+                case 'Y':
+                    cout << "Opening maze named: "  << mazeName << "." << endl;
+                    mazeFileName = mazeName + ".txt";
+                    instream.open(mazeFileName);
+                    if(instream.fail()){
+                        cout << "Could not find maze named " << mazeName << "." << endl;
+                    }
+                    else{
+                        cout << "Maze named " << mazeName << " opened!" << endl;
+                    }
+                    ///Insert code for reading input here, possibly a function?
+                break;
+
+                case 'N':
+                    cout << "Canceling..." << endl;
+                break;
+        
+        break;
+
+        case 'Q':
+            exit(0);
+        break;
+    }
+    return;
+}
+}
