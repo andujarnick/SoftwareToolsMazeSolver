@@ -1,0 +1,286 @@
+\etocsetnexttocdepth{5}
+\localtableofcontents
+Doxygen provides various levels of customization. The section \mbox{\hyperlink{customize_minor_tweaks}{Minor Tweaks}} discusses what to do if you want to do minor tweaking to the look and feel of the output. The section \mbox{\hyperlink{customize_layout}{Layout}} show how to reorder and hide certain information on a page. The section \mbox{\hyperlink{customize_xmlgenerator}{X\+ML output}} show how to generate whatever output you want based on the X\+ML output produced by doxygen.\hypertarget{customize_minor_tweaks}{}\doxysection{Minor Tweaks}\label{customize_minor_tweaks}
+The next subsections describe some aspects that can be tweaked with little effort.\hypertarget{customize_minor_tweaks_colors}{}\doxysubsection{Overall Color}\label{customize_minor_tweaks_colors}
+To change the overall color of the H\+T\+ML output doxygen provides three options
+\begin{DoxyItemize}
+\item H\+T\+M\+L\+\_\+\+C\+O\+L\+O\+R\+S\+T\+Y\+L\+E\+\_\+\+H\+UE
+\item H\+T\+M\+L\+\_\+\+C\+O\+L\+O\+R\+S\+T\+Y\+L\+E\+\_\+\+S\+AT
+\item H\+T\+M\+L\+\_\+\+C\+O\+L\+O\+R\+S\+T\+Y\+L\+E\+\_\+\+G\+A\+M\+MA
+\end{DoxyItemize}
+
+to change the hue, saturation, and gamma correction of the colors respectively.
+
+For your convenience the G\+UI frontend \mbox{\hyperlink{doxywizard_usage}{Doxywizard}} has a control that allows you to see the effect of changing the values of these options on the output in real time.\hypertarget{customize_minor_tweaks_treeview}{}\doxysubsection{Navigation}\label{customize_minor_tweaks_treeview}
+By default doxygen shows navigation tabs on top of every H\+T\+ML page, corresponding with the following settings\+:
+
+
+\begin{DoxyItemize}
+\item D\+I\+S\+A\+B\+L\+E\+\_\+\+I\+N\+D\+EX = {\ttfamily NO} 
+\item G\+E\+N\+E\+R\+A\+T\+E\+\_\+\+T\+R\+E\+E\+V\+I\+EW = {\ttfamily NO} 
+\end{DoxyItemize}
+
+ 
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=8cm]{layout_index_and_notreeview.png}}
+\end{DoxyImageNoCaption}
+
+
+you can switch to an interactive navigation tree as sidebar using
+
+
+\begin{DoxyItemize}
+\item D\+I\+S\+A\+B\+L\+E\+\_\+\+I\+N\+D\+EX = {\ttfamily Y\+ES} 
+\item G\+E\+N\+E\+R\+A\+T\+E\+\_\+\+T\+R\+E\+E\+V\+I\+EW = {\ttfamily Y\+ES} 
+\item F\+U\+L\+L\+\_\+\+S\+I\+D\+E\+B\+AR = {\ttfamily NO} 
+\end{DoxyItemize}
+
+ 
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=8cm]{layout_noindex_and_treeview.png}}
+\end{DoxyImageNoCaption}
+
+
+you can also make the content span the title area of the screen using
+
+
+\begin{DoxyItemize}
+\item D\+I\+S\+A\+B\+L\+E\+\_\+\+I\+N\+D\+EX = {\ttfamily Y\+ES} 
+\item G\+E\+N\+E\+R\+A\+T\+E\+\_\+\+T\+R\+E\+E\+V\+I\+EW = {\ttfamily Y\+ES} 
+\item F\+U\+L\+L\+\_\+\+S\+I\+D\+E\+B\+AR = {\ttfamily Y\+ES} 
+\end{DoxyItemize}
+
+ 
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=8cm]{layout_noindex_and_sidebar.png}}
+\end{DoxyImageNoCaption}
+
+
+or even have both forms of navigation\+:
+
+
+\begin{DoxyItemize}
+\item D\+I\+S\+A\+B\+L\+E\+\_\+\+I\+N\+D\+EX = {\ttfamily NO} 
+\item G\+E\+N\+E\+R\+A\+T\+E\+\_\+\+T\+R\+E\+E\+V\+I\+EW = {\ttfamily Y\+ES} 
+\end{DoxyItemize}
+
+ 
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=8cm]{layout_index_and_treeview.png}}
+\end{DoxyImageNoCaption}
+
+
+if you already use an external index (i.\+e. have one of the following options enabled G\+E\+N\+E\+R\+A\+T\+E\+\_\+\+H\+T\+M\+L\+H\+E\+LP, G\+E\+N\+E\+R\+A\+T\+E\+\_\+\+E\+C\+L\+I\+P\+S\+E\+H\+E\+LP, G\+E\+N\+E\+R\+A\+T\+E\+\_\+\+Q\+HP, or G\+E\+N\+E\+R\+A\+T\+E\+\_\+\+D\+O\+C\+S\+ET) then you can also disable all indices, like so\+:
+
+
+\begin{DoxyItemize}
+\item D\+I\+S\+A\+B\+L\+E\+\_\+\+I\+N\+D\+EX = {\ttfamily Y\+ES} 
+\item G\+E\+N\+E\+R\+A\+T\+E\+\_\+\+T\+R\+E\+E\+V\+I\+EW = {\ttfamily NO} 
+\end{DoxyItemize}
+
+ 
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=8cm]{layout_noindex_and_notreeview.png}}
+\end{DoxyImageNoCaption}
+\hypertarget{customize_minor_tweaks_dynsection}{}\doxysubsection{Dynamic Content}\label{customize_minor_tweaks_dynsection}
+To make the H\+T\+ML output more interactive, doxygen provides a number of options that are disabled by default\+:
+\begin{DoxyItemize}
+\item enabling H\+T\+M\+L\+\_\+\+D\+Y\+N\+A\+M\+I\+C\+\_\+\+S\+E\+C\+T\+I\+O\+NS will make doxygen hide certain content (like graphs) in the H\+T\+ML by default, and let the reader expand these sections on request.
+\item enabling H\+A\+V\+E\+\_\+\+D\+OT along with I\+N\+T\+E\+R\+A\+C\+T\+I\+V\+E\+\_\+\+S\+VG while setting D\+O\+T\+\_\+\+I\+M\+A\+G\+E\+\_\+\+F\+O\+R\+M\+AT to {\ttfamily svg}, will make doxygen produce S\+VG images that will allow the user to zoom and pan (this only happens when the size of the images exceeds a certain size).
+\end{DoxyItemize}\hypertarget{customize_minor_tweaks_header_css}{}\doxysubsection{Header, Footer, and Stylesheet changes}\label{customize_minor_tweaks_header_css}
+To tweak things like fonts or colors, margins, or other look \& feel aspects of the H\+T\+ML output in detail, you can create a different \href{https://www.w3schools.com/css/default.asp}{\texttt{ cascading style sheet}}. You can also let doxygen use a custom header and footer for each H\+T\+ML page it generates, for instance to make the output conform to the style used on the rest of your web site.
+
+To do this first run doxygen as follows\+: \begin{DoxyVerb}doxygen -w html header.html footer.html customdoxygen.css
+\end{DoxyVerb}
+
+
+This will create 3 files\+:
+\begin{DoxyItemize}
+\item header.\+html is a H\+T\+ML fragment which doxygen normally uses to start a H\+T\+ML page. Note that the fragment ends with a body tag and that is contains a couple of commands of the form \$word. These will be replaced by doxygen on the fly.
+\item footer.\+html is a H\+T\+ML fragment which doxygen normally uses to end a H\+T\+ML page. Also here special commands can be used. This file contain the link to www.\+doxygen.\+org and the body and html end tags.
+\item customdoxygen.\+css is the default cascading style sheet used by doxygen. It is recommended only to look into this file and overrule some settings you like by putting them in a separate stylesheets and referencing those extra files via H\+T\+M\+L\+\_\+\+E\+X\+T\+R\+A\+\_\+\+S\+T\+Y\+L\+E\+S\+H\+E\+ET.
+\end{DoxyItemize}
+
+You should edit these files and then reference them from the configuration file.
+\begin{DoxyItemize}
+\item H\+T\+M\+L\+\_\+\+H\+E\+A\+D\+ER = {\ttfamily header.\+html} 
+\item H\+T\+M\+L\+\_\+\+F\+O\+O\+T\+ER = {\ttfamily footer.\+html} 
+\item H\+T\+M\+L\+\_\+\+E\+X\+T\+R\+A\+\_\+\+S\+T\+Y\+L\+E\+S\+H\+E\+ET = {\ttfamily my\+\_\+customdoxygen.\+css} 
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+it is not longer recommended to use H\+T\+M\+L\+\_\+\+S\+T\+Y\+L\+E\+S\+H\+E\+ET, as it make it difficult to upgrade to a newer version of doxygen. Use H\+T\+M\+L\+\_\+\+E\+X\+T\+R\+A\+\_\+\+S\+T\+Y\+L\+E\+S\+H\+E\+ET instead.
+\end{DoxyNote}
+See the documentation of the H\+T\+M\+L\+\_\+\+H\+E\+A\+D\+ER tag for more information about the possible meta commands you can use inside your custom header.
+
+\begin{DoxyNote}{Note}
+You should not put the style sheet in the H\+T\+ML output directory. Treat it as a source file. Doxygen will copy it for you.
+
+If you use images or other external content in a custom header you need to make sure these end up in the H\+T\+ML output directory yourself, for instance by writing a script that runs doxygen can then copies the images to the output.
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+The structure of headers and footers may change after upgrading to a newer version of doxygen, so if you are using a custom header or footer, it might not produce valid output anymore after upgrading.
+\end{DoxyWarning}
+\hypertarget{customize_layout}{}\doxysection{Changing the layout of pages}\label{customize_layout}
+In some cases you may want to change the way the output is structured. A different style sheet or custom headers and footers do not help in such case.
+
+The solution doxygen provides is a layout file, which you can modify and doxygen will use to control what information is presented, in which order, and to some extent also how information is presented. The layout file is an X\+ML file.
+
+The default layout can be generated by doxygen using the following command\+: \begin{DoxyVerb}doxygen -l
+\end{DoxyVerb}
+ optionally the name of the layout file can be specified, if omitted {\ttfamily Doxygen\+Layout.\+xml} will be used.
+
+The next step is to mention the layout file in the configuration file \begin{DoxyVerb}LAYOUT_FILE = DoxygenLayout.xml
+\end{DoxyVerb}
+ To change the layout all you need to do is edit the layout file.
+
+The toplevel structure of the file looks as follows\+: \begin{DoxyVerb}<doxygenlayout version="1.0">
+  <navindex>
+    ...
+  </navindex>
+  <class>
+    ...
+  </class>
+  <namespace>
+    ...
+  </namespace>
+  <concept>
+    ...
+  </concept>
+  <file>
+    ...
+  </file>
+  <group>
+    ...
+  </group>
+  <directory>
+    ...
+  </directory>
+</doxygenlayout>
+\end{DoxyVerb}
+
+
+The root element of the X\+ML file is {\ttfamily doxygenlayout}, it has an attribute named {\ttfamily version}, which will be used in the future to cope with changes that are not backward compatible.
+
+The first section, identified by the {\ttfamily navindex} element, represents the layout of the navigation tabs displayed at the top of each H\+T\+ML page. At the same time it also controls the items in the navigation tree in case G\+E\+N\+E\+R\+A\+T\+E\+\_\+\+T\+R\+E\+E\+V\+I\+EW is enabled. Each tab is represented by a {\ttfamily tab} element in the X\+ML file.
+
+You can hide tabs by setting the {\ttfamily visible} attribute to {\ttfamily no}. You can also override the default title of a tab by specifying it as the value of the {\ttfamily title} attribute. If the title field is the empty string (the default) then doxygen will fill in an appropriate language specific title.
+
+You can reorder the tabs by moving the tab elements in the X\+ML file within the {\ttfamily navindex} element and even change the tree structure. Do not change the value of the {\ttfamily type} attribute however. Only a fixed set of types are supported, each representing a link to a specific index.
+
+You can also add custom tabs using a type with name \char`\"{}user\char`\"{}. Here is an example that shows how to add a tab with title \char`\"{}\+Google\char`\"{} pointing to www.\+google.\+com\+:
+
+\begin{DoxyVerb}  <navindex>
+    ...
+    <tab type="user" url="http://www.google.com" title="Google"/>
+    ...
+  </navindex>
+\end{DoxyVerb}
+
+
+The url field can also be a relative U\+RL. If the U\+RL starts with @ref the link will point to a documented entities, such as a class, a function, a group, or a related page. Suppose we have defined a page using @page with label mypage, then a tab with label \char`\"{}\+My Page\char`\"{} to this page would look as follows\+:
+
+\begin{DoxyVerb}  <navindex>
+    ...
+    <tab type="user" url="@ref mypage" title="My Page"/>
+    ...
+  </navindex>
+\end{DoxyVerb}
+
+
+You can also group tabs together in a custom group using a tab with type \char`\"{}usergroup\char`\"{}. The following example puts the above tabs in a user defined group with title \char`\"{}\+My Group\char`\"{}\+:
+
+\begin{DoxyVerb}  <navindex>
+    ...
+    <tab type="usergroup" title="My Group">
+      <tab type="user" url="http://www.google.com" title="Google"/>
+      <tab type="user" url="@ref mypage" title="My Page"/>
+    </tab>
+    ...
+  </navindex>
+\end{DoxyVerb}
+
+
+Groups can be nested to form a hierarchy.
+
+By default a usergroup entry in the navigation tree is a link to a landing page with the contents of the group. You can link to a different page using the {\ttfamily url} attribute just like you can for the {\ttfamily $<$tab$>$} element and prevent any link using {\ttfamily url=\char`\"{}\mbox{[}none\mbox{]}\char`\"{}}, i.\+e.
+
+\begin{DoxyVerb}   <tab type="usergroup" title="Group without link" url="[none]">
+   ...
+   </tab>
+\end{DoxyVerb}
+
+
+The elements after {\ttfamily navindex} represent the layout of the different pages generated by doxygen\+:
+\begin{DoxyItemize}
+\item The {\ttfamily class} element represents the layout of all pages generated for documented classes, structs, unions, and interfaces.
+\item The {\ttfamily namespace} element represents the layout of all pages generated for documented namespaces (and also Java packages).
+\item The {\ttfamily concept} element represents the layout of all pages generated for documented concepts.
+\item The {\ttfamily file} element represents the layout of all pages generated for documented files.
+\item The {\ttfamily group} element represents the layout of all pages generated for documented groups (or modules).
+\item The {\ttfamily directory} element represents the layout of all pages generated for documented directories.
+\end{DoxyItemize}
+
+Each X\+ML element within one of the above page elements represents a certain piece of information. Some pieces can appear in each type of page, others are specific for a certain type of page. Doxygen will list the pieces in the order in which they appear in the X\+ML file.
+
+The following generic elements are possible for each page\+: 
+\begin{DoxyDescription}
+\item[{\ttfamily briefdescription} ]Represents the brief description on a page. 
+\item[{\ttfamily detaileddescription} ]Represents the detailed description on a page. 
+\item[{\ttfamily authorsection} ]Represents the author section of a page (only used for man pages). This is a separate section for man pages with a text like\+: {\ttfamily Generated automatically by Doxygen for My Project from the source code.} This should not be misinterpreted with the doxygen commands \mbox{\hyperlink{commands_cmdauthor}{\textbackslash{}author}} or \mbox{\hyperlink{commands_cmdauthors}{\textbackslash{}authors}} that generate an author paragraph inside a detailed description. 
+\end{DoxyDescription}The following generic elements are possible for each page except the concept page\+: 
+\begin{DoxyDescription}
+\item[{\ttfamily memberdecl} ]Represents the quick overview of members on a page (member declarations). This elements has child elements per type of member list. The possible child elements are not listed in detail in the document, but the name of the element should be a good indication of the type of members that the element represents. 
+\item[{\ttfamily memberdef} ]Represents the detailed member list on a page (member definition). Like the {\ttfamily memberdecl} element, also this element has a number of possible child elements. 
+\end{DoxyDescription}
+
+The class page has the following specific elements\+: 
+\begin{DoxyDescription}
+\item[{\ttfamily includes} ]Represents the include file needed to obtain the definition for this class. 
+\item[{\ttfamily inheritancegraph} ]Represents the inheritance relations for a class. Note that the C\+L\+A\+S\+S\+\_\+\+G\+R\+A\+PH option determines if the inheritance relation is a list of base and derived classes or a graph. 
+\item[{\ttfamily collaborationgraph} ]Represents the collaboration graph for a class. 
+\item[{\ttfamily allmemberslink} ]Represents the link to the list of all members for a class. 
+\item[{\ttfamily usedfiles} ]Represents the list of files from which documentation for the class was extracted. 
+\end{DoxyDescription}
+
+The concept page has the following specific elements\+: 
+\begin{DoxyDescription}
+\item[{\ttfamily includes} ]Represents the include file needed to obtain the definition for this class. 
+\item[{\ttfamily definition} ]Represents the definition of the concept 
+\end{DoxyDescription}
+
+The file page has the following specific elements\+: 
+\begin{DoxyDescription}
+\item[{\ttfamily includes} ]Represents the list of \#include statements contained in this file. 
+\item[{\ttfamily includegraph} ]Represents the include dependency graph for the file. 
+\item[{\ttfamily includedbygraph} ]Represents the included by dependency graph for the file. 
+\item[{\ttfamily sourcelink} ]Represents the link to the source code of this file. 
+\end{DoxyDescription}
+
+The group page has a specific {\ttfamily groupgraph} element which represents the graph showing the dependencies between groups.
+
+Similarly, the directory page has a specific {\ttfamily directorygraph} element which represents the graph showing the dependencies between the directories based on the \#include relations of the files inside the directories.
+
+Some elements have a {\ttfamily visible} attribute which can be used to hide the fragment from the generated output, by setting the attribute\textquotesingle{}s value to \char`\"{}no\char`\"{}. You can also use the value of a configuration option to determine the visibility, by using its name prefixed with a dollar sign, e.\+g. \begin{DoxyVerb}  ...
+  <includes visible="$SHOW_INCLUDE_FILES"/>
+  ...
+\end{DoxyVerb}
+ This was mainly added for backward compatibility. Note that the {\ttfamily visible} attribute is just a hint for doxygen. If no relevant information is available for a certain piece it is omitted even if it is set to {\ttfamily yes} (i.\+e. no empty sections are generated).
+
+Some elements have a {\ttfamily title} attribute. This attribute can be used to customize the title doxygen will use as a header for the piece.
+
+\begin{DoxyWarning}{Warning}
+at the moment you should not remove elements from the layout file as a way to hide information. Doing so can cause broken links in the generated output!
+\end{DoxyWarning}
+\hypertarget{customize_xmlgenerator}{}\doxysection{Using the X\+M\+L output}\label{customize_xmlgenerator}
+If the above two methods still do not provide enough flexibility, you can also use the X\+ML output produced by doxygen as a basis to generate the output you like. To do this set G\+E\+N\+E\+R\+A\+T\+E\+\_\+\+X\+ML to {\ttfamily Y\+ES}.
+
+The X\+ML output consists of an index file named {\ttfamily index.\+xml} which lists all items extracted by doxygen with references to the other X\+ML files for details. The structure of the index is described by a schema file {\ttfamily index.\+xsd}. All other X\+ML files are described by the schema file named {\ttfamily compound.\+xsd}. If you prefer one big X\+ML file you can combine the index and the other files using the X\+S\+LT file {\ttfamily combine.\+xslt}.
+
+You can use any X\+ML parser to parse the files or use the one that can be found in the {\ttfamily addon/doxmlparser} directory of doxygen\textquotesingle{}s source distribution. Look at {\ttfamily addon/doxmlparser/doxmlparser/index.\+py} and {\ttfamily addon/doxmlparser/doxmlparser/compound.\+py} for the interface of the parser (it is generated by \href{https://www.davekuhlman.org/generateDS.html}{\texttt{ generated\+DS}} and follows the X\+ML schema files {\ttfamily index.\+xsd} and {\ttfamily compound.\+xsd} found in {\ttfamily templates/xml}). Look in {\ttfamily addon/doxmlparser/examples} for examples.
+
+The advantage of using the doxmlparser is that it allows you to only read the index file into memory and then only those X\+ML files that you implicitly load via navigating through the index. As a result this works even for very large projects where reading all X\+ML files as one big D\+OM tree would not fit into memory.
+
+See \href{https://github.com/michaeljones/breathe}{\texttt{ the Breathe project}} for an example that uses doxygen X\+ML output from Python to bridge it with the \href{http://www.sphinx-doc.org/en/stable/}{\texttt{ Sphinx}} document generator.
+
+ 

@@ -1,0 +1,91 @@
+The \href{http://www.unicode.org/}{\texttt{ Unicode consortium}} has defined a set of \href{https://en.wikipedia.org/wiki/Emoji}{\texttt{ emoji}} with the corresponding unicode sequences. Doxygen supports the subset of emoji characters as used by Git\+Hub (based on the list \href{https://api.github.com/emojis}{\texttt{ https\+://api.\+github.\+com/emojis}}). An emoji is created using the \mbox{\hyperlink{commands_cmdemoji}{\textbackslash{}emoji}} command. For example {\ttfamily \textbackslash{}emoji smile} or {\ttfamily \textbackslash{}emoji \+:smile\+:} both produce \doxygenemoji{\+:smile\+:}{smile}.\hypertarget{emojisup_emojirep}{}\doxysection{Representation}\label{emojisup_emojirep}
+For the different doxygen output types there is an output defined\+:
+\begin{DoxyItemize}
+\item Unicode code sequence, the actual representation is depending on the possibilities of the fonts loaded\+:
+\begin{DoxyItemize}
+\item H\+T\+ML
+\item Doc\+Book
+\item R\+TF, converted to U\+T\+F-\/16 representation.
+\end{DoxyItemize}
+\item Image
+\begin{DoxyItemize}
+\item \textbackslash{}f(\{\textbackslash{}\+La\+TeX\}\textbackslash{}f), in case the image can be found (see \mbox{\hyperlink{emojisup_emojiimage}{Emoji image retrieval}}) otherwise the plain emoji text (i.\+e. {\ttfamily \+:$<$text$>$\+:}) is displayed
+\end{DoxyItemize}
+\item plain emoji text (i.\+e. {\ttfamily \+:$<$text$>$\+:})
+\begin{DoxyItemize}
+\item man
+\item perl
+\end{DoxyItemize}
+\item For X\+ML there is a dedicated {\ttfamily $<$emoji$>$} tag with name and unicode attributes.
+\end{DoxyItemize}\hypertarget{emojisup_emojiimage}{}\doxysection{Emoji image retrieval}\label{emojisup_emojiimage}
+In the list of images can be downloaded via the following Python script\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{\# script to download the emoticons from GitHub and to produce a table for}}
+\DoxyCodeLine{\textcolor{comment}{\# inclusion in doxygen. Works with python 2.7+ and python 3.x}}
+\DoxyCodeLine{\textcolor{keyword}{import} json}
+\DoxyCodeLine{\textcolor{keyword}{import} os}
+\DoxyCodeLine{\textcolor{keyword}{import} argparse}
+\DoxyCodeLine{\textcolor{keyword}{import} re}
+\DoxyCodeLine{\textcolor{keywordflow}{try}:}
+\DoxyCodeLine{    \textcolor{keyword}{import} urllib.request \textcolor{keyword}{as} urlrequest}
+\DoxyCodeLine{\textcolor{keywordflow}{except} ImportError:}
+\DoxyCodeLine{    \textcolor{keyword}{import} urllib \textcolor{keyword}{as} urlrequest}
+\DoxyCodeLine{}
+\DoxyCodeLine{unicode\_re = re.compile(\textcolor{stringliteral}{r'.*?/unicode/(.*?).png\(\backslash\)?.*'})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{def }get\_emojis():}
+\DoxyCodeLine{    response  = urlrequest.urlopen(\textcolor{stringliteral}{'https://api.github.com/emojis'})}
+\DoxyCodeLine{    raw\_data  = response.read()}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} json.loads(raw\_data)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{def }download\_images(dir\_name):}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} \textcolor{keywordflow}{not} os.path.exists(dir\_name):}
+\DoxyCodeLine{        os.makedirs(dir\_name)}
+\DoxyCodeLine{    json\_data = get\_emojis()}
+\DoxyCodeLine{    num\_items = len(json\_data)}
+\DoxyCodeLine{    cur\_item=0}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} image,url \textcolor{keywordflow}{in} sorted(json\_data.items()):}
+\DoxyCodeLine{        image\_name = image+\textcolor{stringliteral}{'.png'}}
+\DoxyCodeLine{        cur\_item=cur\_item+1}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} url.find(\textcolor{stringliteral}{'/unicode/'})==-\/1 \textcolor{keywordflow}{or} \textcolor{keywordflow}{not} os.path.isfile(dir\_name+\textcolor{stringliteral}{'/'}+image\_name):}
+\DoxyCodeLine{            \textcolor{keyword}{with} open(dir\_name+\textcolor{stringliteral}{'/'}+image\_name,\textcolor{stringliteral}{'wb'}) \textcolor{keyword}{as} file:}
+\DoxyCodeLine{                print(\textcolor{stringliteral}{'\%s/\%s: fetching \%s'} \% (cur\_item,num\_items,image\_name))}
+\DoxyCodeLine{                file.write(urlrequest.urlopen(url).read())}
+\DoxyCodeLine{        \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{            print(\textcolor{stringliteral}{'\%s/\%s: skipping \%s'} \% (cur\_item,num\_items,image\_name))}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{def }produce\_table():}
+\DoxyCodeLine{    json\_data = get\_emojis()}
+\DoxyCodeLine{    lines = []}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} image,url \textcolor{keywordflow}{in} sorted(json\_data.items()):}
+\DoxyCodeLine{        match = unicode\_re.match(url)}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} match:}
+\DoxyCodeLine{            unicodes = match.group(1).split(\textcolor{stringliteral}{'-\/'})}
+\DoxyCodeLine{            unicodes\_html = \textcolor{stringliteral}{''}.join([\textcolor{stringliteral}{"\&\#x"}+x+\textcolor{stringliteral}{";"} \textcolor{keywordflow}{for} x \textcolor{keywordflow}{in} unicodes])}
+\DoxyCodeLine{            image\_str = \textcolor{stringliteral}{"\(\backslash\)":"}+image+\textcolor{stringliteral}{":\(\backslash\)","}}
+\DoxyCodeLine{            unicode\_str = \textcolor{stringliteral}{"\(\backslash\)""}+unicodes\_html+\textcolor{stringliteral}{"\(\backslash\)""}}
+\DoxyCodeLine{            lines.append(\textcolor{stringliteral}{'  \{ \%-\/42s \%-\/38s \}'} \% (image\_str,unicode\_str))}
+\DoxyCodeLine{    out\_str = \textcolor{stringliteral}{',\(\backslash\)n'}.join(lines)}
+\DoxyCodeLine{    print(\textcolor{stringliteral}{"\{"})}
+\DoxyCodeLine{    print(out\_str)}
+\DoxyCodeLine{    print(\textcolor{stringliteral}{"\};"})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordflow}{if} \_\_name\_\_==\textcolor{stringliteral}{"\_\_main\_\_"}:}
+\DoxyCodeLine{    parser = argparse.ArgumentParser()}
+\DoxyCodeLine{    group = parser.add\_mutually\_exclusive\_group()}
+\DoxyCodeLine{    group.add\_argument(\textcolor{stringliteral}{'-\/d'},\textcolor{stringliteral}{'-\/-\/dir'},help=\textcolor{stringliteral}{'directory to place images in'})}
+\DoxyCodeLine{    group.add\_argument(\textcolor{stringliteral}{'-\/t'},\textcolor{stringliteral}{'-\/-\/table'},help=\textcolor{stringliteral}{'generate code fragment'},action=\textcolor{stringliteral}{'store\_true'})}
+\DoxyCodeLine{    args = parser.parse\_args()}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} args.table:}
+\DoxyCodeLine{        produce\_table()}
+\DoxyCodeLine{    \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{        download\_images(args.dir)}
+\end{DoxyCode}
+ When invoking it with the {\ttfamily -\/d image\+\_\+dir} option the images will by downloaded in the {\ttfamily image\+\_\+dir} directory. By means of the doxygen configuration parameter L\+A\+T\+E\+X\+\_\+\+E\+M\+O\+J\+I\+\_\+\+D\+I\+R\+E\+C\+T\+O\+RY the requested directory can be selected.
+
+For convenience a zip with the result of running the script can also be downloaded from \href{https://www.doxygen.nl/dl/github_emojis.zip}{\texttt{ https\+://www.\+doxygen.\+nl/dl/github\+\_\+emojis.\+zip}}
+
+For an overview of the supported emoji one can issue the command\+:~\newline
+ {\ttfamily doxygen -\/f emoji $<$output\+File\+Name$>$}
+
+ 

@@ -1,0 +1,240 @@
+Doxygen has three mechanisms to group things together. One mechanism works at a global level, creating a new page for each group. These groups are called \mbox{\hyperlink{grouping_modules}{\textquotesingle{}modules\textquotesingle{}}} in the documentation. The second mechanism works within a member list of some compound entity, and is referred to as a \mbox{\hyperlink{grouping_memgroup}{\textquotesingle{}member groups\textquotesingle{}}}. For \mbox{\hyperlink{commands_cmdpage}{pages}} there is a third grouping mechanism referred to as \mbox{\hyperlink{grouping_subpaging}{subpaging}}.\hypertarget{grouping_modules}{}\doxysection{Modules}\label{grouping_modules}
+Modules are a way to group things together on a separate page. You can document a group as a whole, as well as all individual members. Members of a group can be files, namespaces, classes, functions, variables, enums, typedefs, and defines, but also other groups.
+
+To define a group, you should put the \mbox{\hyperlink{commands_cmddefgroup}{\textbackslash{}defgroup}} command in a special comment block. The first argument of the command is a label that should uniquely identify the group. ~\newline
+ The second argument is the name or title of the group as it should appear in the documentation.
+
+You can make an entity a member of a specific group by putting a \mbox{\hyperlink{commands_cmdingroup}{\textbackslash{}ingroup}} command inside its documentation block.
+
+To avoid putting \mbox{\hyperlink{commands_cmdingroup}{\textbackslash{}ingroup}} commands in the documentation for each member you can also group members together by the open marker {\ttfamily @\{} before the group and the closing marker {\ttfamily @\}} after the group. The markers can be put in the documentation of the group definition or in a separate documentation block.
+
+Groups themselves can also be nested using these grouping markers.
+
+You will get an error message when you use the same group label more than once. If you don\textquotesingle{}t want doxygen to enforce unique labels, then you can use \mbox{\hyperlink{commands_cmdaddtogroup}{\textbackslash{}addtogroup}} instead of \mbox{\hyperlink{commands_cmddefgroup}{\textbackslash{}defgroup}}. It can be used exactly like \mbox{\hyperlink{commands_cmddefgroup}{\textbackslash{}defgroup}}, but when the group has been defined already, then it silently merges the existing documentation with the new one. The title of the group is optional for this command, so you can use \begin{DoxyVerb}/** \addtogroup <label> 
+ *  @{
+ */
+...
+
+/** @}*/
+\end{DoxyVerb}
+ to add additional members to a group that is defined in more detail elsewhere.
+
+Note that compound entities (like classes, files and namespaces) can be put into multiple groups, but members (like variable, functions, typedefs and enums) can only be a member of one group (this restriction is in place to avoid ambiguous linking targets in case a member is not documented in the context of its class, namespace or file, but only visible as part of a group).
+
+Doxygen will put members into the group whose definition has the highest \char`\"{}priority\char`\"{}\+: e.\+g. An explicit \mbox{\hyperlink{commands_cmdingroup}{\textbackslash{}ingroup}} overrides an implicit grouping definition via {\ttfamily @\{} {\ttfamily @\}}. Conflicting grouping definitions with the same priority trigger a warning, unless one definition was for a member without any explicit documentation.
+
+The following example puts Var\+InA into group A and silently resolves the conflict for Integer\+Variable by putting it into group Int\+Variables, because the second instance of Integer\+Variable is undocumented\+:
+
+\begin{DoxyVerb}/**
+ * \ingroup A
+ */
+extern int VarInA;
+
+/**
+ * \defgroup IntVariables Global integer variables
+ * @{
+ */
+
+/** an integer variable */
+extern int IntegerVariable;
+
+/**@}*/
+
+....
+
+/**
+ * \defgroup Variables Global variables
+ */
+/**@{*/
+
+/** a variable in group A */
+int VarInA;
+
+int IntegerVariable;
+
+/**@}*/
+\end{DoxyVerb}
+
+
+The \mbox{\hyperlink{commands_cmdref}{\textbackslash{}ref}} command can be used to refer to a group. The first argument of the \textbackslash{}ref command should be group\textquotesingle{}s label. To use a custom link name, you can put the name of the links in double quotes after the label, as shown by the following example \begin{DoxyVerb}This is the \ref group_label "link" to this group.
+\end{DoxyVerb}
+
+
+The priorities of grouping definitions are (from highest to lowest)\+: \mbox{\hyperlink{commands_cmdingroup}{\textbackslash{}ingroup}}, \mbox{\hyperlink{commands_cmddefgroup}{\textbackslash{}defgroup}}, \mbox{\hyperlink{commands_cmdaddtogroup}{\textbackslash{}addtogroup}}, \mbox{\hyperlink{commands_cmdweakgroup}{\textbackslash{}weakgroup}}. The \mbox{\hyperlink{commands_cmdweakgroup}{\textbackslash{}weakgroup}} command is exactly like \mbox{\hyperlink{commands_cmdaddtogroup}{\textbackslash{}addtogroup}} with a lower priority. It was added to allow \char`\"{}lazy\char`\"{} grouping definitions\+: you can use commands with a higher priority in your .h files to define the hierarchy and \mbox{\hyperlink{commands_cmdweakgroup}{\textbackslash{}weakgroup}} in .c files without having to duplicate the hierarchy exactly.
+
+\begin{DoxyParagraph}{Example\+:}
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{comment}{/** @defgroup group1 The First Group}}
+\DoxyCodeLine{\textcolor{comment}{ *  This is the first group}}
+\DoxyCodeLine{\textcolor{comment}{ *  @\{}}
+\DoxyCodeLine{\textcolor{comment}{ */}}
+\DoxyCodeLine{\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{/** @brief class C1 in group 1 */}}
+\DoxyCodeLine{\textcolor{keyword}{class }C1 \{\};}
+\DoxyCodeLine{\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{/** @brief class C2 in group 1 */}}
+\DoxyCodeLine{\textcolor{keyword}{class }C2 \{\};}
+\DoxyCodeLine{\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{/** function in group 1 */}}
+\DoxyCodeLine{\textcolor{keywordtype}{void} func() \{\}}
+\DoxyCodeLine{\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{/** @\} */} \textcolor{comment}{// end of group1}}
+\DoxyCodeLine{\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{/**}}
+\DoxyCodeLine{\textcolor{comment}{ *  @defgroup group2 The Second Group}}
+\DoxyCodeLine{\textcolor{comment}{ *  This is the second group}}
+\DoxyCodeLine{\textcolor{comment}{ */}}
+\DoxyCodeLine{\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{/** @defgroup group3 The Third Group}}
+\DoxyCodeLine{\textcolor{comment}{ *  This is the third group}}
+\DoxyCodeLine{\textcolor{comment}{ */}}
+\DoxyCodeLine{\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{/** @defgroup group4 The Fourth Group}}
+\DoxyCodeLine{\textcolor{comment}{ *  @ingroup group3}}
+\DoxyCodeLine{\textcolor{comment}{ *  Group 4 is a subgroup of group 3}}
+\DoxyCodeLine{\textcolor{comment}{ */}}
+\DoxyCodeLine{\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{/**}}
+\DoxyCodeLine{\textcolor{comment}{ *  @ingroup group2}}
+\DoxyCodeLine{\textcolor{comment}{ *  @brief class C3 in group 2}}
+\DoxyCodeLine{\textcolor{comment}{ */}}
+\DoxyCodeLine{\textcolor{keyword}{class }C3 \{\};}
+\DoxyCodeLine{\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{/** @ingroup group2}}
+\DoxyCodeLine{\textcolor{comment}{ *  @brief class C4 in group 2}}
+\DoxyCodeLine{\textcolor{comment}{ */}}
+\DoxyCodeLine{\textcolor{keyword}{class }C4 \{\};}
+\DoxyCodeLine{\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{/** @ingroup group3}}
+\DoxyCodeLine{\textcolor{comment}{ *  @brief class C5 in @link group3 the third group@endlink.}}
+\DoxyCodeLine{\textcolor{comment}{ */}}
+\DoxyCodeLine{\textcolor{keyword}{class }C5 \{\};}
+\DoxyCodeLine{\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{/** @ingroup group1 group2 group3 group4}}
+\DoxyCodeLine{\textcolor{comment}{ *  namespace N1 is in four groups}}
+\DoxyCodeLine{\textcolor{comment}{ *  @sa @link group1 The first group@endlink, group2, group3, group4 }}
+\DoxyCodeLine{\textcolor{comment}{ *}}
+\DoxyCodeLine{\textcolor{comment}{ *  Also see @ref mypage2}}
+\DoxyCodeLine{\textcolor{comment}{ */}}
+\DoxyCodeLine{\textcolor{keyword}{namespace }N1 \{\};}
+\DoxyCodeLine{\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{/** @file}}
+\DoxyCodeLine{\textcolor{comment}{ *  @ingroup group3}}
+\DoxyCodeLine{\textcolor{comment}{ *  @brief this file in group 3}}
+\DoxyCodeLine{\textcolor{comment}{ */}}
+\DoxyCodeLine{\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{/** @defgroup group5 The Fifth Group}}
+\DoxyCodeLine{\textcolor{comment}{ *  This is the fifth group}}
+\DoxyCodeLine{\textcolor{comment}{ *  @\{}}
+\DoxyCodeLine{\textcolor{comment}{ */}}
+\DoxyCodeLine{\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{/** @page mypage1 This is a section in group 5}}
+\DoxyCodeLine{\textcolor{comment}{ *  Text of the first section}}
+\DoxyCodeLine{\textcolor{comment}{ */}}
+\DoxyCodeLine{\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{/** @page mypage2 This is another section in group 5}}
+\DoxyCodeLine{\textcolor{comment}{ *  Text of the second section}}
+\DoxyCodeLine{\textcolor{comment}{ */}}
+\DoxyCodeLine{\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{/** @\} */} \textcolor{comment}{// end of group5}}
+\DoxyCodeLine{\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{/** @addtogroup group1}}
+\DoxyCodeLine{\textcolor{comment}{ *  }}
+\DoxyCodeLine{\textcolor{comment}{ *  More documentation for the first group.}}
+\DoxyCodeLine{\textcolor{comment}{ *  @\{}}
+\DoxyCodeLine{\textcolor{comment}{ */}}
+\DoxyCodeLine{\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{/** another function in group 1 */}}
+\DoxyCodeLine{\textcolor{keywordtype}{void} func2() \{\}}
+\DoxyCodeLine{\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{/** yet another function in group 1 */}}
+\DoxyCodeLine{\textcolor{keywordtype}{void} func3() \{\}}
+\DoxyCodeLine{\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{/** @\} */} \textcolor{comment}{// end of group1}}
+\DoxyCodeLine{}
+\end{DoxyCodeInclude}
+
+\end{DoxyParagraph}
+  
+See \hyperlink{modules_example}{Modules example}
+for the corresponding \mbox{\LaTeX} documentation that is generated by doxygen.
+\hypertarget{grouping_memgroup}{}\doxysection{Member Groups}\label{grouping_memgroup}
+If a compound (e.\+g. a class or file) has many members, it is often desired to group them together. Doxygen already automatically groups things together on type and protection level, but maybe you feel that this is not enough or that that default grouping is wrong. For instance, because you feel that members of different (syntactic) types belong to the same (semantic) group.
+
+A member group is defined by a \begin{DoxyVerb}///@{ 
+  ...
+///@}
+\end{DoxyVerb}
+ block or a \begin{DoxyVerb}/**@{*/ 
+  ... 
+/**@}*/ 
+\end{DoxyVerb}
+ block if you prefer C style comments. Note that the members of the group should be physically inside the member group\textquotesingle{}s body.
+
+Before the opening marker of a block a separate comment block may be placed. This block should contain the \mbox{\hyperlink{commands_cmdname}{@name}} (or \mbox{\hyperlink{commands_cmdname}{\textbackslash{}name}}) command and is used to specify the header of the group. Optionally, the comment block may also contain more detailed information about the group.
+
+Nesting of member groups is not allowed.
+
+If all members of a member group inside a class have the same type and protection level (for instance all are static public members), then the whole member group is displayed as a subgroup of the type/protection level group (the group is displayed as a subsection of the \char`\"{}\+Static Public Members\char`\"{} section for instance). If two or more members have different types, then the group is put at the same level as the automatically generated groups. If you want to force all member-\/groups of a class to be at the top level, you should put a \mbox{\hyperlink{commands_cmdnosubgrouping}{\textbackslash{}nosubgrouping}} command inside the documentation of the class.
+
+\begin{DoxyParagraph}{Example\+:}
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{comment}{/** A class. Details */}}
+\DoxyCodeLine{\textcolor{keyword}{class }Memgrp\_Test}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \textcolor{keyword}{public}:\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{    ///@\{}}
+\DoxyCodeLine{\textcolor{comment}{}\textcolor{comment}{    /** Same documentation for both members. Details */}}
+\DoxyCodeLine{    \textcolor{keywordtype}{void} func1InGroup1();}
+\DoxyCodeLine{    \textcolor{keywordtype}{void} func2InGroup1();\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{    ///@\}}}
+\DoxyCodeLine{\textcolor{comment}{}\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{    /** Function without group. Details. */}}
+\DoxyCodeLine{    \textcolor{keywordtype}{void} ungroupedFunction();}
+\DoxyCodeLine{    \textcolor{keywordtype}{void} func1InGroup2();}
+\DoxyCodeLine{  \textcolor{keyword}{protected}:}
+\DoxyCodeLine{    \textcolor{keywordtype}{void} func2InGroup2();}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} Memgrp\_Test::func1InGroup1() \{\}}
+\DoxyCodeLine{\textcolor{keywordtype}{void} Memgrp\_Test::func2InGroup1() \{\}}
+\DoxyCodeLine{\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{/** @name Group2}}
+\DoxyCodeLine{\textcolor{comment}{ *  Description of group 2. }}
+\DoxyCodeLine{\textcolor{comment}{ */}\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{///@\{}}
+\DoxyCodeLine{\textcolor{comment}{}\textcolor{comment}{/** Function 2 in group 2. Details. */}}
+\DoxyCodeLine{\textcolor{keywordtype}{void} Memgrp\_Test::func2InGroup2() \{\}\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{/** Function 1 in group 2. Details. */}}
+\DoxyCodeLine{\textcolor{keywordtype}{void} Memgrp\_Test::func1InGroup2() \{\}\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{///@\}}}
+\DoxyCodeLine{\textcolor{comment}{}\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{/*! \(\backslash\)file }}
+\DoxyCodeLine{\textcolor{comment}{ *  docs for this file}}
+\DoxyCodeLine{\textcolor{comment}{ */}}
+\DoxyCodeLine{\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{//!@\{}}
+\DoxyCodeLine{\textcolor{comment}{//! one description for all members of this group }}
+\DoxyCodeLine{\textcolor{comment}{//! (because DISTRIBUTE\_GROUP\_DOC is YES in the config file)}}
+\DoxyCodeLine{\textcolor{comment}{}\textcolor{preprocessor}{\#define A 1}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define B 2}}
+\DoxyCodeLine{\textcolor{keywordtype}{void} glob\_func();\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{//!@\}}}
+\end{DoxyCodeInclude}
+
+\end{DoxyParagraph}
+  
+See \hyperlink{memgrp_example}{Member Groups example}
+for the corresponding \mbox{\LaTeX} documentation that is generated by doxygen.
+
+
+Here Group1 is displayed as a subsection of the \char`\"{}\+Public Members\char`\"{}. And Group2 is a separate section because it contains members with different protection levels (i.\+e. public and protected).\hypertarget{grouping_subpaging}{}\doxysection{Subpaging}\label{grouping_subpaging}
+Information can be grouped into pages using the \mbox{\hyperlink{commands_cmdpage}{\textbackslash{}page}} and \mbox{\hyperlink{commands_cmdsubpage}{\textbackslash{}mainpage}} commands. Normally, this results in a flat list of pages, where the \char`\"{}main\char`\"{} page is the first in the list.
+
+Instead of adding structure using the approach described in section \mbox{\hyperlink{grouping_modules}{modules}} it is often more natural and convenient to add additional structure to the pages using the \mbox{\hyperlink{commands_cmdsubpage}{\textbackslash{}subpage}} command.
+
+For a page A the \textbackslash{}subpage command adds a link to another page B and at the same time makes page B a subpage of A. This has the effect of making two groups GA and GB, where GB is part of GA, page A is put in group GA, and page B is put in group GB.
+
+ 

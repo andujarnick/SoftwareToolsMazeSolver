@@ -1,0 +1,267 @@
+Doxywizard is a G\+UI front-\/end for configuring and running doxygen.
+
+When starting doxywizard one can specify an existing configuration file to use as argument, otherwise the default settings will be used as a starting point.
+
+When you start doxywizard it will display the main window (the actual look depends on the platform used).
+
+ 
+\begin{DoxyImage}
+\includegraphics[width=15cm]{doxywizard_main.png}
+\doxyfigcaption{Main window}
+\end{DoxyImage}
+
+
+The user interface consists of the following sections\+: 
+\begin{DoxyDescription}
+\item[\mbox{\hyperlink{doxywizard_usage_dw_menu}{Menu options}} ]In the menu bar the following parts are available\+: \mbox{\hyperlink{doxywizard_usage_dw_menu_file}{File menu}}, \mbox{\hyperlink{doxywizard_usage_dw_menu_settings}{Settings menu}} and \mbox{\hyperlink{doxywizard_usage_dw_menu_help}{Help menu}}.
+
+
+\item[Specify the working directory from which doxygen will run ]Using the {\ttfamily Select...} button a directory can be selected. When doxywizard is started with a configuration file or one is loaded using the open command (see\+: \mbox{\hyperlink{doxywizard_usage_dw_menu_file}{File menu}}) the directory of this settings file used as the working directory.
+
+
+\item[Configure doxygen using the Wizard and/or Expert tab... ]
+\begin{DoxyDescription}
+\item[\mbox{\hyperlink{doxywizard_usage_dw_wizard}{Wizard tab}} ]with this tab it is possible to quickly configure the most important settings and leave the rest of the options to their defaults. 
+\item[\mbox{\hyperlink{doxywizard_usage_dw_expert}{Expert tab}} ]with this tab one gains access to the full set of configuration options. 
+\item[\mbox{\hyperlink{doxywizard_usage_dw_run}{Run tab}} ]with this tab it is possible to run doxygen and view the used settings. 
+\end{DoxyDescription}
+
+Switching between these tabs is possible, e.\+g you could start with the wizard tab and then fine tune some settings by switching to the expert tab.
+
+
+\end{DoxyDescription}
+
+After doxygen is configured you need to save (see\+: \mbox{\hyperlink{doxywizard_usage_dw_menu_file}{File menu}}) the configuration as a file to disk. This allows doxygen to use the configuration and also allows running doxygen again with the same settings at a later point in time.
+
+Since some configuration options may use relative paths, be sure to select a working directory that is root of those paths. This is often the root of the source tree and will typically be correctly filled in if the configuration file is stored at this location as well.
+
+Once the configuration file is saved and the working directory is set, you can run doxygen based on the selected settings. Do this by switching to the \mbox{\hyperlink{doxywizard_usage_dw_run}{Run}} tab, and click the \char`\"{}\+Run doxygen\char`\"{} button.
+
+Once doxygen runs you can cancel it by clicking the same button again. The output produced by doxygen is captured and shown in the \char`\"{}\+Output produced by doxygen\char`\"{} pane. Once doxygen finishes, the log can be saved as a text file.\hypertarget{doxywizard_usage_dw_wizard}{}\doxysection{Wizard tab}\label{doxywizard_usage_dw_wizard}
+The Wizard tab is divided into two panes 
+\begin{DoxyDescription}
+\item[Left pane]The main topics for easy setting up doxygen. By clicking on a topic the corresponding settings will appear in the Right pane. 
+\item[Right pane]The wizard\textquotesingle{}s settings pane, in this pane you will find the settings that are available for the selected topic. 
+\end{DoxyDescription}
+
+The wizard only gives the possibility to quickly setup doxygen, for full control one should use the \mbox{\hyperlink{doxywizard_usage_dw_expert}{Expert tab}}.
+
+ \newpage  \hypertarget{doxywizard_usage_dw_wizard_project}{}\doxysubsection{Project settings}\label{doxywizard_usage_dw_wizard_project}
+The fields in the Project pane speak for themselves. Once doxygen has finished the Destination directory is where to look for the results. Doxygen will put each output format in a separate sub-\/directory by default.
+
+ 
+\begin{DoxyImage}
+\includegraphics[width=15cm]{doxywizard_page1.png}
+\doxyfigcaption{Wizard tab\+: Project settings}
+\end{DoxyImage}
+
+
+ \newpage  \hypertarget{doxywizard_usage_dw_wizard_mode}{}\doxysubsection{Mode of operating}\label{doxywizard_usage_dw_wizard_mode}
+The Mode pane allows you to select how doxygen will look at your sources. The default is to only look for things that have been documented. Furthermore, the terminology used in the output can be changed to better match the main programming language used (this doesn\textquotesingle{}t affect the way doxygen parses your source code).
+
+ 
+\begin{DoxyImage}
+\includegraphics[width=15cm]{doxywizard_page2.png}
+\doxyfigcaption{Wizard tab\+: Mode of operating}
+\end{DoxyImage}
+
+
+ \newpage  \hypertarget{doxywizard_usage_dw_wizard_output}{}\doxysubsection{Output to produce}\label{doxywizard_usage_dw_wizard_output}
+The Output pane allows you to select what kinds of output doxygen will produce. For H\+T\+ML and \textbackslash{}f(\{\textbackslash{}\+La\+TeX\}\textbackslash{}f) there are additional options available.
+
+ 
+\begin{DoxyImage}
+\includegraphics[width=15cm]{doxywizard_page3.png}
+\doxyfigcaption{Wizard tab\+: Output to produce}
+\end{DoxyImage}
+
+
+ \newpage  \hypertarget{doxywizard_usage_dw_wizard_diagrams}{}\doxysubsection{Diagrams to generate}\label{doxywizard_usage_dw_wizard_diagrams}
+Doxygen can produce a number of diagrams. Using the Diagrams pane you can select which ones to generate. For most diagrams the {\ttfamily dot} tool of the \href{http://www.graphviz.org}{\texttt{ Graph\+Viz}} package is needed. This needs to be installed separately.
+
+ 
+\begin{DoxyImage}
+\includegraphics[width=15cm]{doxywizard_page4.png}
+\doxyfigcaption{Wizard tab\+: Diagrams to generate}
+\end{DoxyImage}
+\hypertarget{doxywizard_usage_dw_expert}{}\doxysection{Expert tab}\label{doxywizard_usage_dw_expert}
+The Expert tab is divided into a number of panes\+: 
+\begin{DoxyDescription}
+\item[Top left pane]The Topics pane (i.\+e. sections in the configuration file) that are available. By clicking on a topic the corresponding settings will appear in the Right pane. 
+\item[Bottom left pane]The help pane, this will be updated when one hovers over the name of a setting in the Right pane. 
+\item[Right pane]The Settings pane, in this pane you will find the settings that are available for the selected topic. In case the name for a setting is colored red, the setting has a non-\/default value. In case a setting is grayed out, the setting is depending on another setting that is disabled. Which setting it depends on is indicated in the help pane on the bottom left. 
+\end{DoxyDescription}
+
+ 
+\begin{DoxyImage}
+\includegraphics[width=15cm]{doxywizard_expert.png}
+\doxyfigcaption{Some options from the Expert tab}
+\end{DoxyImage}
+
+
+The representation of the input field depends on the type of the configuration option. 
+\begin{DoxyItemize}
+\item For each boolean option (those options that are answered with {\ttfamily Y\+ES} or {\ttfamily NO} in the configuration file) there is a check-\/box. A typical field looks like\+:~\newline
+  
+\begin{DoxyInlineImage}
+\includegraphics[width=4.6cm]{expert_bool.png}
+\end{DoxyInlineImage}
+ 
+\item For items taking one of a fixed set of values (like O\+U\+T\+P\+U\+T\+\_\+\+L\+A\+N\+G\+U\+A\+GE) a combo box is used. A typical field looks like\+:~\newline
+  
+\begin{DoxyInlineImage}
+\includegraphics[width=7.3cm]{expert_enum.png}
+\end{DoxyInlineImage}
+ 
+\item For items taking an integer value from a range, a spinbox is used. A typical field looks like\+:~\newline
+  
+\begin{DoxyInlineImage}
+\includegraphics[width=10.1cm]{expert_int.png}
+\end{DoxyInlineImage}
+ 
+\item For free form string-\/type options there is a one line edit field. A typical field looks like\+:~\newline
+  
+\begin{DoxyInlineImage}
+\includegraphics[width=12.3cm]{expert_string_string.png}
+\end{DoxyInlineImage}
+ ~\newline
+Additionally, when the string field should contain a file or a folder name, there are the special buttons  
+\begin{DoxyInlineImage}
+\includegraphics[height=\DoxyInlineHeightChar]{images/file.png}
+\end{DoxyInlineImage}
+ and  
+\begin{DoxyInlineImage}
+\includegraphics[height=\DoxyInlineHeightChar]{images/folder.png}
+\end{DoxyInlineImage}
+ that start a file / folder selection dialog. A typical field for a file looks like\+:~\newline
+  
+\begin{DoxyInlineImage}
+\includegraphics[width=11.0cm]{expert_string_file.png}
+\end{DoxyInlineImage}
+ ~\newline
+and a folder looks like\+:~\newline
+  
+\begin{DoxyInlineImage}
+\includegraphics[width=11.0cm]{expert_string_dir.png}
+\end{DoxyInlineImage}
+ ~\newline
+and in case both a file or a folder is allowed, the look is\+:~\newline
+  
+\begin{DoxyInlineImage}
+\includegraphics[width=11.0cm]{expert_string_filedir.png}
+\end{DoxyInlineImage}
+ ~\newline
+In case a file represents an image, doxygen also tries to display the selected image. Then a typical field looks like\+:~\newline
+  
+\begin{DoxyInlineImage}
+\includegraphics[width=11.8cm]{expert_string_image.png}
+\end{DoxyInlineImage}
+ 
+\item For options taking a list of strings, an editor field is shown with a non-\/editable list below it. The  
+\begin{DoxyInlineImage}
+\includegraphics[height=\DoxyInlineHeightChar]{images/add.png}
+\end{DoxyInlineImage}
+ button adds the string in the editor field to the list and a the  
+\begin{DoxyInlineImage}
+\includegraphics[height=\DoxyInlineHeightChar]{images/del.png}
+\end{DoxyInlineImage}
+ button removes the selected string from the list. The  
+\begin{DoxyInlineImage}
+\includegraphics[height=\DoxyInlineHeightChar]{images/refresh.png}
+\end{DoxyInlineImage}
+ button can be clicked to replace the selected item in the list with the string entered in the editor field. A typical field looks like\+:~\newline
+  
+\begin{DoxyInlineImage}
+\includegraphics[width=11.2cm]{expert_list_string.png}
+\end{DoxyInlineImage}
+ ~\newline
+additionally when the list contains file and / or folder names, there are special buttons  
+\begin{DoxyInlineImage}
+\includegraphics[height=\DoxyInlineHeightChar]{images/file.png}
+\end{DoxyInlineImage}
+ and  
+\begin{DoxyInlineImage}
+\includegraphics[height=\DoxyInlineHeightChar]{images/folder.png}
+\end{DoxyInlineImage}
+ that start a file / folder selection dialog. A typical field would for a file looks like\+:~\newline
+  
+\begin{DoxyInlineImage}
+\includegraphics[width=11.2cm]{expert_list_file.png}
+\end{DoxyInlineImage}
+ ~\newline
+and for a folder it looks like~\newline
+  
+\begin{DoxyInlineImage}
+\includegraphics[width=11.2cm]{expert_list_dir.png}
+\end{DoxyInlineImage}
+ ~\newline
+and in case both files and folders are allowed, the look is\+:~\newline
+  
+\begin{DoxyInlineImage}
+\includegraphics[width=11.9cm]{expert_list_filedir.png}
+\end{DoxyInlineImage}
+ 
+\end{DoxyItemize}\hypertarget{doxywizard_usage_dw_run}{}\doxysection{Run tab}\label{doxywizard_usage_dw_run}
+The run tab gives the possibility to run doxygen with the given settings, see the H\+T\+ML results, see the settings used and save the output as displayed in the output pane.
+
+ 
+\begin{DoxyImage}
+\includegraphics[width=15cm]{doxywizard_run.png}
+\doxyfigcaption{Run tab}
+\end{DoxyImage}
+
+
+
+\begin{DoxyDescription}
+\item[Specify additional command line options for running doxygen]Field to specify extra options used when running doxygen, e.\+g. for debugging purposes. 
+\item[Run doxygen]When clicked will start running doxygen. The \char`\"{}\+Output produced by doxygen\char`\"{} pane shows the messages produced by doxygen while it is running. Before being able to run doxygen the settings have to be saved. 
+\item[Show H\+T\+ML output]Clicking this button will open the main H\+T\+ML output page in the default browser. The button will be enabled after doxygen has finished. 
+\item[Show configuration]Clicking this button shows the configuration settings that are used when running doxygen. The results will be shown in the \char`\"{}\+Output produced by doxygen\char`\"{} pane in compact textual form. 
+\item[Condensed]When checked the \char`\"{}\+Show configuration\char`\"{} button will only list the configuration settings that differ from the default settings (analogous to {\ttfamily doxygen -\/x}). 
+\item[Save Log ...]Will save the information from the \char`\"{}\+Output produced by doxygen\char`\"{} pane in a file as specified by the user. 
+\end{DoxyDescription}\hypertarget{doxywizard_usage_dw_menu}{}\doxysection{Menu options}\label{doxywizard_usage_dw_menu}
+\hypertarget{doxywizard_usage_dw_menu_file}{}\doxysubsection{File menu}\label{doxywizard_usage_dw_menu_file}
+The file menu with a couple of useful items for loading and saving settings.
+
+ 
+\begin{DoxyImage}
+\includegraphics[width=12.0cm]{doxywizard_menu_file.png}
+\doxyfigcaption{File menu}
+\end{DoxyImage}
+
+
+
+\begin{DoxyDescription}
+\item[Open...]Load a configuration file from disk, based on a file selection dialog. In case unsaved settings exist you will be asked to confirm the action. 
+\item[Open recent]Quickly load a recently saved configuration file. In case unsaved settings exist you will be asked to confirm the action. This menu item is only accessible when there are recent files in the list. 
+\item[Save]Saves a configuration file to disk. In case the configuration file has already been set this file name is used otherwise a selection dialog will appear. In case the file already exists a confirmation is required. 
+\item[Save as..]Saves the current configuration settings to disk with a specific name. This file name will become the currently set file name. 
+\item[Quit]Leave doxywizard, in case unsaved settings exist you will be asked to confirm the action. 
+\end{DoxyDescription}\hypertarget{doxywizard_usage_dw_menu_settings}{}\doxysubsection{Settings menu}\label{doxywizard_usage_dw_menu_settings}
+ 
+\begin{DoxyImage}
+\includegraphics[width=6.7cm]{doxywizard_menu_settings.png}
+\doxyfigcaption{Settings menu}
+\end{DoxyImage}
+
+
+
+\begin{DoxyDescription}
+\item[Reset to factory defaults]Restores the factory defaults as the default settings to use. You will be asked to confirm the action. This menu item is only accessible when the current settings differ from the default settings. 
+\item[Use current settings at startup]Stores the current configuration settings as the default to use next time the G\+UI is started. You will be asked to confirm the action. 
+\item[Clear recent list]Clears the \char`\"{}\+Open recent\char`\"{} list in the \mbox{\hyperlink{doxywizard_usage_dw_menu_file}{File menu}}. This menu item is only accessible when there are recent files in the \char`\"{}\+Open recent\char`\"{} list. 
+\end{DoxyDescription}\hypertarget{doxywizard_usage_dw_menu_help}{}\doxysubsection{Help menu}\label{doxywizard_usage_dw_menu_help}
+ 
+\begin{DoxyImage}
+\includegraphics[width=7.0cm]{doxywizard_menu_help.png}
+\doxyfigcaption{Help menu}
+\end{DoxyImage}
+
+
+
+\begin{DoxyDescription}
+\item[Online Manual]Opens the doxygen manual from the doxygen home page in the system defined default H\+T\+ML browser. 
+\item[About]Shows an About dialog with version information. 
+\end{DoxyDescription}
+
+ 

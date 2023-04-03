@@ -1,0 +1,156 @@
+\doxysubsubsection*{Doxygen\textquotesingle{}s internals}
+
+{\bfseries{Note that this section is still under construction!}}
+
+The following picture shows how source files are processed by doxygen.
+
+ 
+\begin{DoxyImage}
+\includegraphics[width=14cm]{archoverview}
+\doxyfigcaption{Data flow overview}
+\end{DoxyImage}
+
+
+The following sections explain the steps above in more detail.
+
+\doxysubsubsection*{Config parser}
+
+The configuration file that controls the settings of a project is parsed and the settings are stored in the singleton class {\ttfamily Config} in {\ttfamily src/config.\+h}. The parser itself is written using {\ttfamily flex} and can be found in {\ttfamily src/config.\+l}. This parser is also used directly by {\ttfamily doxywizard}, so it is put in a separate library.
+
+Each configuration option has one of 5 possible types\+: {\ttfamily String}, {\ttfamily List}, {\ttfamily Enum}, {\ttfamily Int}, or {\ttfamily Bool}. The values of these options are available through the global functions {\ttfamily Config\+\_\+get\+X\+X\+X()}, where {\ttfamily X\+XX} is the type of the option. The argument of these function is a string naming the option as it appears in the configuration file. For instance\+: {\ttfamily Config\+\_\+get\+Bool}(\char`\"{}\+G\+E\+N\+E\+R\+A\+T\+E\+\_\+\+T\+E\+S\+T\+L\+I\+S\+T\char`\"{}) returns a reference to a boolean value that is {\ttfamily T\+R\+UE} if the test list was enabled in the configuration file.
+
+The function {\ttfamily read\+Configuration()} in {\ttfamily src/doxygen.\+cpp} reads the command line options and then calls the configuration parser.
+
+\doxysubsubsection*{C Preprocessor}
+
+The input files mentioned in the configuration file are (by default) fed to the C Preprocessor (after being piped through a user defined filter if available).
+
+The way the preprocessor works differs somewhat from a standard C Preprocessor. By default it does not do macro expansion, although it can be configured to expand all macros. Typical usage is to only expand a user specified set of macros. This is to allow macro names to appear in the type of function parameters for instance.
+
+Another difference is that the preprocessor parses, but not actually includes code when it encounters a {\ttfamily \#include} (with the exception of {\ttfamily \#include} found inside \{ ... \} blocks). The reasons behind this deviation from the standard is to prevent feeding multiple definitions of the same functions/classes to doxygen\textquotesingle{}s parser. If all source files would include a common header file for instance, the class and type definitions (and their documentation) would be present in each translation unit.
+
+The preprocessor is written using {\ttfamily flex} and can be found in {\ttfamily src/pre.\+l}. For condition blocks ({\ttfamily \#if}) evaluation of constant expressions is needed. For this a {\ttfamily yacc} based parser is used, which can be found in {\ttfamily src/constexp.\+y} and {\ttfamily src/constexp.\+l}.
+
+The preprocessor is invoked for each file using the {\ttfamily preprocess\+File()} function declared in {\ttfamily src/pre.\+h}, and will append the preprocessed result to a character buffer. The format of the character buffer is
+
+\begin{DoxyVerb}0x06 file name 1
+0x06 preprocessed contents of file 1
+...
+0x06 file name n
+0x06 preprocessed contents of file n
+\end{DoxyVerb}
+
+
+\doxysubsubsection*{Language parser}
+
+The preprocessed input buffer is fed to the language parser, which is implemented as a big state machine using {\ttfamily flex}. It can be found in the file {\ttfamily src/scanner.\+l}. There is one parser for all languages (C/\+C++/\+Java/\+I\+DL). The state variables {\ttfamily inside\+I\+DL} and {\ttfamily inside\+Java} are uses at some places for language specific choices.
+
+The task of the parser is to convert the input buffer into a tree of entries (basically an abstract syntax tree). An entry is defined in {\ttfamily src/entry.\+h} and is a blob of loosely structured information. The most important field is {\ttfamily section} which specifies the kind of information contained in the entry.
+
+Possible improvements for future versions\+:
+\begin{DoxyItemize}
+\item Use one scanner/parser per language instead of one big scanner.
+\item Move the first pass parsing of documentation blocks to a separate module.
+\item Parse defines (these are currently gathered by the preprocessor, and ignored by the language parser).
+\end{DoxyItemize}
+
+\doxysubsubsection*{Data organizer}
+
+This step consists of many smaller steps, that build dictionaries of the extracted classes, files, namespaces, variables, functions, packages, pages, and groups. Besides building dictionaries, during this step relations (such as inheritance relations), between the extracted entities are computed.
+
+Each step has a function defined in {\ttfamily src/doxygen.\+cpp}, which operates on the tree of entries, built during language parsing. Look at the \char`\"{}\+Gathering information\char`\"{} part of {\ttfamily parse\+Input()} for details.
+
+The result of this step is a number of dictionaries, which can be found in the doxygen \char`\"{}namespace\char`\"{} defined in {\ttfamily src/doxygen.\+h}. Most elements of these dictionaries are derived from the class {\ttfamily Definition}; The class {\ttfamily Member\+Def}, for instance, holds all information for a member. An instance of such a class can be part of a file ( class {\ttfamily File\+Def} ), a class ( class {\ttfamily Class\+Def} ), a namespace ( class {\ttfamily Namespace\+Def} ), a group ( class {\ttfamily Group\+Def} ), or a Java package ( class {\ttfamily Package\+Def} ).
+
+\doxysubsubsection*{Tag file parser}
+
+If tag files are specified in the configuration file, these are parsed by a S\+AX based X\+ML parser, which can be found in {\ttfamily src/tagreader.\+cpp}. The result of parsing a tag file is the insertion of {\ttfamily Entry} objects in the entry tree. The field {\ttfamily Entry\+::tag\+Info} is used to mark the entry as external, and holds information about the tag file.
+
+\doxysubsubsection*{Documentation parser}
+
+Special comment blocks are stored as strings in the entities that they document. There is a string for the brief description and a string for the detailed description. The documentation parser reads these strings and executes the commands it finds in it (this is the second pass in parsing the documentation). It writes the result directly to the output generators.
+
+The parser is written in C++ and can be found in {\ttfamily src/docparser.\+cpp}. The tokens that are eaten by the parser come from {\ttfamily src/doctokenizer.\+l}. Code fragments found in the comment blocks are passed on to the source parser.
+
+The main entry point for the documentation parser is {\ttfamily validating\+Parse\+Doc()} declared in {\ttfamily src/docparser.\+h}. For simple texts with special commands {\ttfamily validating\+Parse\+Text()} is used.
+
+\doxysubsubsection*{Source parser}
+
+If source browsing is enabled or if code fragments are encountered in the documentation, the source parser is invoked.
+
+The code parser tries to cross-\/reference to source code it parses with documented entities. It also does syntax highlighting of the sources. The output is directly written to the output generators.
+
+The main entry point for the code parser is {\ttfamily parse\+Code()} declared in {\ttfamily src/code.\+h}.
+
+\doxysubsubsection*{Output generators}
+
+After data is gathered and cross-\/referenced, doxygen generates output in various formats. For this it uses the methods provided by the abstract class {\ttfamily Output\+Generator}. In order to generate output for multiple formats at once, the methods of {\ttfamily Output\+List} are called instead. This class maintains a list of concrete output generators, where each method called is delegated to all generators in the list.
+
+To allow small deviations in what is written to the output for each concrete output generator, it is possible to temporarily disable certain generators. The Output\+List class contains various {\ttfamily disable()} and {\ttfamily enable()} methods for this. The methods {\ttfamily Output\+List\+::push\+Generator\+State()} and {\ttfamily Output\+List\+::pop\+Generator\+State()} are used to temporarily save the set of enabled/disabled output generators on a stack.
+
+The X\+ML is generated directly from the gathered data structures. In the future X\+ML will be used as an intermediate language (IL). The output generators will then use this IL as a starting point to generate the specific output formats. The advantage of having an IL is that various independently developed tools written in various languages, could extract information from the X\+ML output. Possible tools could be\+:
+\begin{DoxyItemize}
+\item an interactive source browser
+\item a class diagram generator
+\item computing code metrics.
+\end{DoxyItemize}
+
+\doxysubsubsection*{Debugging}
+
+Since doxygen uses a lot of {\ttfamily flex} code it is important to understand how {\ttfamily flex} works (for this one should read the {\ttfamily man} page) and to understand what it is doing when {\ttfamily flex} is parsing some input. Fortunately, when {\ttfamily flex} is used with the {\ttfamily -\/d} option it outputs what rules matched. This makes it quite easy to follow what is going on for a particular input fragment.
+
+To make it easier to toggle debug information for a given {\ttfamily flex} file I wrote the following {\ttfamily perl} script, which automatically adds or removes {\ttfamily -\/d} from the correct line in the {\ttfamily Makefile\+:} 
+
+\begin{DoxyVerb}#!/usr/bin/perl
+
+$file = shift @ARGV;
+print "Toggle debugging mode for $file\n";
+if (!-e "../src/${file}.l")
+{
+  print STDERR "Error: file ../src/${file}.l does not exist!\n";
+  exit 1;
+}
+system("touch ../src/${file}.l");
+unless (rename "src/CMakeFiles/doxymain.dir/build.make","src/CMakeFiles/doxymain.dir/build.make.old") {
+  print STDERR "Error: cannot rename src/CMakeFiles/doxymain.dir/build.make!\n";
+  exit 1;
+}
+if (open(F,"<src/CMakeFiles/doxymain.dir/build.make.old")) {
+  unless (open(G,">src/CMakeFiles/doxymain.dir/build.make")) {
+    print STDERR "Error: opening file build.make for writing\n";
+    exit 1;
+  }
+  print "Processing build.make...\n";
+  while (<F>) {
+    if ( s/flex \$\(LEX_FLAGS\) -d(.*) ${file}.l/flex \$(LEX_FLAGS)$1 ${file}.l/ ) {
+      print "Disabling debug info for $file\n";
+    }
+    elsif ( s/flex \$\(LEX_FLAGS\)(.*) ${file}.l$/flex \$(LEX_FLAGS) -d$1 ${file}.l/ ) {
+      print "Enabling debug info for $file.l\n";
+    }
+    print G "$_";
+  }
+  close F;
+  unlink "src/CMakeFiles/doxymain.dir/build.make.old";
+}
+else {
+  print STDERR "Warning file src/CMakeFiles/doxymain.dir/build.make does not exist!\n";
+}
+
+# touch the file
+$now = time;
+utime $now, $now, $file;
+\end{DoxyVerb}
+ Another way to get rules matching / debugging information from the {\ttfamily flex} code is setting {\ttfamily L\+E\+X\+\_\+\+F\+L\+A\+GS} with {\ttfamily make} ({\ttfamily make L\+E\+X\+\_\+\+F\+L\+A\+GS=-\/d}).
+
+Note that by running doxygen with {\ttfamily -\/d lex} you get information about which {\ttfamily flex codefile} is used.
+
+\doxysubsubsection*{Testing}
+
+Doxygen has a small set of tests available to test, some, code integrity. The tests can be run by means of the command {\ttfamily make tests}. When only one or a few tests are required one can set the variable {\ttfamily T\+E\+S\+T\+\_\+\+F\+L\+A\+GS} when running the test e.\+g. {\ttfamily make T\+E\+S\+T\+\_\+\+F\+L\+A\+GS=\char`\"{}-\/-\/id 5\char`\"{} tests} or for multiple tests {\ttfamily make T\+E\+S\+T\+\_\+\+F\+L\+A\+GS=\char`\"{}-\/-\/id 5 -\/-\/id 7\char`\"{} tests}. For a full set of possibilities give the command {\ttfamily make T\+E\+S\+T\+\_\+\+F\+L\+A\+GS=\char`\"{}-\/-\/help\char`\"{} tests}. It is also possible to specify the {\ttfamily T\+E\+S\+T\+\_\+\+F\+L\+A\+GS} as an environment variable (works also for testing through Visual Studio projects), e.\+g. {\ttfamily setenv T\+E\+S\+T\+\_\+\+F\+L\+A\+GS \char`\"{}-\/-\/id 5 -\/-\/id 7\char`\"{}} and {\ttfamily make tests}.
+
+\doxysubsubsection*{Doxyfile differences}
+
+In case one has to communicate through e.\+g. a forum the configuration settings that are different from the standard doxygen configuration file settings one can run the doxygen command\+: with the {\ttfamily -\/x} option and the name of the configuration file (default is {\ttfamily Doxyfile}). The output will be a list of the not default settings (in {\ttfamily Doxyfile} format). Alternatively also {\ttfamily -\/x\+\_\+noenv} is possible which is identical to the {\ttfamily -\/x} option but without replacing the environment variables and the C\+Make type replacement variables.
+
+ 

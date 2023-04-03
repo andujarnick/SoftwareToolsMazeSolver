@@ -1,0 +1,561 @@
+\hypertarget{htmlcmds_htmltagcmds}{}\doxysection{H\+T\+M\+L tag commands}\label{htmlcmds_htmltagcmds}
+Here is a list of all H\+T\+ML commands that may be used inside the documentation. Note that although these H\+T\+ML tags are translated to the proper commands for output formats other than H\+T\+ML, all attributes of a H\+T\+ML tag are passed on to the H\+T\+ML output only (the {\ttfamily H\+R\+EF} and {\ttfamily N\+A\+ME} attributes for the {\ttfamily A} tag are the only exception).
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ H\+T\+ML Command}&\cellcolor{\tableheadbgcolor}\textbf{ Description }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ H\+T\+ML Command}&\cellcolor{\tableheadbgcolor}\textbf{ Description }\\\cline{1-2}
+\endhead
+{\ttfamily \label{htmlcmds_htmltag_A_HREF}%
+\Hypertarget{htmlcmds_htmltag_A_HREF}%
+\index{$<$A HREF=\char`\"{}...\char`\"{}$>$@{$<$A HREF=""...""$>$}}$<$A H\+R\+EF=\char`\"{}...\char`\"{}$>$}&Starts a hyperlink (if supported by the output format). \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_A_ID}%
+\Hypertarget{htmlcmds_htmltag_A_ID}%
+\index{$<$A ID=\char`\"{}...\char`\"{}$>$@{$<$A ID=""...""$>$}}$<$A ID=\char`\"{}...\char`\"{}$>$}&Starts a named anchor (if supported by the output format). \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_A_NAME}%
+\Hypertarget{htmlcmds_htmltag_A_NAME}%
+\index{$<$A NAME=\char`\"{}...\char`\"{}$>$@{$<$A NAME=""...""$>$}}$<$A N\+A\+ME=\char`\"{}...\char`\"{}$>$}&Starts a named anchor (if supported by the output format). \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endA}%
+\Hypertarget{htmlcmds_htmltag_endA}%
+\index{$<$/A$>$@{$<$/A$>$}}$<$/A$>$}&Ends a link or anchor \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_B}%
+\Hypertarget{htmlcmds_htmltag_B}%
+\index{$<$B$>$@{$<$B$>$}}$<$B$>$}&Starts a piece of text displayed in a bold font. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endB}%
+\Hypertarget{htmlcmds_htmltag_endB}%
+\index{$<$/B$>$@{$<$/B$>$}}$<$/B$>$}&Ends a \mbox{\hyperlink{htmlcmds_htmltag_B}{$<$B$>$}} section. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_BLOCKQUOTE}%
+\Hypertarget{htmlcmds_htmltag_BLOCKQUOTE}%
+\index{$<$BLOCKQUOTE$>$@{$<$BLOCKQUOTE$>$}}$<$B\+L\+O\+C\+K\+Q\+U\+O\+TE$>$}&Starts a quotation block. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endBLOCKQUOTE}%
+\Hypertarget{htmlcmds_htmltag_endBLOCKQUOTE}%
+\index{$<$/BLOCKQUOTE$>$@{$<$/BLOCKQUOTE$>$}}$<$/\+B\+L\+O\+C\+K\+Q\+U\+O\+TE$>$}&Ends the quotation block. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_BR}%
+\Hypertarget{htmlcmds_htmltag_BR}%
+\index{$<$BR$>$@{$<$BR$>$}}$<$BR$>$}&Forces a line break. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_CENTER}%
+\Hypertarget{htmlcmds_htmltag_CENTER}%
+\index{$<$CENTER$>$@{$<$CENTER$>$}}$<$C\+E\+N\+T\+ER$>$}&starts a section of centered text. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endCENTER}%
+\Hypertarget{htmlcmds_htmltag_endCENTER}%
+\index{$<$/CENTER$>$@{$<$/CENTER$>$}}$<$/\+C\+E\+N\+T\+ER$>$}&ends a section of centered text. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_CAPTION}%
+\Hypertarget{htmlcmds_htmltag_CAPTION}%
+\index{$<$CAPTION$>$@{$<$CAPTION$>$}}$<$C\+A\+P\+T\+I\+ON$>$}&Starts a caption. Use within a table only. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endCAPTION}%
+\Hypertarget{htmlcmds_htmltag_endCAPTION}%
+\index{$<$/CAPTION$>$@{$<$/CAPTION$>$}}$<$/\+C\+A\+P\+T\+I\+ON$>$}&Ends a caption. Use within a table only. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_CITE}%
+\Hypertarget{htmlcmds_htmltag_CITE}%
+\index{$<$CITE$>$@{$<$CITE$>$}}$<$C\+I\+TE$>$}&Starts a section of text displayed in a font specific for citations. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endCITE}%
+\Hypertarget{htmlcmds_htmltag_endCITE}%
+\index{$<$/CITE$>$@{$<$/CITE$>$}}$<$/\+C\+I\+TE$>$}&Ends a \mbox{\hyperlink{htmlcmds_htmltag_CITE}{$<$C\+I\+TE$>$}} section. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_CODE}%
+\Hypertarget{htmlcmds_htmltag_CODE}%
+\index{$<$CODE$>$@{$<$CODE$>$}}$<$C\+O\+DE$>$}&Starts a piece of text displayed in a typewriter font. Note that only for C\# code, this command is equivalent to \mbox{\hyperlink{commands_cmdcode}{\textbackslash{}code}} (see \mbox{\hyperlink{xmlcmds_xmltag_code}{$<$code$>$}}). \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endCODE}%
+\Hypertarget{htmlcmds_htmltag_endCODE}%
+\index{$<$/CODE$>$@{$<$/CODE$>$}}$<$/\+C\+O\+DE$>$}&Ends a \mbox{\hyperlink{htmlcmds_htmltag_CODE}{$<$C\+O\+DE$>$}} section. Note that only for C\# code, this command is equivalent to \mbox{\hyperlink{commands_cmdendcode}{\textbackslash{}endcode}} (see \mbox{\hyperlink{xmlcmds_xmltag_code}{$<$code$>$}}). \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_DD}%
+\Hypertarget{htmlcmds_htmltag_DD}%
+\index{$<$DD$>$@{$<$DD$>$}}$<$DD$>$}&Starts an item description. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endDD}%
+\Hypertarget{htmlcmds_htmltag_endDD}%
+\index{$<$/DD$>$@{$<$/DD$>$}}$<$/\+DD$>$}&Ends an item description. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_DEL}%
+\Hypertarget{htmlcmds_htmltag_DEL}%
+\index{$<$DEL$>$@{$<$DEL$>$}}$<$D\+EL$>$}&Starts a section of deleted text, typically shown strike through text. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endDEL}%
+\Hypertarget{htmlcmds_htmltag_endDEL}%
+\index{$<$/DEL$>$@{$<$/DEL$>$}}$<$/\+D\+EL$>$}&Ends a section of deleted text. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_DETAILS}%
+\Hypertarget{htmlcmds_htmltag_DETAILS}%
+\index{$<$DETAILS$>$@{$<$DETAILS$>$}}$<$D\+E\+T\+A\+I\+LS$>$}&Starts a section of detailed text that the user can open and close (in H\+T\+ML output)) \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endDETAILS}%
+\Hypertarget{htmlcmds_htmltag_endDETAILS}%
+\index{$<$/DETAILS$>$@{$<$/DETAILS$>$}}$<$/\+D\+E\+T\+A\+I\+LS$>$}&Ends a section of detailed text. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_DFN}%
+\Hypertarget{htmlcmds_htmltag_DFN}%
+\index{$<$DFN$>$@{$<$DFN$>$}}$<$D\+FN$>$}&Starts a piece of text displayed in a typewriter font. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endDFN}%
+\Hypertarget{htmlcmds_htmltag_endDFN}%
+\index{$<$/DFN$>$@{$<$/DFN$>$}}$<$/\+D\+FN$>$}&Ends a \mbox{\hyperlink{htmlcmds_htmltag_DFN}{$<$D\+FN$>$}} section. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_DIV}%
+\Hypertarget{htmlcmds_htmltag_DIV}%
+\index{$<$DIV$>$@{$<$DIV$>$}}$<$D\+IV$>$}&Starts a section with a specific style (H\+T\+ML only) \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endDIV}%
+\Hypertarget{htmlcmds_htmltag_endDIV}%
+\index{$<$/DIV$>$@{$<$/DIV$>$}}$<$/\+D\+IV$>$}&Ends a section with a specific style (H\+T\+ML only) \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_DL}%
+\Hypertarget{htmlcmds_htmltag_DL}%
+\index{$<$DL$>$@{$<$DL$>$}}$<$DL$>$}&Starts a description list. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endDL}%
+\Hypertarget{htmlcmds_htmltag_endDL}%
+\index{$<$/DL$>$@{$<$/DL$>$}}$<$/\+DL$>$}&Ends a description list. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_DT}%
+\Hypertarget{htmlcmds_htmltag_DT}%
+\index{$<$DT$>$@{$<$DT$>$}}$<$DT$>$}&Starts an item title. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endDT}%
+\Hypertarget{htmlcmds_htmltag_endDT}%
+\index{$<$/DT$>$@{$<$/DT$>$}}$<$/\+DT$>$}&Ends an item title. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_EM}%
+\Hypertarget{htmlcmds_htmltag_EM}%
+\index{$<$EM$>$@{$<$EM$>$}}$<$EM$>$}&Starts a piece of text displayed in an italic font. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endEM}%
+\Hypertarget{htmlcmds_htmltag_endEM}%
+\index{$<$/EM$>$@{$<$/EM$>$}}$<$/\+EM$>$}&Ends a \mbox{\hyperlink{htmlcmds_htmltag_EM}{$<$EM$>$}} section. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_HR}%
+\Hypertarget{htmlcmds_htmltag_HR}%
+\index{$<$HR$>$@{$<$HR$>$}}$<$HR$>$}&Writes a horizontal ruler. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_H1}%
+\Hypertarget{htmlcmds_htmltag_H1}%
+\index{$<$H1$>$@{$<$H1$>$}}$<$H1$>$}&Starts an unnumbered section. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endH1}%
+\Hypertarget{htmlcmds_htmltag_endH1}%
+\index{$<$/H1$>$@{$<$/H1$>$}}$<$/\+H1$>$}&Ends an unnumbered section. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_H2}%
+\Hypertarget{htmlcmds_htmltag_H2}%
+\index{$<$H2$>$@{$<$H2$>$}}$<$H2$>$}&Starts an unnumbered subsection. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endH2}%
+\Hypertarget{htmlcmds_htmltag_endH2}%
+\index{$<$/H2$>$@{$<$/H2$>$}}$<$/\+H2$>$}&Ends an unnumbered subsection. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_H3}%
+\Hypertarget{htmlcmds_htmltag_H3}%
+\index{$<$H3$>$@{$<$H3$>$}}$<$H3$>$}&Starts an unnumbered subsubsection. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endH3}%
+\Hypertarget{htmlcmds_htmltag_endH3}%
+\index{$<$/H3$>$@{$<$/H3$>$}}$<$/\+H3$>$}&Ends an unnumbered subsubsection. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_H4}%
+\Hypertarget{htmlcmds_htmltag_H4}%
+\index{$<$H4$>$@{$<$H4$>$}}$<$H4$>$}&Starts an unnumbered subsubsection. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endH4}%
+\Hypertarget{htmlcmds_htmltag_endH4}%
+\index{$<$/H4$>$@{$<$/H4$>$}}$<$/\+H4$>$}&Ends an unnumbered subsubsection. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_H5}%
+\Hypertarget{htmlcmds_htmltag_H5}%
+\index{$<$H5$>$@{$<$H5$>$}}$<$H5$>$}&Starts an unnumbered subsubsection. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endH5}%
+\Hypertarget{htmlcmds_htmltag_endH5}%
+\index{$<$/H5$>$@{$<$/H5$>$}}$<$/\+H5$>$}&Ends an unnumbered subsubsection. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_H6}%
+\Hypertarget{htmlcmds_htmltag_H6}%
+\index{$<$H6$>$@{$<$H6$>$}}$<$H6$>$}&Starts an unnumbered subsubsection. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endH6}%
+\Hypertarget{htmlcmds_htmltag_endH6}%
+\index{$<$/H6$>$@{$<$/H6$>$}}$<$/\+H6$>$}&Ends an unnumbered subsubsection. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_I}%
+\Hypertarget{htmlcmds_htmltag_I}%
+\index{$<$I$>$@{$<$I$>$}}$<$I$>$}&Starts a piece of text displayed in an italic font. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endI}%
+\Hypertarget{htmlcmds_htmltag_endI}%
+\index{$<$/I$>$@{$<$/I$>$}}$<$/I$>$}&Ends a \mbox{\hyperlink{htmlcmds_htmltag_I}{$<$I$>$}} section. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_IMG}%
+\Hypertarget{htmlcmds_htmltag_IMG}%
+\index{$<$IMG SRC=\char`\"{}...\char`\"{}$>$@{$<$IMG SRC=""...""$>$}}$<$I\+MG S\+RC=\char`\"{}...\char`\"{} ...$>$}&This command is written with its attributes to the H\+T\+ML output only. The S\+RC attribute is mandatory. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_INS}%
+\Hypertarget{htmlcmds_htmltag_INS}%
+\index{$<$INS$>$@{$<$INS$>$}}$<$I\+NS$>$}&Starts a section of inserted text, typically shown as underlined text. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endINS}%
+\Hypertarget{htmlcmds_htmltag_endINS}%
+\index{$<$/INS$>$@{$<$/INS$>$}}$<$/\+I\+NS$>$}&Ends a section of inserted text. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_LI}%
+\Hypertarget{htmlcmds_htmltag_LI}%
+\index{$<$LI$>$@{$<$LI$>$}}$<$LI$>$}&Starts a new list item. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endLI}%
+\Hypertarget{htmlcmds_htmltag_endLI}%
+\index{$<$/LI$>$@{$<$/LI$>$}}$<$/\+LI$>$}&Ends a list item. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_OL}%
+\Hypertarget{htmlcmds_htmltag_OL}%
+\index{$<$OL$>$@{$<$OL$>$}}$<$OL$>$}&Starts a numbered item list. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endOL}%
+\Hypertarget{htmlcmds_htmltag_endOL}%
+\index{$<$/OL$>$@{$<$/OL$>$}}$<$/\+OL$>$}&Ends a numbered item list. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_P}%
+\Hypertarget{htmlcmds_htmltag_P}%
+\index{$<$P$>$@{$<$P$>$}}$<$P$>$}&Starts a new paragraph. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endP}%
+\Hypertarget{htmlcmds_htmltag_endP}%
+\index{$<$/P$>$@{$<$/P$>$}}$<$/P$>$}&Ends a paragraph. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_PRE}%
+\Hypertarget{htmlcmds_htmltag_PRE}%
+\index{$<$PRE$>$@{$<$PRE$>$}}$<$P\+RE$>$}&Starts a preformatted fragment. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endPRE}%
+\Hypertarget{htmlcmds_htmltag_endPRE}%
+\index{$<$/PRE$>$@{$<$/PRE$>$}}$<$/\+P\+RE$>$}&Ends a preformatted fragment. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_SMALL}%
+\Hypertarget{htmlcmds_htmltag_SMALL}%
+\index{$<$SMALL$>$@{$<$SMALL$>$}}$<$S\+M\+A\+LL$>$}&Starts a section of text displayed in a smaller font. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endSMALL}%
+\Hypertarget{htmlcmds_htmltag_endSMALL}%
+\index{$<$/SMALL$>$@{$<$/SMALL$>$}}$<$/\+S\+M\+A\+LL$>$}&Ends a \mbox{\hyperlink{htmlcmds_htmltag_SMALL}{$<$S\+M\+A\+LL$>$}} section. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_SPAN}%
+\Hypertarget{htmlcmds_htmltag_SPAN}%
+\index{$<$SPAN$>$@{$<$SPAN$>$}}$<$S\+P\+AN$>$}&Starts an inline text fragment with a specific style (H\+T\+ML only) \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endSPAN}%
+\Hypertarget{htmlcmds_htmltag_endSPAN}%
+\index{$<$/SPAN$>$@{$<$/SPAN$>$}}$<$/\+S\+P\+AN$>$}&Ends an inline text fragment with a specific style (H\+T\+ML only) \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_S}%
+\Hypertarget{htmlcmds_htmltag_S}%
+\index{$<$S$>$@{$<$S$>$}}$<$S$>$}&Starts a section of strike through text. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endS}%
+\Hypertarget{htmlcmds_htmltag_endS}%
+\index{$<$/S$>$@{$<$/S$>$}}$<$/S$>$}&Ends a section of strike through text. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_STRIKE}%
+\Hypertarget{htmlcmds_htmltag_STRIKE}%
+\index{$<$STRIKE$>$@{$<$STRIKE$>$}}$<$S\+T\+R\+I\+KE$>$}&Starts a section of strike through text. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endSTRIKE}%
+\Hypertarget{htmlcmds_htmltag_endSTRIKE}%
+\index{$<$/STRIKE$>$@{$<$/STRIKE$>$}}$<$/\+S\+T\+R\+I\+KE$>$}&Ends a section of strike through text. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_STRONG}%
+\Hypertarget{htmlcmds_htmltag_STRONG}%
+\index{$<$STRONG$>$@{$<$STRONG$>$}}$<$S\+T\+R\+O\+NG$>$}&Starts a section of bold text. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endSTRONG}%
+\Hypertarget{htmlcmds_htmltag_endSTRONG}%
+\index{$<$/STRONG$>$@{$<$/STRONG$>$}}$<$/\+S\+T\+R\+O\+NG$>$}&Ends a section of bold text. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_SUB}%
+\Hypertarget{htmlcmds_htmltag_SUB}%
+\index{$<$SUB$>$@{$<$SUB$>$}}$<$S\+UB$>$}&Starts a piece of text displayed in subscript. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endSUB}%
+\Hypertarget{htmlcmds_htmltag_endSUB}%
+\index{$<$/SUB$>$@{$<$/SUB$>$}}$<$/\+S\+UB$>$}&Ends a \mbox{\hyperlink{htmlcmds_htmltag_SUB}{$<$S\+UB$>$}} section. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_SUP}%
+\Hypertarget{htmlcmds_htmltag_SUP}%
+\index{$<$SUP$>$@{$<$SUP$>$}}$<$S\+UP$>$}&Starts a piece of text displayed in superscript. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endSUP}%
+\Hypertarget{htmlcmds_htmltag_endSUP}%
+\index{$<$/SUP$>$@{$<$/SUP$>$}}$<$/\+S\+UP$>$}&Ends a \mbox{\hyperlink{htmlcmds_htmltag_SUP}{$<$S\+UP$>$}} section. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_TABLE}%
+\Hypertarget{htmlcmds_htmltag_TABLE}%
+\index{$<$TABLE$>$@{$<$TABLE$>$}}$<$T\+A\+B\+LE$>$}&starts a table. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endTABLE}%
+\Hypertarget{htmlcmds_htmltag_endTABLE}%
+\index{$<$/TABLE$>$@{$<$/TABLE$>$}}$<$/\+T\+A\+B\+LE$>$}&ends a table. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_TD}%
+\Hypertarget{htmlcmds_htmltag_TD}%
+\index{$<$TD$>$@{$<$TD$>$}}$<$TD$>$}&Starts a new table data element. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endTD}%
+\Hypertarget{htmlcmds_htmltag_endTD}%
+\index{$<$/TD$>$@{$<$/TD$>$}}$<$/\+TD$>$}&Ends a table data element. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_TH}%
+\Hypertarget{htmlcmds_htmltag_TH}%
+\index{$<$TH$>$@{$<$TH$>$}}$<$TH$>$}&Starts a new table header. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endTH}%
+\Hypertarget{htmlcmds_htmltag_endTH}%
+\index{$<$/TH$>$@{$<$/TH$>$}}$<$/\+TH$>$}&Ends a table header. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_TR}%
+\Hypertarget{htmlcmds_htmltag_TR}%
+\index{$<$TR$>$@{$<$TR$>$}}$<$TR$>$}&Starts a new table row. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endTR}%
+\Hypertarget{htmlcmds_htmltag_endTR}%
+\index{$<$/TR$>$@{$<$/TR$>$}}$<$/\+TR$>$}&Ends a table row. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_TT}%
+\Hypertarget{htmlcmds_htmltag_TT}%
+\index{$<$TT$>$@{$<$TT$>$}}$<$TT$>$}&Starts a piece of text displayed in a typewriter font. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endTT}%
+\Hypertarget{htmlcmds_htmltag_endTT}%
+\index{$<$/TT$>$@{$<$/TT$>$}}$<$/\+TT$>$}&Ends a \mbox{\hyperlink{htmlcmds_htmltag_TT}{$<$TT$>$}} section. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_KBD}%
+\Hypertarget{htmlcmds_htmltag_KBD}%
+\index{$<$KBD$>$@{$<$KBD$>$}}$<$K\+BD$>$}&Starts a piece of text displayed in a typewriter font. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endKBD}%
+\Hypertarget{htmlcmds_htmltag_endKBD}%
+\index{$<$/KBD$>$@{$<$/KBD$>$}}$<$/\+K\+BD$>$}&Ends a \mbox{\hyperlink{htmlcmds_htmltag_KBD}{$<$K\+BD$>$}} section. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_U}%
+\Hypertarget{htmlcmds_htmltag_U}%
+\index{$<$U$>$@{$<$U$>$}}$<$U$>$}&Starts a section of underlined text. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endU}%
+\Hypertarget{htmlcmds_htmltag_endU}%
+\index{$<$/U$>$@{$<$/U$>$}}$<$/U$>$}&Ends a section of underlined text. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_UL}%
+\Hypertarget{htmlcmds_htmltag_UL}%
+\index{$<$UL$>$@{$<$UL$>$}}$<$UL$>$}&Starts an unnumbered item list. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endUL}%
+\Hypertarget{htmlcmds_htmltag_endUL}%
+\index{$<$/UL$>$@{$<$/UL$>$}}$<$/\+UL$>$}&Ends an unnumbered item list. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_VAR}%
+\Hypertarget{htmlcmds_htmltag_VAR}%
+\index{$<$VAR$>$@{$<$VAR$>$}}$<$V\+AR$>$}&Starts a piece of text displayed in an italic font. \\\cline{1-2}
+{\ttfamily \label{htmlcmds_htmltag_endVAR}%
+\Hypertarget{htmlcmds_htmltag_endVAR}%
+\index{$<$/VAR$>$@{$<$/VAR$>$}}$<$/\+V\+AR$>$}&Ends a \mbox{\hyperlink{htmlcmds_htmltag_VAR}{$<$V\+AR$>$}} section. \\\cline{1-2}
+\end{longtabu}
+
+
+Finally, to put invisible comments inside comment blocks, H\+T\+ML style comments can be used\+: \begin{DoxyVerb}/*! <!-- This is a comment with a comment block --> Visible text */
+\end{DoxyVerb}
+ The part {\ttfamily $<$!-\/-\/ ... -\/-\/$>$} will not be shown in the main documentation.\hypertarget{htmlcmds_htmlentities}{}\doxysection{H\+T\+M\+L4 character entities}\label{htmlcmds_htmlentities}
+The list of special H\+T\+M\+L4 character entities with their descriptions has been taken from\+: \href{http://www.w3.org/TR/html4/sgml/entities.html}{\texttt{ Character entity references in H\+T\+ML 4}}. ( Portions \copyright{} International Organization for Standardization 1986 Permission to copy in any form is granted for use with conforming S\+G\+ML systems and applications as defined in I\+SO 8879, provided this notice is included in all copies.) \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Entity }&\cellcolor{\tableheadbgcolor}\textbf{ ~ }&\cellcolor{\tableheadbgcolor}\textbf{ Description  }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Entity }&\cellcolor{\tableheadbgcolor}\textbf{ ~ }&\cellcolor{\tableheadbgcolor}\textbf{ Description  }\\\cline{1-3}
+\endhead
+{\ttfamily \&nbsp;} &~ &no-\/break space = non-\/breaking space  \\\cline{1-3}
+{\ttfamily \&iexcl;} &!` &inverted exclamation mark  \\\cline{1-3}
+{\ttfamily \&cent;} &\textcent{} &cent sign  \\\cline{1-3}
+{\ttfamily \&pound;} &{$\pounds$} &pound sign  \\\cline{1-3}
+{\ttfamily \&curren;} &\textcurrency{} &currency sign  \\\cline{1-3}
+{\ttfamily \&yen;} &{$\yen$} &yen sign = yuan sign  \\\cline{1-3}
+{\ttfamily \&brvbar;} &\textbrokenbar{} &broken bar = broken vertical bar  \\\cline{1-3}
+{\ttfamily \&sect;} &{$\S$} &section sign  \\\cline{1-3}
+{\ttfamily \&uml;} &\textasciidieresis{} &diaeresis = spacing diaeresis  \\\cline{1-3}
+{\ttfamily \&copy;} &\copyright{} &copyright sign  \\\cline{1-3}
+{\ttfamily \&ordf;} &\textordfeminine{} &feminine ordinal indicator  \\\cline{1-3}
+{\ttfamily \&laquo;} &\guillemotleft{} &left-\/pointing double angle quotation mark = left pointing guillemet  \\\cline{1-3}
+{\ttfamily \&not;} &\textlnot &not sign  \\\cline{1-3}
+{\ttfamily \&shy;} &{$\-$} &soft hyphen = discretionary hyphen  \\\cline{1-3}
+{\ttfamily \&reg;} &\textregistered{} &registered sign = registered trade mark sign  \\\cline{1-3}
+{\ttfamily \&macr;} &\={} &macron = spacing macron = overline = A\+PL overbar  \\\cline{1-3}
+{\ttfamily \&deg;} &\textdegree{} &degree sign  \\\cline{1-3}
+{\ttfamily \&plusmn;} &{$\pm$} &plus-\/minus sign = plus-\/or-\/minus sign  \\\cline{1-3}
+{\ttfamily \&sup2;} &\texttwosuperior{} &superscript two = superscript digit two = squared  \\\cline{1-3}
+{\ttfamily \&sup3;} &\textthreesuperior{} &superscript three = superscript digit three = cubed  \\\cline{1-3}
+{\ttfamily \&acute;} &\'{} &acute accent = spacing acute  \\\cline{1-3}
+{\ttfamily \&micro;} &{$\mu$} &micro sign  \\\cline{1-3}
+{\ttfamily \&para;} &{$\P$} &pilcrow sign = paragraph sign  \\\cline{1-3}
+{\ttfamily \&middot;} &\textperiodcentered{} &middle dot = Georgian comma = Greek middle dot  \\\cline{1-3}
+{\ttfamily \&cedil;} &\c{} &cedilla = spacing cedilla  \\\cline{1-3}
+{\ttfamily \&sup1;} &\textonesuperior{} &superscript one = superscript digit one  \\\cline{1-3}
+{\ttfamily \&ordm;} &\textordmasculine{} &masculine ordinal indicator  \\\cline{1-3}
+{\ttfamily \&raquo;} &\guillemotright{} &right-\/pointing double angle quotation mark = right pointing guillemet  \\\cline{1-3}
+{\ttfamily \&frac14;} &{$\frac14$} &vulgar fraction one quarter = fraction one quarter  \\\cline{1-3}
+{\ttfamily \&frac12;} &{$\frac12$} &vulgar fraction one half = fraction one half  \\\cline{1-3}
+{\ttfamily \&frac34;} &{$\frac34$} &vulgar fraction three quarters = fraction three quarters  \\\cline{1-3}
+{\ttfamily \&iquest;} &?` &inverted question mark = turned question mark  \\\cline{1-3}
+{\ttfamily \&Agrave;} &\`{A} &latin capital letter A with grave = latin capital letter A grave  \\\cline{1-3}
+{\ttfamily \&Aacute;} &\'{A} &latin capital letter A with acute  \\\cline{1-3}
+{\ttfamily \&Acirc;} &\^{A} &latin capital letter A with circumflex  \\\cline{1-3}
+{\ttfamily \&Atilde;} &\~{A} &latin capital letter A with tilde  \\\cline{1-3}
+{\ttfamily \&Auml;} &\"{A} &latin capital letter A with diaeresis  \\\cline{1-3}
+{\ttfamily \&Aring;} &\AA &latin capital letter A with ring above = latin capital letter A ring  \\\cline{1-3}
+{\ttfamily \&A\+Elig;} &{\AE} &latin capital letter AE = latin capital ligature AE  \\\cline{1-3}
+{\ttfamily \&Ccedil;} &\c{C} &latin capital letter C with cedilla  \\\cline{1-3}
+{\ttfamily \&Egrave;} &\`{E} &latin capital letter E with grave  \\\cline{1-3}
+{\ttfamily \&Eacute;} &\'{E} &latin capital letter E with acute  \\\cline{1-3}
+{\ttfamily \&Ecirc;} &\^{E} &latin capital letter E with circumflex  \\\cline{1-3}
+{\ttfamily \&Euml;} &\"{E} &latin capital letter E with diaeresis  \\\cline{1-3}
+{\ttfamily \&Igrave;} &\`{I} &latin capital letter I with grave  \\\cline{1-3}
+{\ttfamily \&Iacute;} &\'{I} &latin capital letter I with acute  \\\cline{1-3}
+{\ttfamily \&Icirc;} &\^{I} &latin capital letter I with circumflex  \\\cline{1-3}
+{\ttfamily \&Iuml;} &\"{I} &latin capital letter I with diaeresis  \\\cline{1-3}
+{\ttfamily \&E\+TH;} &\DH &latin capital letter E\+TH  \\\cline{1-3}
+{\ttfamily \&Ntilde;} &\~{N} &latin capital letter N with tilde  \\\cline{1-3}
+{\ttfamily \&Ograve;} &\`{O} &latin capital letter O with grave  \\\cline{1-3}
+{\ttfamily \&Oacute;} &\'{O} &latin capital letter O with acute  \\\cline{1-3}
+{\ttfamily \&Ocirc;} &\^{O} &latin capital letter O with circumflex  \\\cline{1-3}
+{\ttfamily \&Otilde;} &\~{O} &latin capital letter O with tilde  \\\cline{1-3}
+{\ttfamily \&Ouml;} &\"{O} &latin capital letter O with diaeresis  \\\cline{1-3}
+{\ttfamily \&times;} &{$\times$} &multiplication sign  \\\cline{1-3}
+{\ttfamily \&Oslash;} &{\O} &latin capital letter O with stroke = latin capital letter O slash  \\\cline{1-3}
+{\ttfamily \&Ugrave;} &\`{U} &latin capital letter U with grave  \\\cline{1-3}
+{\ttfamily \&Uacute;} &\'{U} &latin capital letter U with acute  \\\cline{1-3}
+{\ttfamily \&Ucirc;} &\^{U} &latin capital letter U with circumflex  \\\cline{1-3}
+{\ttfamily \&Uuml;} &\"{U} &latin capital letter U with diaeresis  \\\cline{1-3}
+{\ttfamily \&Yacute;} &\'{Y} &latin capital letter Y with acute  \\\cline{1-3}
+{\ttfamily \&T\+H\+O\+RN;} &\TH &latin capital letter T\+H\+O\+RN  \\\cline{1-3}
+{\ttfamily \&szlig;} &{\ss} &latin small letter sharp s = ess-\/zed  \\\cline{1-3}
+{\ttfamily \&agrave;} &\`{a} &latin small letter a with grave = latin small letter a grave  \\\cline{1-3}
+{\ttfamily \&aacute;} &\'{a} &latin small letter a with acute  \\\cline{1-3}
+{\ttfamily \&acirc;} &\^{a} &latin small letter a with circumflex  \\\cline{1-3}
+{\ttfamily \&atilde;} &\~{a} &latin small letter a with tilde  \\\cline{1-3}
+{\ttfamily \&auml;} &\"{a} &latin small letter a with diaeresis  \\\cline{1-3}
+{\ttfamily \&aring;} &\aa &latin small letter a with ring above = latin small letter a ring  \\\cline{1-3}
+{\ttfamily \&aelig;} &{\ae} &latin small letter ae = latin small ligature ae  \\\cline{1-3}
+{\ttfamily \&ccedil;} &\c{c} &latin small letter c with cedilla  \\\cline{1-3}
+{\ttfamily \&egrave;} &\`{e} &latin small letter e with grave  \\\cline{1-3}
+{\ttfamily \&eacute;} &\'{e} &latin small letter e with acute  \\\cline{1-3}
+{\ttfamily \&ecirc;} &\^{e} &latin small letter e with circumflex  \\\cline{1-3}
+{\ttfamily \&euml;} &\"{e} &latin small letter e with diaeresis  \\\cline{1-3}
+{\ttfamily \&igrave;} &\`{\i} &latin small letter i with grave  \\\cline{1-3}
+{\ttfamily \&iacute;} &\'{\i} &latin small letter i with acute  \\\cline{1-3}
+{\ttfamily \&icirc;} &\^{\i} &latin small letter i with circumflex  \\\cline{1-3}
+{\ttfamily \&iuml;} &\"{\i} &latin small letter i with diaeresis  \\\cline{1-3}
+{\ttfamily \&eth;} &\dh &latin small letter eth  \\\cline{1-3}
+{\ttfamily \&ntilde;} &\~{n} &latin small letter n with tilde  \\\cline{1-3}
+{\ttfamily \&ograve;} &\`{o} &latin small letter o with grave  \\\cline{1-3}
+{\ttfamily \&oacute;} &\'{o} &latin small letter o with acute  \\\cline{1-3}
+{\ttfamily \&ocirc;} &\^{o} &latin small letter o with circumflex  \\\cline{1-3}
+{\ttfamily \&otilde;} &\~{o} &latin small letter o with tilde  \\\cline{1-3}
+{\ttfamily \&ouml;} &\"{o} &latin small letter o with diaeresis  \\\cline{1-3}
+{\ttfamily \&divide;} &{$\div$} &division sign  \\\cline{1-3}
+{\ttfamily \&oslash;} &{\o} &latin small letter o with stroke, = latin small letter o slash  \\\cline{1-3}
+{\ttfamily \&ugrave;} &\`{u} &latin small letter u with grave  \\\cline{1-3}
+{\ttfamily \&uacute;} &\'{u} &latin small letter u with acute  \\\cline{1-3}
+{\ttfamily \&ucirc;} &\^{u} &latin small letter u with circumflex  \\\cline{1-3}
+{\ttfamily \&uuml;} &\"{u} &latin small letter u with diaeresis  \\\cline{1-3}
+{\ttfamily \&yacute;} &\'{y} &latin small letter y with acute  \\\cline{1-3}
+{\ttfamily \&thorn;} &\th &latin small letter thorn  \\\cline{1-3}
+{\ttfamily \&yuml;} &\"{y} &latin small letter y with diaeresis  \\\cline{1-3}
+{\ttfamily \&fnof;} &\textflorin &latin small f with hook = function = florin  \\\cline{1-3}
+{\ttfamily \&Alpha;} &A &greek capital letter alpha  \\\cline{1-3}
+{\ttfamily \&Beta;} &B &greek capital letter beta  \\\cline{1-3}
+{\ttfamily \&Gamma;} &{$\Gamma$} &greek capital letter gamma  \\\cline{1-3}
+{\ttfamily \&Delta;} &{$\Delta$} &greek capital letter delta  \\\cline{1-3}
+{\ttfamily \&Epsilon;} &E &greek capital letter epsilon  \\\cline{1-3}
+{\ttfamily \&Zeta;} &Z &greek capital letter zeta  \\\cline{1-3}
+{\ttfamily \&Eta;} &H &greek capital letter eta  \\\cline{1-3}
+{\ttfamily \&Theta;} &{$\Theta$} &greek capital letter theta  \\\cline{1-3}
+{\ttfamily \&Iota;} &I &greek capital letter iota  \\\cline{1-3}
+{\ttfamily \&Kappa;} &K &greek capital letter kappa  \\\cline{1-3}
+{\ttfamily \&Lambda;} &{$\Lambda$} &greek capital letter lambda  \\\cline{1-3}
+{\ttfamily \&Mu;} &M &greek capital letter mu  \\\cline{1-3}
+{\ttfamily \&Nu;} &N &greek capital letter nu  \\\cline{1-3}
+{\ttfamily \&Xi;} &{$\Xi$} &greek capital letter xi  \\\cline{1-3}
+{\ttfamily \&Omicron;} &O &greek capital letter omicron  \\\cline{1-3}
+{\ttfamily \&Pi;} &{$\Pi$} &greek capital letter pi  \\\cline{1-3}
+{\ttfamily \&Rho;} &P &greek capital letter rho  \\\cline{1-3}
+{\ttfamily \&Sigma;} &{$\Sigma$} &greek capital letter sigma  \\\cline{1-3}
+{\ttfamily \&Tau;} &T &greek capital letter tau  \\\cline{1-3}
+{\ttfamily \&Upsilon;} &{$\Upsilon$} &greek capital letter upsilon  \\\cline{1-3}
+{\ttfamily \&Phi;} &{$\Phi$} &greek capital letter phi  \\\cline{1-3}
+{\ttfamily \&Chi;} &X &greek capital letter chi  \\\cline{1-3}
+{\ttfamily \&Psi;} &{$\Psi$} &greek capital letter psi  \\\cline{1-3}
+{\ttfamily \&Omega;} &{$\Omega$} &greek capital letter omega  \\\cline{1-3}
+{\ttfamily \&alpha;} &{$\alpha$} &greek small letter alpha  \\\cline{1-3}
+{\ttfamily \&beta;} &{$\beta$} &greek small letter beta  \\\cline{1-3}
+{\ttfamily \&gamma;} &{$\gamma$} &greek small letter gamma  \\\cline{1-3}
+{\ttfamily \&delta;} &{$\delta$} &greek small letter delta  \\\cline{1-3}
+{\ttfamily \&epsilon;} &{$\varepsilon$} &greek small letter epsilon  \\\cline{1-3}
+{\ttfamily \&zeta;} &{$\zeta$} &greek small letter zeta  \\\cline{1-3}
+{\ttfamily \&eta;} &{$\eta$} &greek small letter eta  \\\cline{1-3}
+{\ttfamily \&theta;} &{$\theta$} &greek small letter theta  \\\cline{1-3}
+{\ttfamily \&iota;} &{$\iota$} &greek small letter iota  \\\cline{1-3}
+{\ttfamily \&kappa;} &{$\kappa$} &greek small letter kappa  \\\cline{1-3}
+{\ttfamily \&lambda;} &{$\lambda$} &greek small letter lambda  \\\cline{1-3}
+{\ttfamily \&mu;} &{$\mu$} &greek small letter mu  \\\cline{1-3}
+{\ttfamily \&nu;} &{$\nu$} &greek small letter nu  \\\cline{1-3}
+{\ttfamily \&xi;} &{$\xi$} &greek small letter xi  \\\cline{1-3}
+{\ttfamily \&omicron;} &{$\omicron$} &greek small letter omicron  \\\cline{1-3}
+{\ttfamily \&pi;} &{$\pi$} &greek small letter pi  \\\cline{1-3}
+{\ttfamily \&rho;} &{$\rho$} &greek small letter rho  \\\cline{1-3}
+{\ttfamily \&sigmaf;} &{$\varsigma$} &greek small letter final sigma  \\\cline{1-3}
+{\ttfamily \&sigma;} &{$\sigma$} &greek small letter sigma  \\\cline{1-3}
+{\ttfamily \&tau;} &{$\tau$} &greek small letter tau  \\\cline{1-3}
+{\ttfamily \&upsilon;} &{$\upsilon$} &greek small letter upsilon  \\\cline{1-3}
+{\ttfamily \&phi;} &{$\varphi$} &greek small letter phi  \\\cline{1-3}
+{\ttfamily \&chi;} &{$\chi$} &greek small letter chi  \\\cline{1-3}
+{\ttfamily \&psi;} &{$\psi$} &greek small letter psi  \\\cline{1-3}
+{\ttfamily \&omega;} &{$\omega$} &greek small letter omega  \\\cline{1-3}
+{\ttfamily \&thetasym;} &{$\vartheta$} &greek small letter theta symbol  \\\cline{1-3}
+{\ttfamily \&upsih;} &{$\Upsilon$} &greek upsilon with hook symbol  \\\cline{1-3}
+{\ttfamily \&piv;} &{$\varpi$} &greek pi symbol  \\\cline{1-3}
+{\ttfamily \&bull;} &\textbullet{} &bullet = black small circle  \\\cline{1-3}
+{\ttfamily \&hellip;} &{$\dots$} &horizontal ellipsis = three dot leader  \\\cline{1-3}
+{\ttfamily \&prime;} &' &prime = minutes = feet  \\\cline{1-3}
+{\ttfamily \&Prime;} &'' &double prime = seconds = inches  \\\cline{1-3}
+{\ttfamily \&oline;} &{$\overline{\,}$} &overline = spacing overscore  \\\cline{1-3}
+{\ttfamily \&frasl;} &/ &fraction slash  \\\cline{1-3}
+{\ttfamily \&weierp;} &{$\wp$} &script capital P = power set = Weierstrass p  \\\cline{1-3}
+{\ttfamily \&image;} &{$\Im$} &blackletter capital I = imaginary part  \\\cline{1-3}
+{\ttfamily \&real;} &{$\Re$} &blackletter capital R = real part symbol  \\\cline{1-3}
+{\ttfamily \&trade;} &\texttrademark{} &trade mark sign  \\\cline{1-3}
+{\ttfamily \&alefsym;} &{$\aleph$} &alef symbol = first transfinite cardinal  \\\cline{1-3}
+{\ttfamily \&larr;} &{$\leftarrow$} &leftwards arrow  \\\cline{1-3}
+{\ttfamily \&uarr;} &{$\uparrow$} &upwards arrow  \\\cline{1-3}
+{\ttfamily \&rarr;} &{$\rightarrow$} &rightwards arrow  \\\cline{1-3}
+{\ttfamily \&darr;} &{$\downarrow$} &downwards arrow  \\\cline{1-3}
+{\ttfamily \&harr;} &{$\leftrightarrow$} &left right arrow  \\\cline{1-3}
+{\ttfamily \&crarr;} &{$\hookleftarrow$} &downwards arrow with corner leftwards = carriage return  \\\cline{1-3}
+{\ttfamily \&l\+Arr;} &{$\Leftarrow$} &leftwards double arrow  \\\cline{1-3}
+{\ttfamily \&u\+Arr;} &{$\Uparrow$} &upwards double arrow  \\\cline{1-3}
+{\ttfamily \&r\+Arr;} &{$\Rightarrow$} &rightwards double arrow  \\\cline{1-3}
+{\ttfamily \&d\+Arr;} &{$\Downarrow$} &downwards double arrow  \\\cline{1-3}
+{\ttfamily \&h\+Arr;} &{$\Leftrightarrow$} &left right double arrow  \\\cline{1-3}
+{\ttfamily \&forall;} &{$\forall$} &for all  \\\cline{1-3}
+{\ttfamily \&part;} &{$\partial$} &partial differential  \\\cline{1-3}
+{\ttfamily \&exist;} &{$\exists$} &there exists  \\\cline{1-3}
+{\ttfamily \&empty;} &{$\emptyset$} &empty set = null set = diameter  \\\cline{1-3}
+{\ttfamily \&nabla;} &{$\nabla$} &nabla = backward difference  \\\cline{1-3}
+{\ttfamily \&isin;} &{$\in$} &element of  \\\cline{1-3}
+{\ttfamily \&notin;} &{$\notin$} &not an element of  \\\cline{1-3}
+{\ttfamily \&ni;} &{$\ni$} &contains as member  \\\cline{1-3}
+{\ttfamily \&prod;} &{$\prod$} &n-\/ary product = product sign  \\\cline{1-3}
+{\ttfamily \&sum;} &{$\sum$} &n-\/ary summation  \\\cline{1-3}
+{\ttfamily \&minus;} &- &minus sign  \\\cline{1-3}
+{\ttfamily \&lowast;} &{$\ast$} &asterisk operator  \\\cline{1-3}
+{\ttfamily \&radic;} &{$\surd$} &square root = radical sign  \\\cline{1-3}
+{\ttfamily \&prop;} &{$\propto$} &proportional to  \\\cline{1-3}
+{\ttfamily \&infin;} &{$\infty$} &infinity  \\\cline{1-3}
+{\ttfamily \&ang;} &{$\angle$} &angle  \\\cline{1-3}
+{\ttfamily \&and;} &{$\wedge$} &logical and = wedge  \\\cline{1-3}
+{\ttfamily \&or;} &{$\vee$} &logical or = vee  \\\cline{1-3}
+{\ttfamily \&cap;} &{$\cap$} &intersection = cap  \\\cline{1-3}
+{\ttfamily \&cup;} &{$\cup$} &union = cup  \\\cline{1-3}
+{\ttfamily \&int;} &{$\int$} &integral  \\\cline{1-3}
+{\ttfamily \&there4;} &{$\therefore$} &therefore  \\\cline{1-3}
+{\ttfamily \&sim;} &{$\sim$} &tilde operator = varies with = similar to  \\\cline{1-3}
+{\ttfamily \&cong;} &{$\cong$} &approximately equal to  \\\cline{1-3}
+{\ttfamily \&asymp;} &{$\approx$} &almost equal to = asymptotic to  \\\cline{1-3}
+{\ttfamily \&ne;} &{$\ne$} &not equal to  \\\cline{1-3}
+{\ttfamily \&equiv;} &{$\equiv$} &identical to  \\\cline{1-3}
+{\ttfamily \&le;} &{$\le$} &less-\/than or equal to  \\\cline{1-3}
+{\ttfamily \&ge;} &{$\ge$} &greater-\/than or equal to  \\\cline{1-3}
+{\ttfamily \&sub;} &{$\subset$} &subset of  \\\cline{1-3}
+{\ttfamily \&sup;} &{$\supset$} &superset of  \\\cline{1-3}
+{\ttfamily \&nsub;} &{$\not\subset$} &not a subset of  \\\cline{1-3}
+{\ttfamily \&sube;} &{$\subseteq$} &subset of or equal to  \\\cline{1-3}
+{\ttfamily \&supe;} &{$\supseteq$} &superset of or equal to  \\\cline{1-3}
+{\ttfamily \&oplus;} &{$\oplus$} &circled plus = direct sum  \\\cline{1-3}
+{\ttfamily \&otimes;} &{$\otimes$} &circled times = vector product  \\\cline{1-3}
+{\ttfamily \&perp;} &{$\perp$} &up tack = orthogonal to = perpendicular  \\\cline{1-3}
+{\ttfamily \&sdot;} &{$\cdot$} &dot operator  \\\cline{1-3}
+{\ttfamily \&lceil;} &{$\lceil$} &left ceiling = apl upstile  \\\cline{1-3}
+{\ttfamily \&rceil;} &{$\rceil$} &right ceiling  \\\cline{1-3}
+{\ttfamily \&lfloor;} &{$\lfloor$} &left floor = apl downstile  \\\cline{1-3}
+{\ttfamily \&rfloor;} &{$\rfloor$} &right floor  \\\cline{1-3}
+{\ttfamily \&lang;} &{$\langle$} &left-\/pointing angle bracket = bra  \\\cline{1-3}
+{\ttfamily \&rang;} &{$\rangle$} &right-\/pointing angle bracket = ket  \\\cline{1-3}
+{\ttfamily \&loz;} &{$\lozenge$} &lozenge  \\\cline{1-3}
+{\ttfamily \&spades;} &{$\spadesuit$} &black spade suit  \\\cline{1-3}
+{\ttfamily \&clubs;} &{$\clubsuit$} &black club suit = shamrock  \\\cline{1-3}
+{\ttfamily \&hearts;} &{$\heartsuit$} &black heart suit = valentine  \\\cline{1-3}
+{\ttfamily \&diams;} &{$\diamondsuit$} &black diamond suit  \\\cline{1-3}
+{\ttfamily \&quot;} &" &quotation mark = A\+PL quote  \\\cline{1-3}
+{\ttfamily \&amp;} &\& &ampersand  \\\cline{1-3}
+{\ttfamily \&lt;} &$<$ &less-\/than sign  \\\cline{1-3}
+{\ttfamily \&gt;} &$>$ &greater-\/than sign  \\\cline{1-3}
+{\ttfamily \&O\+Elig;} &\OE &latin capital ligature OE  \\\cline{1-3}
+{\ttfamily \&oelig;} &\oe &latin small ligature oe  \\\cline{1-3}
+{\ttfamily \&Scaron;} &\v{S} &latin capital letter S with caron  \\\cline{1-3}
+{\ttfamily \&scaron;} &\v{s} &latin small letter s with caron  \\\cline{1-3}
+{\ttfamily \&Yuml;} &\"{Y} &latin capital letter Y with diaeresis  \\\cline{1-3}
+{\ttfamily \&circ;} &{$\circ$} &modifier letter circumflex accent  \\\cline{1-3}
+{\ttfamily \&tilde;} &\~{} &small tilde  \\\cline{1-3}
+{\ttfamily \&ensp;} &\enskip{} &en space  \\\cline{1-3}
+{\ttfamily \&emsp;} &\quad{} &em space  \\\cline{1-3}
+{\ttfamily \&thinsp;} &\, &thin space  \\\cline{1-3}
+{\ttfamily \&zwnj;} &{} &zero width non-\/joiner  \\\cline{1-3}
+{\ttfamily \&zwj;} & &zero width joiner  \\\cline{1-3}
+{\ttfamily \&lrm;} & &left-\/to-\/right mark  \\\cline{1-3}
+{\ttfamily \&rlm;} & &right-\/to-\/left mark  \\\cline{1-3}
+{\ttfamily \&ndash;} &-- &en dash  \\\cline{1-3}
+{\ttfamily \&mdash;} &--- &em dash  \\\cline{1-3}
+{\ttfamily \&lsquo;} &` &left single quotation mark  \\\cline{1-3}
+{\ttfamily \&rsquo;} &' &right single quotation mark  \\\cline{1-3}
+{\ttfamily \&sbquo;} &\quotesinglbase{} &single low-\/9 quotation mark  \\\cline{1-3}
+{\ttfamily \&ldquo;} &`` &left double quotation mark  \\\cline{1-3}
+{\ttfamily \&rdquo;} &'' &right double quotation mark  \\\cline{1-3}
+{\ttfamily \&bdquo;} &\quotedblbase{} &double low-\/9 quotation mark  \\\cline{1-3}
+{\ttfamily \&dagger;} &{$\dagger$} &dagger  \\\cline{1-3}
+{\ttfamily \&Dagger;} &{$\ddagger$} &double dagger  \\\cline{1-3}
+{\ttfamily \&permil;} &{$\permil{}$} &per mille sign  \\\cline{1-3}
+{\ttfamily \&lsaquo;} &\guilsinglleft{} &single left-\/pointing angle quotation mark  \\\cline{1-3}
+{\ttfamily \&rsaquo;} &\guilsinglright{} &single right-\/pointing angle quotation mark  \\\cline{1-3}
+{\ttfamily \&euro;} &\texteuro{} &euro sign  \\\cline{1-3}
+\multicolumn{3}{|l|}{{\bfseries{Doxygen extensions\+:}}  }\\\cline{1-3}
+{\ttfamily \&tm;} &\texttrademark{} &trade mark sign  \\\cline{1-3}
+{\ttfamily \&apos;} &\textquotesingle{} &apostrophe  \\\cline{1-3}
+\end{longtabu}
+
+
+ 

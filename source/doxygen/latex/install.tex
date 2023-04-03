@@ -1,0 +1,153 @@
+\etocsetnexttocdepth{5}
+\localtableofcontents
+\index{installation@{installation}}
+
+First go to the \href{https://www.doxygen.org/download.html}{\texttt{ download}} page to get the latest distribution, if you have not downloaded doxygen already.\hypertarget{install_install_src_unix}{}\doxysection{Compiling from source on U\+N\+IX}\label{install_install_src_unix}
+If you downloaded the source distribution, you need at least the following to build the executable\+: 
+\begin{DoxyItemize}
+\item The \href{ftp://prep.ai.mit.edu/pub/gnu/}{\texttt{ G\+NU}} tools {\ttfamily flex}, {\ttfamily bison}, {\ttfamily libiconv} and {\ttfamily G\+NU make} \index{flex@{flex}} \index{bison@{bison}} \index{libiconv@{libiconv}} \index{make@{make}} \index{python@{python}} 
+\item You need {\ttfamily python} (version 2.\+7 or higher, see \href{https://www.python.org}{\texttt{ https\+://www.\+python.\+org}}). 
+\item In order to generate a {\ttfamily Makefile} for your platform, you need \href{https://cmake.org/}{\texttt{ cmake}} version 3.\+3 or later. \index{cmake@{cmake}} 
+\end{DoxyItemize}
+
+To take full advantage of doxygen\textquotesingle{}s features the following additional tools should be installed.
+
+
+\begin{DoxyItemize}
+\item Qt Software\textquotesingle{}s G\+UI toolkit \href{https://www.qt.io/developers}{\texttt{ Qt}} \index{Qt@{Qt}} version 5.\+14 or higher (including Qt 6). This is needed to build the G\+UI front-\/end doxywizard. 
+\item A \textbackslash{}f(\{\textbackslash{}\+La\+TeX\}\textbackslash{}f) distribution\+: for instance \href{http://www.tug.org/interest.html\#free}{\texttt{ TeX Live}} This is needed for generating \textbackslash{}f(\{\textbackslash{}\+La\+TeX\}\textbackslash{}f), Postscript, and P\+DF output. 
+\item \href{http://www.graphviz.org/}{\texttt{ the Graph visualization toolkit version 2.\+38 or higher}} Needed for the include dependency graphs, the graphical inheritance graphs, and the collaboration graphs. If you compile graphviz yourself, make sure you do include freetype support (which requires the freetype library and header files), otherwise the graphs will not render proper text labels. 
+\item For formulas in the H\+T\+ML output (when Math\+Jax is not used) or in case you do not wish to use {\ttfamily pdflatex}, the ghostscript interpreter is needed. You can find it at \href{https://www.ghostscript.com/}{\texttt{ www.\+ghostscript.\+com}}. 
+\end{DoxyItemize}
+
+Compilation is now done by performing the following steps\+:
+
+
+\begin{DoxyEnumerate}
+\item Unpack the archive, unless you already have done that\+: \begin{DoxyVerb}gunzip doxygen-$VERSION.src.tar.gz    # uncompress the archive
+tar xf doxygen-$VERSION.src.tar       # unpack it
+\end{DoxyVerb}
+
+
+
+\item Create a build directory (for instance inside the source tree) \begin{DoxyVerb}cd doxygen-$VERSION
+mkdir build
+cd build
+\end{DoxyVerb}
+
+
+
+\item Run cmake with the makefile generator \begin{DoxyVerb}cmake -G "Unix Makefiles" ..
+\end{DoxyVerb}
+
+
+{\ttfamily cmake} tries to determine the platform you use, and will look for the requires tools. It will report if something is missing.
+
+If you have Qt-\/5.\+14 or higher installed and want to build the G\+UI front-\/end, you should enable it as follows\+: \begin{DoxyVerb}cmake -Dbuild_wizard=YES ..
+\end{DoxyVerb}
+
+
+For an overview of other configuration options use \begin{DoxyVerb}cmake -L ..
+\end{DoxyVerb}
+
+
+
+\item Compile the program by running make\+: \begin{DoxyVerb}make
+\end{DoxyVerb}
+
+
+The program should compile without problems and the binaries ({\ttfamily doxygen} and optionally {\ttfamily doxywizard}) should be available in the bin directory within the build directory.
+
+
+\item Optional\+: Generate the user manual. \begin{DoxyVerb}cmake -Dbuild_doc=YES ..
+make docs
+\end{DoxyVerb}
+
+
+To let doxygen generate the H\+T\+ML and P\+DF documentation.
+
+The H\+T\+ML directory within the build directory will now contain the html documentation (just point a H\+T\+ML browser to the file {\ttfamily index.\+html} in the html directory).
+
+
+\item Optional\+: static linking
+
+If you want to build a statically linked version of doxygen that embeds libclang you need to first build L\+L\+VM and clang from sources using the following options\+: \begin{DoxyVerb}cmake -DLIBCLANG_BUILD_STATIC=ON \
+      -DBUILD_SHARED_LIBS=OFF \
+      -DLLVM_ENABLE_PIC=OFF \
+      -DLLVM_BUILD_LLVM_DYLIB=OFF \
+      -DLLVM_BUILD_LLVM_C_DYLIB=OFF \
+      -DLLVM_ENABLE_TERMINFO=OFF \
+      path_to_llvm_root_source_dir
+\end{DoxyVerb}
+
+
+and then build doxygen with these options\+: \begin{DoxyVerb}cmake -DCMAKE_BUILD_TYPE=Release \
+      "-DCMAKE_FIND_LIBRARY_SUFFIXES=.a" \
+      "-ldl;-lz;-lpthread" \
+      -Duse_libclang=YES \
+      path_to_doxygen_root_source_dir
+\end{DoxyVerb}
+
+
+
+\end{DoxyEnumerate}\hypertarget{install_install_bin_unix}{}\doxysection{Installing the binaries on U\+N\+IX}\label{install_install_bin_unix}
+After the compilation of the source code do a {\ttfamily make install} to install doxygen. If you downloaded the binary distribution for Linux, type\+: \begin{DoxyVerb}make install
+\end{DoxyVerb}
+
+
+Binaries are installed into the directory {\ttfamily /usr/local/bin}, man pages in {\ttfamily /usr/local/man/man1} and documentation in {\ttfamily /usr/local/doc/doxygen} To change this just edit the Makefile.
+
+\begin{DoxyNote}{Note}
+You need the G\+NU install tool for this to work (it is part of the coreutils package). Other install tools may put the binaries in the wrong directory!
+\end{DoxyNote}
+If you have a R\+PM or D\+EB package, then please follow the standard installation procedure that is required for these packages.\hypertarget{install_install_src_windows}{}\doxysection{Compiling from source on Windows}\label{install_install_src_windows}
+From version 1.\+8.\+10 onwards, build files need to be generated by cmake. cmake can be downloaded from \href{https://cmake.org/download/}{\texttt{ https\+://cmake.\+org/download/}} \index{cmake@{cmake}}
+
+At the moment only the community version of Visual Studio 2019 is tested, but other version might also work.
+
+Alternatively, you can compile doxygen \mbox{\hyperlink{install_install_src_unix}{the U\+N\+IX way}} using \href{https://en.wikipedia.org/wiki/Cygwin}{\texttt{ Cygwin}} or \href{http://www.mingw.org/}{\texttt{ Min\+GW}}.
+
+\index{flex@{flex}} \index{bison@{bison}} The next step is to install modern versions of {\ttfamily bison} and {\ttfamily flex} (see \href{https://sourceforge.net/projects/winflexbison/}{\texttt{ https\+://sourceforge.\+net/projects/winflexbison/}}. After installation and adding them to your {\ttfamily path} rename {\ttfamily win\+\_\+flex.\+exe} to {\ttfamily flex.\+exe} and {\ttfamily win\+\_\+bison.\+exe} to {\ttfamily bison.\+exe}) \index{python@{python}} Furthermore you have to install {\ttfamily python} (version 2.\+7 or higher, see \href{https://www.python.org}{\texttt{ https\+://www.\+python.\+org}}). These packages are needed during the compilation process.
+
+Download doxygen\textquotesingle{}s source tarball and put it somewhere (e.\+g. use {\ttfamily c\+:\textbackslash{}tools})
+
+Now start a visual studio native command shell (for either x86 or x64) and type \begin{DoxyVerb}cd c:\tools
+tar zxvf doxygen-x.y.z.src.tar.gz
+\end{DoxyVerb}
+ to unpack the sources (you can obtain {\ttfamily tar} from e.\+g. \href{http://gnuwin32.sourceforge.net/packages.html}{\texttt{ http\+://gnuwin32.\+sourceforge.\+net/packages.\+html}}). Alternatively you can use an unpack program, like 7-\/Zip (see \href{https://www.7-zip.org/}{\texttt{ https\+://www.\+7-\/zip.\+org/}}) or use the built-\/in unpack feature of modern Windows systems).
+
+Now your environment is setup to generate the required project files for {\ttfamily doxygen}.
+
+cd into the {\ttfamily doxygen-\/x.\+y.\+z} directory, create and cd to a build directory \begin{DoxyVerb}mkdir build
+cd build
+cmake -G "Visual Studio 14 2015" ..
+\end{DoxyVerb}
+ This will create a project file then can be opened in Visual Studio.
+
+If you prefer compiling from the command prompt you can use the following instead\+: \begin{DoxyVerb}mkdir build
+cd build
+cmake -G "NMake Makefiles" ..
+nmake
+\end{DoxyVerb}
+
+
+Note that compiling Doxywizard requires Qt 5.\+14 or newer (see \href{https://www.qt.io/developers}{\texttt{ https\+://www.\+qt.\+io/developers}}).
+
+Also read the next section for additional tools you may need to install to run doxygen with certain features enabled.\hypertarget{install_install_bin_windows}{}\doxysection{Installing the binaries on Windows}\label{install_install_bin_windows}
+Doxygen comes as a self-\/installing archive, so installation is extremely simple. Just follow the dialogs.
+
+After installation it is recommended to also download and install Graph\+Viz (version 2.\+38 or better is highly recommended). Doxygen can use the {\ttfamily dot} tool of the Graph\+Viz package to render nicer diagrams, see the H\+A\+V\+E\+\_\+\+D\+OT option in the configuration file.
+
+If you want to produce compressed H\+T\+ML files (see G\+E\+N\+E\+R\+A\+T\+E\+\_\+\+H\+T\+M\+L\+H\+E\+LP) in the configuration file, then you need the Microsoft H\+T\+ML help workshop. In the beginning of 2021 Microsoft took the original page, with a.\+o. the download links, offline the H\+T\+ML help workshop was already many years in maintenance mode). You can download the H\+T\+ML help workshop from the web archives at \href{http://web.archive.org/web/20160201063255/http://download.microsoft.com/download/0/A/9/0A939EF6-E31C-430F-A3DF-DFAE7960D564/htmlhelp.exe}{\texttt{ Installation executable}}.
+
+If you want to produce Qt Compressed Help files (see Q\+H\+G\+\_\+\+L\+O\+C\+A\+T\+I\+ON) in the configuration file, then you need qhelpgenerator which is part of Qt. You can download Qt from \href{https://www.qt.io/download}{\texttt{ Qt Software Downloads}}.
+
+In order to generate P\+DF output or use scientific formulas you will also need to install \href{https://en.wikipedia.org/wiki/LaTeX}{\texttt{ La\+TeX}} and \href{https://en.wikipedia.org/wiki/Ghostscript}{\texttt{ Ghostscript}}.
+
+For \textbackslash{}f(\{\textbackslash{}\+La\+TeX\}\textbackslash{}f) a number of distributions exists. Popular ones that should work with doxygen are \href{https://miktex.org/}{\texttt{ Mik\+Tex}} and \href{https://www.tug.org/protext/}{\texttt{ pro\+Te\+Xt}}.
+
+Ghostscript can be \href{https://sourceforge.net/projects/ghostscript/}{\texttt{ downloaded}} from Sourceforge.
+
+After installing \textbackslash{}f(\{\textbackslash{}\+La\+TeX\}\textbackslash{}f) and Ghostscript you\textquotesingle{}ll need to make sure the tools latex.\+exe, pdflatex.\+exe, and gswin32c.\+exe (or gswin64c.\+exe) are present in the search path of a command box. Follow \href{https://www.computerhope.com/issues/ch000549.htm}{\texttt{ these}} instructions if you are unsure and run the commands from a command box to verify it works.
+
+ 

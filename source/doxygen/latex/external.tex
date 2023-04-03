@@ -1,0 +1,60 @@
+If your project depends on external libraries or tools, there are several reasons to not include all sources for these with every run of doxygen\+:
+
+
+\begin{DoxyDescription}
+\item[Disk space\+:]Some documentation may be available outside of the output directory of doxygen already, for instance somewhere on the web. You may want to link to these pages instead of generating the documentation in your local output directory. 
+\item[Compilation speed\+:]External projects typically have a different update frequency from your own project. It does not make much sense to let doxygen parse the sources for these external project over and over again, even if nothing has changed. 
+\item[Memory\+:]For very large source trees, letting doxygen parse all sources may simply take too much of your system\textquotesingle{}s memory. By dividing the sources into several \char`\"{}packages\char`\"{}, the sources of one package can be parsed by doxygen, while all other packages that this package depends on, are linked in externally. This saves a lot of memory. 
+\item[Availability\+:]For some projects that are documented with doxygen, the sources may just not be available. 
+\item[Copyright issues\+:]If the external package and its documentation are copyright someone else, it may be better -\/ or even necessary -\/ to reference it rather than include a copy of it with your project\textquotesingle{}s documentation. When the author forbids redistribution, this is necessary. If the author requires compliance with some license condition as a precondition of redistribution, and you do not want to be bound by those conditions, referring to their copy of their documentation is preferable to including a copy.
+
+
+\end{DoxyDescription}
+
+If any of the above apply, you can use doxygen\textquotesingle{}s tag file mechanism. A tag file is basically a compact representation of the entities found in the external sources. Doxygen can both generate and read tag files.
+
+To generate a tag file for your project, simply put the name of the tag file after the G\+E\+N\+E\+R\+A\+T\+E\+\_\+\+T\+A\+G\+F\+I\+LE option in the configuration file.
+
+To combine the output of one or more external projects with your own project you should specify the name of the tag files after the T\+A\+G\+F\+I\+L\+ES option in the configuration file.
+
+A tag file typically only contains a relative location of the documentation from the point where doxygen was run. So when you include a tag file in other project you have to specify where the external documentation is located in relation this project. You can do this in the configuration file by assigning the (relative) location to the tag files specified after the T\+A\+G\+F\+I\+L\+ES configuration option. If you use a relative path it should be relative with respect to the directory where the H\+T\+ML output of your project is generated; so a relative path from the H\+T\+ML output directory of a project to the H\+T\+ML output of the other project that is linked to.
+
+\begin{DoxyParagraph}{Example\+: }
+Suppose you have a project {\ttfamily proj} that uses two external projects called {\ttfamily ext1} and {\ttfamily ext2}. The directory structure looks as follows\+:
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+\begin{DoxyVerb}<root>
+  +- proj
+  |   +- html               HTML output directory for proj
+  |   +- src                sources for proj
+  |   |- proj.cpp
+  +- ext1
+  |   +- html               HTML output directory for ext1
+  |   |- ext1.tag           tag file for ext1
+  +- ext2
+  |   +- html               HTML output directory for ext2
+  |   |- ext2.tag           tag file for ext2
+  |- proj.cfg               doxygen configuration file for proj
+  |- ext1.cfg               doxygen configuration file for ext1
+  |- ext2.cfg               doxygen configuration file for ext2
+\end{DoxyVerb}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+Then the relevant parts of the configuration files look as follows\+: 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+proj.\+cfg\+: \begin{DoxyVerb}OUTPUT_DIRECTORY  = proj
+INPUT             = proj/src
+TAGFILES          = ext1/ext1.tag=../../ext1/html \
+                    ext2/ext2.tag=../../ext2/html 
+\end{DoxyVerb}
+ ext1.\+cfg\+: \begin{DoxyVerb}OUTPUT_DIRECTORY  = ext1
+GENERATE_TAGFILE  = ext1/ext1.tag 
+\end{DoxyVerb}
+ ext2.\+cfg\+: \begin{DoxyVerb}OUTPUT_DIRECTORY  = ext2
+GENERATE_TAGFILE  = ext2/ext2.tag
+\end{DoxyVerb}
+
+\end{DoxyParagraph}
+ 
