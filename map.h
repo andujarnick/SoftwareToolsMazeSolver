@@ -71,7 +71,7 @@ void copyNode(Node* graph, Node* &intersection);
 void printMaze(Node * root, vector<string> &directions, vector< vector <string> > &maze, int i, int j);
 
 //Start Menu
-void startMenu();
+void startMenu(Node * root);
 
 //Copys from file and briefly updates list from a save file of directions
-void copyFromFile(Node * root, vector<string> directions)
+void copyFromFile(Node * root, vector<string> directions);
