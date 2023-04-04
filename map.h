@@ -39,7 +39,7 @@ Node* add(Node *& root, Node *& previousNode, string chosenDirection, string lin
 void addToDirections(vector<string> &directions, string chosenDirection);
 
 //Prints all the directions stored
-void printDirections(vector<string> directions);
+void printDirections(vector<string> directions, ifstream &instream, ofstream &outstream);
 
 //looks to see if the node is an intersection
 bool isIntersection(Node * root);
@@ -71,7 +71,7 @@ void copyNode(Node* graph, Node* &intersection);
 void printMaze(Node * root, vector<string> &directions, vector< vector <string> > &maze, int i, int j);
 
 //Start Menu
-void startMenu(Node * root);
+void startMenu(Node * root, ifstream &instream, vector <string> &directions);
 
 //Copys from file and briefly updates list from a save file of directions
 void copyFromFile(Node * root, vector<string> directions);
