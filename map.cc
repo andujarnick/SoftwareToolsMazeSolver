@@ -18,27 +18,31 @@
 using namespace std;
 
 int main(int argc, char *argv[]){
-    cout << B_BLACK << "   ";
-    cout << B_BLUE << WHITE << setw(33) << left << "  Test of the colors   " << endl;   //test of white text on blue background
-    cout << B_BLACK << "   ";
-    cout << B_BLUE << RED << setw(33) << left << "  Test of the colors   " << endl;     //test of red text on blue background
-    cout << B_BLACK << "   ";
-    cout << B_BLUE << YELLOW << setw(33) << left << "  Test of the colors   " << endl;   //test of yellow text on blue background
-    cout << B_BLACK << "   ";
-    cout << B_BLUE << MAGENTA << setw(33) << left << "  Test of the colors   " << endl;   //test of magenta text on blue background    
-    cout << B_BLACK << "   ";
-    cout << B_MAGENTA << WHITE << setw(33) << left << "  Test of the colors   " << endl;   //test of white text on magenta background
-    cout << B_BLACK << "   ";
-    cout << B_RED << WHITE << setw(33) << left << "  Test of the colors   " << endl;   //test of white text on red background
-    cout << B_BLACK << "   ";
-    cout << B_BLACK << BLUE << setw(33) << left << "  Test of the colors   " << endl;   //test of blue text on black background
-    cout << B_BLACK << "   ";
+//    cout << B_BLACK << "   ";
+//    cout << B_BLUE << WHITE << setw(33) << left << "  Test of the colors   " << endl;   //test of white text on blue background
+//    cout << B_BLACK << "   ";
+//    cout << B_BLUE << RED << setw(33) << left << "  Test of the colors   " << endl;     //test of red text on blue background
+//    cout << B_BLACK << "   ";
+//    cout << B_BLUE << YELLOW << setw(33) << left << "  Test of the colors   " << endl;   //test of yellow text on blue background
+//    cout << B_BLACK << "   ";
+//    cout << B_BLUE << MAGENTA << setw(33) << left << "  Test of the colors   " << endl;   //test of magenta text on blue background
+//    cout << B_BLACK << "   ";
+//    cout << B_MAGENTA << WHITE << setw(33) << left << "  Test of the colors   " << endl;   //test of white text on magenta background
+//    cout << B_BLACK << "   ";
+//    cout << B_RED << WHITE << setw(33) << left << "  Test of the colors   " << endl;   //test of white text on red background
+//    cout << B_BLACK << "   ";
+//    cout << B_BLACK << BLUE << setw(33) << left << "  Test of the colors   " << endl;   //test of blue text on black background
+//    cout << B_BLACK << "   ";
+    
+    ifstream instream;
+    instream.open("input.txt");
     
     //Node system for the graph to be stored in
     Node* graph;
     graph = NULL;
     Node* placeholder;
     placeholder = NULL;
+    
     
     //Node system for add function
     vector<string> directions;
@@ -48,6 +52,10 @@ int main(int argc, char *argv[]){
     stack<Node*> intersections;
     //prime the list with a node, prime directions and backtracking with straight
     //allows for intersection immediately
+    
+    startMenu(graph, instream, directions);
+    cin.ignore();
+    
     add(graph, placeholder, "S", "S", directions);
         
     //add it to the directions and backtracking so it can find it off the bat
@@ -55,16 +63,20 @@ int main(int argc, char *argv[]){
 //    addToBacktracking(backtracking, "STRAIGHT");
     
     //only used with text file
-//    ifstream instream;
-//    instream.open("input.txt");
+    
     
     //Moves through the maze
     moveThroughMaze(graph, placeholder, backtracking, intersections, directions);
     
+    instream.close();
+    ofstream outstream;
+    outstream.open("input.txt");
+    
     inOrder(graph);
     //output the backtracking list
     printBacktracking(backtracking);
-    printDirections(directions);
+    printDirections(directions, instream, outstream);
+    outstream << "EOF" << endl;
     printIntersections(graph, intersections);
 //    cout << endl << "size " << size(graph) << endl;
     
@@ -132,17 +144,17 @@ Node* add(Node *& root, Node *& previousNode, string chosenDirection, string lin
         return previousNode;
     }
     else if (directions[0] == "LEFT"){
-        cout << "going left" << endl;
+//        cout << "going left" << endl;
         directions.erase(directions.begin());
         return add(root->left, root, chosenDirection, line, directions);
     }
     else if (directions[0] == "STRAIGHT"){
-        cout << "going straight" << endl;
+//        cout << "going straight" << endl;
         directions.erase(directions.begin());
         return add(root->straight, root, chosenDirection, line, directions);
     }
     else{
-        cout << "going right" << endl;
+//        cout << "going right" << endl;
         directions.erase(directions.begin());
         return add(root->right, root, chosenDirection, line, directions);
     }
@@ -278,9 +290,9 @@ void copyNode(Node* graph, Node* &intersection){
             cout << "Warning, no instruction was copied to the intersections list" << endl;
     }
     
-    cout << "graph -> left:" << graph->left << ":" << endl;
-    cout << "graph -> straight:" << graph->straight << ":" << endl;
-    cout << "graph -> right:" << graph->right << ":" << endl << endl;
+//    cout << "graph -> left:" << graph->left << ":" << endl;
+//    cout << "graph -> straight:" << graph->straight << ":" << endl;
+//    cout << "graph -> right:" << graph->right << ":" << endl << endl;
     
     intersection->data = graph->data;
     intersection->directionCount = graph->directionCount;
@@ -314,10 +326,11 @@ void addToDirections(vector<string> &directions, string chosenDirection){
 * @param directions Type: vector<string>, vector that holds the directions traveled so far.
 * @return void.
 **/
-void printDirections(vector<string> directions){
+void printDirections(vector<string> directions, ifstream &instream, ofstream &outstream){
     cout << endl;
     cout << "Directions List:" << endl;
     for(int i=0; i < directions.size(); i++){
+        outstream << directions[i] << endl;
         cout << directions[i] << endl;
     }
 }
@@ -571,90 +584,147 @@ void printMaze(Node * root, vector<string> &directions, vector <vector <string> 
 * @param root Type: Node, the root node of the tree
 * @return void.
 **/
-void startMenu(Node * root){
-    char userIn;
+void startMenu(Node * root, ifstream &instream, vector <string> &directions){
+    string userIn;
     string mazeName;
     string mazeFileName;
-    ifstream instream;
-    ofstream oustream;
+//    ifstream instream;
+//    ofstream oustream;
 
-    cout << "Maze Mapper / Solver" << endl << "Enter Number to Select";
-    cout << "N: New Maze" << endl << "C: Continue Maze" << "Q: Quit" << endl;
+    cout << "Maze Mapper / Solver" << endl << "Enter Letter to Select" << endl;
+    cout << "N: New Maze" << endl << "C: Continue Maze" << endl << "Q: Quit" << endl;
 
     cin >> userIn;
-    userIn = toupper(userIn);
+//    userIn = toupper(userIn);
+    
+    vector <char> extras;
+    
+    
+    
+    if(userIn == "N"){
+        cout << endl << "New Maze Selected" << endl;
+        cout << "Enter Maze Name: ";
+        cin.ignore();
+//        cin.ignore(numeric_limits<std::streamsize>::max());
+        getline(cin, mazeName, '\n');
 
-    switch (userIn){
-        ///Case for new maze
-        case 'N':
-            cout << endl << "New Maze Selected" << endl;
-            cout << "Enter Maze Name: ";
-            getline(cin, mazeName);
-
-            cout << "Start a new maze named  " << mazeName << " ?" << endl;
-            cout << "Yes = Y, No = N";
-            cin >> userIn;
-            userIn = toupper(userIn);
-            
-            switch (userIn){
-                case 'Y':
-                    cout << "Creating new maze named: "  << mazeName << "." << endl;
-                    ///Insert making a save file here, just name it like <mazeName>.txt or something
-                    ///Make sure to do error handling too.
-                    root = NULL;
-                    cout << "New maze named " << mazeName << " created!" << endl;
-                break;
-
-                case 'N':
-                    cout << "Canceling..." << endl;
-                break;
-            }
-        break;
-
-        ///Case for loading from previous file
-        case 'C':
+        cout << "Start a new maze named " << mazeName << "?" << endl;
+        cout << "Yes = Y, No = N" << endl;
+        cin >> userIn;
+//        userIn = toupper(userIn);
+        if(userIn == "Y"){
+            cout << "Creating new maze named: "  << mazeName << "." << endl;
+        }
+        else{
+            cout << "Cancelling..." << endl;
+        }
+    }
+    else if(userIn == "C"){
         cout << "Continuing from previous save, enter maze name: ";
+        cin.ignore();
         getline(cin, mazeName);
         cout << "Continue from maze named  " << mazeName << " ?" << endl;
-            cout << "Yes = Y, No = N";
-            cin >> userIn;
-            userIn = toupper(userIn);
-            
-            switch (userIn){
-                case 'Y':
-                    cout << "Opening maze named: "  << mazeName << "." << endl;
-                    mazeFileName = mazeName + ".txt";
-                    instream.open(mazeFileName);
-                    if(instream.fail()){
-                        cout << "Could not find maze named " << mazeName << "." << endl;
-                    }
-                    else{
-                        cout << "Maze named " << mazeName << " opened!" << endl;
-                    }
-                    ///Insert code for reading input here, possibly a function?
-                break;
-
-                case 'N':
-                    cout << "Canceling..." << endl;
-                break;
-        
-        break;
-
-        case 'Q':
-            exit(0);
-        break;
+        cout << "Yes = Y, No = N" << endl;
+        cin >> userIn;
+//        userIn = toupper(userIn);
+        if(userIn == "Y"){
+//            getline(cin, mazeName);
+//            cout << "Continue from maze named  :" << mazeName << ": ?" << endl;
+//            cout << "Yes = Y, No = N" << endl;
+//            cin >> userIn;
+//            userIn = toupper(userIn);
+            string placeholder;
+            while(instream){
+                instream >> placeholder;
+                if(placeholder == "EOF"){
+                    break;
+                }
+                directions.push_back(placeholder);
+            }
+//            for(int i = 0; i < directions.size(); i++){
+//                cout << "direction: " << directions[i] << endl;
+//            }
+        }
+        else{
+            cout << "Cancelling..." << endl;
+        }
     }
-    return;
-}
+    else{
+        exit(0);
+    }
+    
+    
+//    switch (userIn){
+//        ///Case for new maze
+//        case "N":
+//            cout << endl << "New Maze Selected" << endl;
+//            cout << "Enter Maze Name: ";
+//            cin.ignore(numeric_limits<std::streamsize>::max());
+//            getline(cin, mazeName, '\n');
+//
+//            cout << "Start a new maze named  " << mazeName << " ?" << endl;
+//            cout << "Yes = Y, No = N";
+//            cin >> userIn;
+//            userIn = toupper(userIn);
+//            switch (userIn){
+//                case "Y":
+//                    cout << "Creating new maze named: "  << mazeName << "." << endl;
+//                    ///Insert making a save file here, just name it like <mazeName>.txt or something
+//                    ///Make sure to do error handling too.
+//                    root = NULL;
+//                    cout << "New maze named " << mazeName << " created!" << endl;
+//                break;
+//
+//        case "N":
+//            cout << "Canceling..." << endl;
+//        break;
+//    }
+//        break;
+//
+//        ///Case for loading from previous file
+//        case "C":
+//        cout << "Continuing from previous save, enter maze name: ";
+//        getline(cin, mazeName);
+//        cout << "Continue from maze named  " << mazeName << " ?" << endl;
+//            cout << "Yes = Y, No = N";
+//            cin >> userIn;
+//            userIn = toupper(userIn);
+//
+//            switch (userIn){
+//                case "Y":
+//                    cout << "Opening maze named: "  << mazeName << "." << endl;
+//                    mazeFileName = mazeName + ".txt";
+//                    instream.open(mazeFileName);
+//                    if(instream.fail()){
+//                        cout << "Could not find maze named " << mazeName << "." << endl;
+//                    }
+//                    else{
+//                        cout << "Maze named " << mazeName << " opened!" << endl;
+//                    }
+//                    ///Insert code for reading input here, possibly a function?
+//                break;
+//
+//                case "N":
+//                    cout << "Canceling..." << endl;
+//                break;
+//
+//        break;
+//
+//        case "Q":
+//            exit(0);
+//        break;
+//    }
+//    return;
+//}
 }
 
-/
+/**
 * @name copyFromFile
 * @brief updates the list from a save file of directions
 * @param root Type: node pointer, the root of the tree
 * @param directions Type: vector<string>, directions, the list of directions from the file
 * @return void.
-/
+**/
 void copyFromFile(Node * root, vector<string> directions){
     //need main to copy directions list before this function starts
 
