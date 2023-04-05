@@ -587,18 +587,12 @@ void printMaze(Node * root, vector<string> &directions, vector <vector <string> 
 void startMenu(Node * root, ifstream &instream, vector <string> &directions){
     string userIn;
     string mazeName;
-    string mazeFileName;
-//    ifstream instream;
-//    ofstream oustream;
 
     cout << "Maze Mapper / Solver" << endl << "Enter Letter to Select" << endl;
     cout << "N: New Maze" << endl << "C: Continue Maze" << endl << "Q: Quit" << endl;
 
     cin >> userIn;
 //    userIn = toupper(userIn);
-    
-    vector <char> extras;
-    
     
     
     if(userIn == "N"){
