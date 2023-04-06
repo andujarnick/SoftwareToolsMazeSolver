@@ -68,7 +68,7 @@ void printIntersections(Node* graph, stack<Node*> intersections);
 //Copies the node to the node stack
 void copyNode(Node* graph, Node* &intersection);
 
-void printMaze(Node * root, vector<string> &directions, vector< vector <string> > &maze, int i, int j);
+void printMaze(Node * root, vector<string> &directions, vector <vector <string> > &maze, int i, int j, string direction);
 
 //Start Menu
 void startMenu(Node * root, ifstream &instream, vector <string> &directions);

@@ -93,7 +93,7 @@ int main(int argc, char *argv[]){
         maze.push_back(column);
     }
     
-    printMaze(graph, directions, maze, maze.size()/2, maze.size()/2);
+    printMaze(graph, directions, maze, maze.size()/2, maze.size()/2, "NORTH");
     
     for (int i = 0; i < maze.size(); i++)
     {
@@ -580,17 +580,64 @@ void printIntersections(Node* graph, stack<Node*> intersections){
 * @param maze Type vector<vector<sting>> 2d vector that makes up a representation of the maze, in a coordinate system of sorts.
 * @return void.
 **/
-void printMaze(Node * root, vector<string> &directions, vector <vector <string> > &maze, int i, int j){
+void printMaze(Node * root, vector<string> &directions, vector <vector <string> > &maze, int i, int j, string direction){
     maze[i][j] = "  X  ";
     
-    if(root->left != NULL){
-        printMaze(root->left, directions, maze, i, j-1);
+    if(direction == "NORTH"){
+        if(root->left != NULL){
+            maze[i][j+1] = "  X  ";
+            printMaze(root->left, directions, maze, i, j+2, "WEST");
+        }
+        if (root->straight != NULL){
+            maze[i+1][j] = "  X  ";
+            printMaze(root->straight, directions, maze, i+2, j, "NORTH");
+        }
+        if (root->right != NULL){
+            maze[i][j-1] = "  X  ";
+            printMaze(root->right, directions, maze, i, j-2, "EAST");
+        }
     }
-    if (root->straight != NULL){
-        printMaze(root->straight, directions, maze, i+1, j);
+    else if(direction == "WEST"){
+        if(root->left != NULL){
+            maze[i-1][j] = "  X  ";
+            printMaze(root->left, directions, maze, i-2, j, "SOUTH");
+        }
+        if (root->straight != NULL){
+            maze[i][j+1] = "  X  ";
+            printMaze(root->straight, directions, maze, i, j+2, "WEST");
+        }
+        if (root->right != NULL){
+            maze[i+1][j] = "  X  ";
+            printMaze(root->right, directions, maze, i+2, j, "NORTH");
+        }
     }
-    if (root->right != NULL){
-        printMaze(root->right, directions, maze, i, j+1);
+    else if(direction == "SOUTH"){
+        if(root->left != NULL){
+            maze[i][j-1] = "  X  ";
+            printMaze(root->left, directions, maze, i, j-2, "EAST");
+        }
+        if (root->straight != NULL){
+            maze[i-1][j] = "  X  ";
+            printMaze(root->straight, directions, maze, i-2, j, "SOUTH");
+        }
+        if (root->right != NULL){
+            maze[i][j+1] = "  X  ";
+            printMaze(root->right, directions, maze, i, j+2, "WEST");
+        }
+    }
+    else{
+        if(root->left != NULL){
+            maze[i+1][j] = "  X  ";
+            printMaze(root->left, directions, maze, i+2, j, "NORTH");
+        }
+        if (root->straight != NULL){
+            maze[i][j-1] = "  X  ";
+            printMaze(root->straight, directions, maze, i, j-2, "EAST");
+        }
+        if (root->right != NULL){
+            maze[i-1][j] = "  X  ";
+            printMaze(root->right, directions, maze, i-2, j, "SOUTH");
+        }
     }
 }
 
