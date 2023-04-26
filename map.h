@@ -27,7 +27,7 @@ struct Node{
 };
 
 //function to output everything mapped so far
-void inOrder(Node * root);
+void inorder(Node * root);
 
 //Calculates the size of the graph
 int size(Node * root);
@@ -71,7 +71,7 @@ void copyNode(Node* graph, Node* &intersection);
 void printMaze(Node * root, vector<string> &directions, vector <vector <string> > &maze, int i, int j, string direction);
 
 //Start Menu
-void startMenu(Node * root, ifstream &instream, vector <string> &directions);
+int startMenu(Node * root, ifstream &instream, vector <string> &directions, stack<string> &backtracking);
 
 //Copys from file and briefly updates list from a save file of directions
 void copyFromFile(Node * root, vector<string> directions);
