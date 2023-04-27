@@ -447,13 +447,13 @@ void moveThroughMaze(Node* &graph, Node* placeholder, stack<string> &backtrackin
         chosenDirection = chooseDirection(line, space1loc, numDirections, NULL);
    
         if(chosenDirection == "DEADEND"){
-            cout << "backtracking" << endl;
+            ///cout << "backtracking" << endl;
             backtrack(graph, cursor, backtracking, directions, intersections.top()->distanceFromIntersection);
             numDirections = numDirectionsCount(intersections.top()->instruction, space1loc, space2loc);//counts the directions again at the intersection
             chosenDirection = chooseDirection(intersections.top()->instruction, space1loc, numDirections, intersections.top());
             
             while(chosenDirection == "AGAIN"){
-                cout << "backtracking again" << endl;
+                ///cout << "backtracking again" << endl;
                 
                 intersections.pop();//pops the last intersection from the list
                 
