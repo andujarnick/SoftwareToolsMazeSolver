@@ -889,3 +889,16 @@ void copyFromFile(Node * root, vector<string> directions){
         add(root, empty, direction, direction, directionsNew);//adds a node to the tree
     }
 }
+
+void printIntersectionsFunction(Node* graph, stack<Node*> intersections){
+    cout << endl;
+    cout << "Intersections List:" << endl;
+    int size = intersections.size();
+    for (int i=0; i < size-1; i++) {
+        intersections.size();
+        cout << "intersection -> left:" << intersections.top()->left << ":" << endl;
+        cout << "intersection -> straight:" << intersections.top()->straight << ":" << endl;
+        cout << "intersection -> right:" << intersections.top()->right << ":" << endl << endl;
+        intersections.pop();
+       }
+}

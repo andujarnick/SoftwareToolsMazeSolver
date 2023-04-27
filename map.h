@@ -47,6 +47,10 @@ bool isIntersection(Node * root);
 //chooses the correct default direction
 string chooseDirection(string line, int space1loc, int numDirections, Node* intersection);
 
+void moveThroughMazeOptimized(Node* &graph, Node* placeholder, stack<string> &backtracking, stack<Node*> &intersections, vector<string> &directions); //improved version
+
+void printIntersectionsFunction(Node* graph, stack<Node*> intersections); //indept
+
 //counts the number of directions given to the computer
 int numDirectionsCount(string line, int &space1loc, int &space2loc);
 
