@@ -39,10 +39,14 @@ int main(int argc, char *argv[]){
     //prime the list with a node, prime directions and backtracking with straight
     //allows for intersection immediately
     
-    int restoredFromSave = startMenu(graph, instream, directions, backtracking);
+    int menuVar = startMenu(graph, instream, directions, backtracking);
     cin.ignore();
 
-    if(!restoredFromSave)
+    if(menuVar == -1){
+        return -1;
+    }
+
+    if(menuVar == 0)
         add(graph, placeholder, "S", "S", directions);
     
     //only used with text file
@@ -65,7 +69,7 @@ int main(int argc, char *argv[]){
     outstream.open("input.txt");
     
     inorder(graph);
-    if(!restoredFromSave){
+    if(menuVar == 0){
         //output the backtracking list
         printBacktracking(backtracking);
         printDirections(directions, instream, outstream);
@@ -439,7 +443,7 @@ void moveThroughMaze(Node* &graph, Node* placeholder, stack<string> &backtrackin
     while(line != "Q"){
         cout << endl << "What's in front of me?" << endl;
         getline(cin, line);
-        
+
         if(line == "Q") {
             break;
         }
@@ -623,84 +627,83 @@ void printMaze(Node * root, vector<string> &directions, vector <vector <string> 
 * @name startMenu
 * @brief Prints the the start menu and sets up the initial operation.
 * @param root Type: Node, the root node of the tree
-* @return void.
+* @return 1 if continuing, 0 if new, and -1 if canceling.
 **/
 int startMenu(Node * root, ifstream &instream, vector <string> &directions, stack<string> &backtracking){
     string userIn;
     string mazeName;
+    bool isValid = false;
 
-    cout << "Maze Mapper / Solver" << endl << "Enter Letter to Select" << endl;
-    cout << "N: New Maze" << endl << "C: Continue Maze" << endl << "Q: Quit" << endl;
+    while(isValid == false){
+        cout << "Maze Mapper / Solver" << endl << "Enter Letter to Select" << endl;
+        cout << "N: New Maze" << endl << "C: Continue Maze" << endl << "Q: Quit" << endl;
 
-    cin >> userIn;
-//    userIn = toupper(userIn);
-    
-    
-    if(userIn == "N"){
-        cout << endl << "New Maze Selected" << endl;
-        cout << "Enter Maze Name: ";
-        cin.ignore();
-//        cin.ignore(numeric_limits<std::streamsize>::max());
-        getline(cin, mazeName, '\n');
-
-        cout << "Start a new maze named " << mazeName << "?" << endl;
-        cout << "Yes = Y, No = N" << endl;
         cin >> userIn;
-//        userIn = toupper(userIn);
-        if(userIn == "Y"){
-            cout << "Creating new maze named: "  << mazeName << "." << endl;
+        
+        if(userIn == "N" || userIn == "n"){
+            cout << endl << "New Maze Selected" << endl;
+            cout << "Enter Maze Name: ";
+            cin.ignore();
+    //        cin.ignore(numeric_limits<std::streamsize>::max());
+            getline(cin, mazeName, '\n');
+
+            cout << "Start a new maze named " << mazeName << "?" << endl;
+            cout << "Yes = Y, No = N" << endl;
+            cin >> userIn;
+    //        userIn = toupper(userIn);
+            if(userIn == "Y" || userIn == "y"){
+                cout << "Creating new maze named: "  << mazeName << "." << endl;
+                return 0;
+            }
+            else{
+                cout << "Cancelling..." << endl;
+            }
         }
-        else{
-            cout << "Cancelling..." << endl;
-        }
-    }
-    else if(userIn == "C"){
-        cout << "Continuing from previous save, enter maze name: ";
-        cin.ignore();
-        getline(cin, mazeName);
-        cout << "Continue from maze named  " << mazeName << " ?" << endl;
-        cout << "Yes = Y, No = N" << endl;
-        cin >> userIn;
-//        userIn = toupper(userIn);
-        if(userIn == "Y"){
-//            getline(cin, mazeName);
-//            cout << "Continue from maze named  :" << mazeName << ": ?" << endl;
-//            cout << "Yes = Y, No = N" << endl;
-//            cin >> userIn;
-//            userIn = toupper(userIn);
-            Node* nodeplaceholder;
-            nodeplaceholder = NULL;
-            add(root, nodeplaceholder, "S", "S", directions);
-            string placeholder;
-            while(instream){
-                instream >> placeholder;
-                if(placeholder == "EOF"){
-                    break;
+        else if(userIn == "C" || userIn == "c"){
+            cout << "Continuing from previous save, enter maze name: ";
+            cin.ignore();
+            getline(cin, mazeName);
+            cout << "Continue from maze named  " << mazeName << " ?" << endl;
+            cout << "Yes = Y, No = N" << endl;
+            cin >> userIn;
+            if(userIn == "Y" || userIn == "y"){
+
+                Node* nodeplaceholder;
+                nodeplaceholder = NULL;
+                add(root, nodeplaceholder, "S", "S", directions);
+                string placeholder;
+                while(instream){
+                    instream >> placeholder;
+                    if(placeholder == "EOF"){
+                        break;
+                    }
+                    
+                    addToDirections(directions, "STRAIGHT");
+                    addToBacktracking(backtracking, "STRAIGHT");
+                    addToDirections(directions, placeholder);
+                    addToBacktracking(backtracking, placeholder);
+                    Node* newIntersection = NULL;
+                    add(root, nodeplaceholder, placeholder, to_string(placeholder[0]), directions);
                 }
                 
-//                cout << "adding direction:" << placeholder << ":" << endl;
-                addToDirections(directions, "STRAIGHT");
-                addToBacktracking(backtracking, "STRAIGHT");
-                addToDirections(directions, placeholder);
-                addToBacktracking(backtracking, placeholder);
-//                add(root, nodeplaceholder, placeholder, placeholder, directions);
-                Node* newIntersection = NULL;
-//                copyNode(add(root, nodeplaceholder, placeholder, to_string(placeholder[0]), directions), newIntersection);
-                add(root, nodeplaceholder, placeholder, to_string(placeholder[0]), directions);
+                for(int i = 0; i < directions.size(); i++){
+                    cout << "direction: " << directions[i] << endl;
+                }
+                return 1;
             }
-            
-            for(int i = 0; i < directions.size(); i++){
-                cout << "direction: " << directions[i] << endl;
+            else{
+                cout << "Cancelling..." << endl;
             }
-            return 1;
+        }
+        else if(userIn == "Q" || userIn == "q"){
+            return -1;
         }
         else{
-            cout << "Cancelling..." << endl;
+            cout << "Invalid Input" << endl;
         }
     }
-    else{
-        return 0;
-    }
+    
+
     return 0;
 }
 
