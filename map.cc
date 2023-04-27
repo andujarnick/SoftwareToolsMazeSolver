@@ -69,6 +69,16 @@ int main(int argc, char *argv[]){
     
     
     //Moves through the maze
+    cout << "Please follow the following directions: " << endl;
+    cout << "Q: Stop adding directions and output final maze" << endl;
+    cout << "LEFT or L: Adds left turn at the current intersection" << endl;
+    cout << "RIGHT or R: Adds right turn at the current intersection" << endl;
+    cout << "STRAIGHT or S: Adds straight turn at the current intersection" << endl;
+    cout << "Example input: LEFT STRAIGHT RIGHT " << endl;
+     cout << "Example input: L S R " << endl;
+
+
+
     moveThroughMaze(graph, placeholder, backtracking, intersections, directions);
     
     instream.close();
@@ -614,7 +624,6 @@ void printIntersections(Node* graph, stack<Node*> intersections){
 **/
 void printMaze(Node * root, vector<string> &directions, vector <vector <string> > &maze, int i, int j, string direction){
     maze[i][j] = "  X  ";
-    cout << "in here" << endl;
     if(direction == "NORTH"){
         if(root->left != NULL){
             if(root->directionCount > 1)
